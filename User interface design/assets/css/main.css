@@ -25,6 +25,7 @@ Text Domain:  Flipmart
 14.  Footer
 15.  Responsive
 16.  Testimonials
+17.  detail
 
 /* */
 /*===================================================================================*/
@@ -5745,7 +5746,7 @@ age-container #owl-main .owl-next {
 .table > tfoot > tr > td {
   vertical-align: middle;
   border: none;
-  padding: 30px;
+  padding: 10px;
 }
 .body-content .my-wishlist-page .my-wishlist table tbody .close-btn a,
 .body-content .my-wishlist-page .my-wishlist table tbody .close-btn a:hover {
@@ -5862,3 +5863,23 @@ z-index:10000
     margin-top: 30px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
 	}
+
+
+
+
+
+/*===================================================================================*/
+/*  details
+/*===================================================================================*/
+.cell-label{
+  background-color: #F5F5F5;
+  
+
+}
+.table-row{
+    height: .2em;
+    border-top: 1px dotted #ccc;
+}
+.table{
+  
+}
