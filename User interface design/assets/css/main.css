@@ -25,6 +25,7 @@ Text Domain:  Flipmart
 14.  Footer
 15.  Responsive
 16.  Testimonials
+17.  detail
 
 /* */
 /*===================================================================================*/
@@ -3642,7 +3643,7 @@ age-container #owl-main .owl-next {
 .filters-container .lbl-cnt {
   color: #666666;
   font-family: 'Open Sans', sans-serif, sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 24px;
 }
 .filters-container .lbl-cnt .lbl {
@@ -5703,6 +5704,7 @@ age-container #owl-main .owl-next {
     font-weight: 400;
   }
 
+<<<<<<< HEAD
   .body-content .my-wishlist-page img {width:100%}
   .body-content .my-wishlist-page .my-wishlist table tbody tr:nth-child(even) {
     border-top: 1px solid #ddd;
@@ -5752,6 +5754,57 @@ age-container #owl-main .owl-next {
     color: #ff7878;
     font-size: 15px;
   }
+=======
+.body-content .my-wishlist-page img {width:100%}
+.body-content .my-wishlist-page .my-wishlist table tbody tr:nth-child(even) {
+  border-top: 1px solid #ddd;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .product-name {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 6px;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .product-name a {
+  color: #434343;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .rating span {
+  font-size: 11px;
+  color: #aaa;
+  padding-left: 10px;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .rating .rate {
+  color: #ffb400;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .rating .non-rate {
+  color: #dcdcdc;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .price {
+  font-size: 16px;
+  padding-top: 4px;
+  font-weight: bold;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .price span {
+  font-size: 15px;
+  color: #ddd;
+  text-decoration: line-through;
+  padding-left: 10px;
+}
+.body-content .my-wishlist-page .my-wishlist table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  vertical-align: middle;
+  border: none;
+  padding: 10px;
+}
+.body-content .my-wishlist-page .my-wishlist table tbody .close-btn a,
+.body-content .my-wishlist-page .my-wishlist table tbody .close-btn a:hover {
+  color: #ff7878;
+  font-size: 15px;
+}
+>>>>>>> 6269931c1f4f54f14fddf165fda4b5e58f486230
 
   /*===================================================================================*/
 /*  Signup and login
@@ -5859,6 +5912,31 @@ age-container #owl-main .owl-next {
 /*===================================================================================*/
 
 .home-banner {
+<<<<<<< HEAD
   margin-top: 30px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
+=======
+    margin-top: 30px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
+	}
+
+
+
+
+
+/*===================================================================================*/
+/*  details
+/*===================================================================================*/
+.cell-label{
+  background-color: #F5F5F5;
+  
+
+}
+.table-row{
+    height: .2em;
+    border-top: 1px dotted #ccc;
+}
+.table{
+  
+>>>>>>> 6269931c1f4f54f14fddf165fda4b5e58f486230
 }
