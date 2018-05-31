@@ -1,131 +1,127 @@
-
-package edu.ECoMoPho.model;
-
+package com.ecom.dao;
 
 public class Product {
-    
-    private int productId;
-    private String modelNo;
-    private String ProductName;
-    private int manufacturerId;
-    private double price;
-    private String os;
-    private int ram;
-    private double Camera;
-    private String processor;
-    private String description;
-    private int stock;
-    private boolean active;
 
-    public Product() {
-    }
+	private int productId;
+	private String modelNo;
+	private String ProductName;
+	private int manufacturerId;
+	private double price;
+	private String os;
+	private int ram;
+	private double Camera;
+	private String processor;
+	private String description;
+	private int stock;
+	private boolean active;
 
-    public Product(String modelNo, String ProductName, int manufacturerId, double price, String os, int ram, double Camera, String processor, String description, int stock) {
-        this.modelNo = modelNo;
-        this.ProductName = ProductName;
-        this.manufacturerId = manufacturerId;
-        this.price = price;
-        this.os = os;
-        this.ram = ram;
-        this.Camera = Camera;
-        this.processor = processor;
-        this.description = description;
-        this.stock = stock;
-    }
+	public Product() {
+	}
 
-    public int getProductId() {
-        return productId;
-    }
+	public Product(String modelNo, String ProductName, int manufacturerId, double price, String os, int ram,
+			double Camera, String processor, String description, int stock) {
+		this.modelNo = modelNo;
+		this.ProductName = ProductName;
+		this.manufacturerId = manufacturerId;
+		this.price = price;
+		this.os = os;
+		this.ram = ram;
+		this.Camera = Camera;
+		this.processor = processor;
+		this.description = description;
+		this.stock = stock;
+	}
 
-    
-    public String getModelNo() {
-        return modelNo;
-    }
+	public int getProductId() {
+		return productId;
+	}
 
-    public void setModelNo(String modelNo) {
-        this.modelNo = modelNo;
-    }
+	public String getModelNo() {
+		return modelNo;
+	}
 
-    public String getProductName() {
-        return ProductName;
-    }
+	public void setModelNo(String modelNo) {
+		this.modelNo = modelNo;
+	}
 
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
-    }
+	public String getProductName() {
+		return ProductName;
+	}
 
-    public int getManufacturerId() {
-        return manufacturerId;
-    }
+	public void setProductName(String ProductName) {
+		this.ProductName = ProductName;
+	}
 
-    public void setManufacturerId(int manufacturerId) {
-        this.manufacturerId = manufacturerId;
-    }
+	public int getManufacturerId() {
+		return manufacturerId;
+	}
 
-    public double getPrice() {
-        return price;
-    }
+	public void setManufacturerId(int manufacturerId) {
+		this.manufacturerId = manufacturerId;
+	}
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+	public double getPrice() {
+		return price;
+	}
 
-    public String getOs() {
-        return os;
-    }
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
-    public void setOs(String os) {
-        this.os = os;
-    }
+	public String getOs() {
+		return os;
+	}
 
-    public int getRam() {
-        return ram;
-    }
+	public void setOs(String os) {
+		this.os = os;
+	}
 
-    public void setRam(int ram) {
-        this.ram = ram;
-    }
+	public int getRam() {
+		return ram;
+	}
 
-    public double getCamera() {
-        return Camera;
-    }
+	public void setRam(int ram) {
+		this.ram = ram;
+	}
 
-    public void setCamera(double Camera) {
-        this.Camera = Camera;
-    }
+	public double getCamera() {
+		return Camera;
+	}
 
-    public String getProcessor() {
-        return processor;
-    }
+	public void setCamera(double Camera) {
+		this.Camera = Camera;
+	}
 
-    public void setProcessor(String processor) {
-        this.processor = processor;
-    }
+	public String getProcessor() {
+		return processor;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setProcessor(String processor) {
+		this.processor = processor;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public int getStock() {
-        return stock;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+	public int getStock() {
+		return stock;
+	}
 
-    public boolean isActive() {
-        return active;
-    }
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-    
-    
-    
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 }

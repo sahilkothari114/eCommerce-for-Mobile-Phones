@@ -1,6 +1,4 @@
-
-package edu.ECoMoPho.model;
-
+package com.ecom.dao;
 
 public class Cart {
     private int userId;
