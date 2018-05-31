@@ -1,5 +1,5 @@
 
-package edu.ECoMoPho.model;
+package com.ecom.dao;
 
 public class ColorProduct {
     

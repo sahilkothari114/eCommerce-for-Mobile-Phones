@@ -1,4 +1,4 @@
-package edu.ECoMoPho.model;
+package com.ecom.dao;
 
 import java.sql.Date;
 
