@@ -1,5 +1,5 @@
 
-package Classes;
+package edu.ECoMoPho.model;
 
 public class ColorProduct {
     

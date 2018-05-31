@@ -1,4 +1,4 @@
-package Classes;
+package edu.ECoMoPho.model;
 
 import java.sql.Date;
 
