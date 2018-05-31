@@ -8,10 +8,10 @@ public class Users {
 	private String password;
 	private int pincode;
 	private String streetAddress;
-	private String contactNumber;
-	private String softDelete;
+	private String contactNo;
+	private String active;
 	public Users(String firstName, String lastName, String eMail, String password, int pincode, String streetAddress,
-			String contactNumber, String softDelete) {
+			String contactNo, String active) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -19,8 +19,8 @@ public class Users {
 		this.password = password;
 		this.pincode = pincode;
 		this.streetAddress = streetAddress;
-		this.contactNumber = contactNumber;
-		this.softDelete = softDelete;
+		this.contactNo = contactNo;
+		this.active = active;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -58,17 +58,17 @@ public class Users {
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
 	}
-	public String getContactNumber() {
-		return contactNumber;
+	public String getcontactNo() {
+		return contactNo;
 	}
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
+	public void setcontactNo(String contactNo) {
+		this.contactNo = contactNo;
 	}
-	public String getSoftDelete() {
-		return softDelete;
+	public String getactive() {
+		return active;
 	}
-	public void setSoftDelete(String softDelete) {
-		this.softDelete = softDelete;
+	public void setactive(String active) {
+		this.active = active;
 	}
 	public int getUserId() {
 		return userId;

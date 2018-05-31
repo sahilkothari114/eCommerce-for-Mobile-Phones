@@ -18,12 +18,11 @@ public class TestConnection {
 		PreparedStatement ps = null;
 		Connection c = null ;
 		int recordCounter=0;
-		try {
-				c = JDBC.getConnection();
+		try {	JDBC jdbc = JDBC.getInstance();
+				c = jdbc.getConnection();
 				ps = c.prepareStatement("INSERT INTO public.state(\r\n" + 
 						"	 state_name)\r\n" + 
 						"	VALUES ( ?);");
-				//ps.setInt(1, 3);
 				ps.setString(1, state.getStateName());
 				recordCounter = ps.executeUpdate(); 
 		} catch (Exception e) {
