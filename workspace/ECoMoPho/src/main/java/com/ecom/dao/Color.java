@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+=======
+>>>>>>> 48fadaf210e99cc27a1da3e3031e53a512fc56f0
 package com.ecom.dao;
 
 public class Color {
