@@ -1,26 +1,26 @@
-package edu.ECoMoPho.model;
+package com.ecom.dao;
 
-public class Admin {
-	private int adminId;
+public class Users {
+	private int userId;
 	private String firstName;
-	private String lastname;
+	private String lastName;
 	private String eMail;
 	private String password;
 	private int pincode;
 	private String streetAddress;
 	private String contactNo;
-	private String displayPicture;
-	public Admin(String firstName, String lastname, String eMail, String password, int pincode, String streetAddress,
-			String contactNo, String displayPicture) {
+	private String active;
+	public Users(String firstName, String lastName, String eMail, String password, int pincode, String streetAddress,
+			String contactNo, String active) {
 		super();
 		this.firstName = firstName;
-		this.lastname = lastname;
+		this.lastName = lastName;
 		this.eMail = eMail;
 		this.password = password;
 		this.pincode = pincode;
 		this.streetAddress = streetAddress;
 		this.contactNo = contactNo;
-		this.displayPicture = displayPicture;
+		this.active = active;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -28,11 +28,11 @@ public class Admin {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getlastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setlastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String geteMail() {
 		return eMail;
@@ -64,14 +64,13 @@ public class Admin {
 	public void setcontactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
-	public String getDisplayPicture() {
-		return displayPicture;
+	public String getactive() {
+		return active;
 	}
-	public void setDisplayPicture(String displayPicture) {
-		this.displayPicture = displayPicture;
+	public void setactive(String active) {
+		this.active = active;
 	}
-	public int getAdminId() {
-		return adminId;
+	public int getUserId() {
+		return userId;
 	}
-	
 }

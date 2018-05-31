@@ -1,4 +1,4 @@
-package ECoMoPho;
+package com.ecom;
 
 /**
  * Hello world!
