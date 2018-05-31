@@ -1,4 +1,4 @@
-package edu.ECoMoPho.model;
+package com.ecom.dao;
 
 public class State {
 	private int stateId;

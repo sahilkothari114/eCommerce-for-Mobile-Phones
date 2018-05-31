@@ -9,4 +9,4 @@
  * @author sahil
  *
  */
-package edu.ECoMoPho.model;
+package com.ecom.dao;
