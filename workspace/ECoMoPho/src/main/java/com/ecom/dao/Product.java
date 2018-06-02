@@ -1,10 +1,7 @@
+
 package com.ecom.dao;
 
-<<<<<<< HEAD
-package com.ecom.dao;
-=======
 public class Product {
->>>>>>> 48fadaf210e99cc27a1da3e3031e53a512fc56f0
 
 	private int productId;
 	private String modelNo;

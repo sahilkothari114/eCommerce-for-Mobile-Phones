@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 
 package com.ecom.dao;
 
-=======
-package com.ecom.dao;
->>>>>>> 48fadaf210e99cc27a1da3e3031e53a512fc56f0
 
 public class Cart {
     private int userId;

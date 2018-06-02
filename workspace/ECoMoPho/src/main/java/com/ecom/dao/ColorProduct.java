@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 48fadaf210e99cc27a1da3e3031e53a512fc56f0
 package com.ecom.dao;
 
 public class ColorProduct {
