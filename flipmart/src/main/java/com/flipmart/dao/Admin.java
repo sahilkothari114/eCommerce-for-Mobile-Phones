@@ -1,4 +1,4 @@
-package com.ecom.dao;
+package com.flipmart.dao;
 
 public class Admin {
 	private int adminId;

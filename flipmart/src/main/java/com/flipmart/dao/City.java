@@ -1,9 +1,22 @@
-package com.ecom.dao;
+package com.flipmart.dao;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="city")
 public class City {
+	
+	@Column(name="city_id")
 	private int cityId;
+	
+	@Column(name="city_name")
 	private String cityName;
+	
+	@Column(name="state_id")
 	private int stateId;
+	
 	public City(String cityName, int stateId) {
 		super();
 		this.cityName = cityName;

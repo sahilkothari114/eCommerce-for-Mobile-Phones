@@ -1,4 +1,4 @@
-package com.ecom.util;
+package com.flipmart.util;
 
 public class EComConstants {
 

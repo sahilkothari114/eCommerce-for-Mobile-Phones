@@ -1,4 +1,4 @@
-package com.ecom.dao;
+package com.flipmart.dao;
 
 import java.sql.Date;
 

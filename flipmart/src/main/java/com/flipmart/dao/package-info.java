@@ -9,4 +9,4 @@
  * @author sahil
  *
  */
-package com.ecom.dao;
+package com.flipmart.dao;

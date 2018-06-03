@@ -1,10 +1,6 @@
-package com.ecom.dao;
+package com.flipmart.dao;
 
-<<<<<<< HEAD
-package com.ecom.dao;
-=======
 public class Product {
->>>>>>> 48fadaf210e99cc27a1da3e3031e53a512fc56f0
 
 	private int productId;
 	private String modelNo;
@@ -16,14 +12,13 @@ public class Product {
 	private double Camera;
 	private String processor;
 	private String description;
-	private int stock;
 	private boolean active;
 
 	public Product() {
 	}
 
 	public Product(String modelNo, String ProductName, int manufacturerId, double price, String os, int ram,
-			double Camera, String processor, String description, int stock) {
+			double Camera, String processor, String description) {
 		this.modelNo = modelNo;
 		this.ProductName = ProductName;
 		this.manufacturerId = manufacturerId;
@@ -33,7 +28,6 @@ public class Product {
 		this.Camera = Camera;
 		this.processor = processor;
 		this.description = description;
-		this.stock = stock;
 	}
 
 	public int getProductId() {
@@ -110,14 +104,6 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
 	}
 
 	public boolean isActive() {

@@ -1,4 +1,4 @@
-package com.ecom.dao;
+package com.flipmart.dao;
 
 public class Users {
 	private int userId;

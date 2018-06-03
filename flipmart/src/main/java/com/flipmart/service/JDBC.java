@@ -1,14 +1,15 @@
-package com.ecom.service;
+package com.flipmart.service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.ecom.util.EComConstants;
+import com.flipmart.util.EComConstants;
 
-class JDBC {
+public class JDBC {
 
 	private static JDBC jdbc;
+	private static String rootPath;
 
 	private JDBC() {
 	}
@@ -21,6 +22,7 @@ class JDBC {
 	}
 
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
+		loadProperties();
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(
@@ -30,5 +32,10 @@ class JDBC {
 			e.printStackTrace();
 		}
 		return con;
+	}
+
+	private void loadProperties() {
+		// TODO Auto-generated method stub
+		
 	}
 }
