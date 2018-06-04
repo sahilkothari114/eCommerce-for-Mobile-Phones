@@ -110,11 +110,7 @@
                       <div class="col-md-12">
                         <div class="form-group label-floating">
                           <label class="control-label">Manufaturer Name</label>
-                          <select class="form-control" name="drpManufaturer" style="float:left;" required>
-                            <option value="101">Nokia</option>
-                            <option value="102">Samsung</option>
-                            <option value="103">Apple</option>
-                          </select>
+                          <input type="text" disabled name="txtProductName" onblur="return allLetter(txtProductName);" class="form-control" value="Nokia" required/>
                         </div>
                       </div>
                     </div>
@@ -122,67 +118,41 @@
                       <div class="col-md-6">
                         <div class="form-group label-floating">
                           <label class="control-label">Product Model Number</label>
-                          <select class="form-control" name="drpManufaturer" style="float:left;" required>
-                            <option value="101">Value will come from DB</option>
-                          </select>
+                          <input type="text" name="txtModelNumber" onblur="return allLetter(txtModelNumber);" class="form-control" value="1100" required/>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group label-floating">
                           <label class="control-label">Product Name</label>
-                          <input type="text" name="txtProductName" onblur="return allLetter(txtProductName);" class="form-control" required/>
+                          <input type="text" name="txtProductName" onblur="return allLetter(txtProductName);" class="form-control" value="Nokia 1100" required/>
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <div class="form-group label-floating">
                           <label class="control-label">Operating System</label>
-                          <select class="form-control" name="drpOperatingSystem" style="float:left;" required>
-                            <option value="201">Android</option>
-                            <option value="202">iOS</option>
-                            <option value="203">Windows</option>
-                          </select>
+                          <input type="text" name="txtOperatingSystem" onblur="return allLetter(txtOperatingSystem);" class="form-control" value="Android 8.0" required/>
                         </div>
                       </div>
-                      <div class="col-md-4">
-                        <div class="form-group label-floating">
-                          <label class="control-label">ROM</label>
-                          <select class="form-control" name="drpROM" style="float:left;" required>
-                            <option value="301">8 GB</option>
-                            <option value="302">16 GB</option>
-                            <option value="303">32 GB</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <div class="form-group label-floating">
                           <label class="control-label">RAM</label>
-                          <select class="form-control" name="drpRAM" style="float:left;" required>
-                            <option value="401">1 GB</option>
-                            <option value="402">2 GB</option>
-                            <option value="403">4 GB</option>
-                          </select>
+                          <input type="text" name="txtRAM" onblur="return allLetter(txtRAM);" class="form-control" value="2 GB" required/>
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
+                        <div class="form-group label-floating">
+                          <label class="control-label">Camera</label>
+                          <input type="text" name="txtCamera" onblur="return allLetter(txtCamera);" class="form-control" value="13 MP" required/>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
                         <div class="form-group label-floating">
                           <label class="control-label">Processor</label>
-                          <input type="text" name="txtProcessor" onblur="return allLetter(txtProcessor);" class="form-control" required/>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group label-floating">
-                          <label class="control-label">Clock Speed</label>
-                          <input type="text" name="txtClockSpeed" onblur="return allLetter(txtClockSpeed);" class="form-control" required/>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group label-floating">
-                          <label class="control-label">Dimension</label>
-                          <input type="text" name="txtDimension" onblur="return allLetter(txtDimension);" class="form-control" required/>
+                          <input type="text" name="txtProcessor" onblur="return allLetter(txtProcessor);" class="form-control" value="Snapdragon 630" required/>
                         </div>
                       </div>
                     </div>
@@ -190,7 +160,7 @@
                       <div class="col-md-12">
                         <div class="form-group label-floating">
                           <label class="control-label">Picture URL</label>
-                          <input type="text" name="txtPicture" onblur="return allLetter(txtPicture);" class="form-control" required/>
+                          <input type="text" name="txtPicture" onblur="return allLetter(txtPicture);" class="form-control" value="imgur.com" required/>
                         </div>
                       </div>
                     </div>
@@ -198,7 +168,7 @@
                       <div class="col-md-12">
                         <div class="form-group label-floating">
                           <label class="control-label">Additional Features</label>
-                          <input type="textarea" name="txtFeatures" onblur="return allLetter(txtFeatures);" class="form-control" required/>
+                          <input type="textarea" name="txtAdditionalFeatures" onblur="return allLetter(txtAdditionalFeatures);" class="form-control" value="NA" required/>
                         </div>
                       </div>
                     </div>
@@ -206,7 +176,71 @@
                       <div class="col-md-12">
                         <div class="form-group label-floating">
                           <label class="control-label">Price</label>
-                          <input type="text" name="txtPrice" onblur="return allLetter(txtPrice);" class="form-control" required/>
+                          <input type="text" name="txtPrice" onblur="return allLetter(txtPrice);" class="form-control" value="5000.00" required/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group label-floating">
+                          <label class="control-label">Color Quantity</label>
+                          <input type="text" name="txtColorQuantity" onblur="return allLetter(txtColorQuantity);" class="form-control" required/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group label-floating">
+                            <label class="control-label">Color</label>
+                            <select class="form-control" name="drpColor" style="float:left;" required>
+                              <option value="101">Black</option>
+                              <option value="102">White</option>
+                              <option value="103">Silver</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group label-floating">
+                            <label class="control-label">Quantity</label>
+                            <input type="text" name="txtQuantity" onblur="return allLetter(txtQuantity);" class="form-control" required/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group label-floating">
+                            <label class="control-label">Color</label>
+                            <select class="form-control" name="drpColor" style="float:left;" required>
+                              <option value="101">Black</option>
+                              <option value="102">White</option>
+                              <option value="103">Silver</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group label-floating">
+                            <label class="control-label">Quantity</label>
+                            <input type="text" name="txtQuantity" onblur="return allLetter(txtQuantity);" class="form-control" required/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group label-floating">
+                            <label class="control-label">Color</label>
+                            <select class="form-control" name="drpColor" style="float:left;" required>
+                              <option value="101">Black</option>
+                              <option value="102">White</option>
+                              <option value="103">Silver</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group label-floating">
+                            <label class="control-label">Quantity</label>
+                            <input type="text" name="txtQuantity" onblur="return allLetter(txtQuantity);" class="form-control" required/>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -219,7 +253,6 @@
               </div>
             </div>
           </div>
-
         </div>
         <div id="footerclass">
 
