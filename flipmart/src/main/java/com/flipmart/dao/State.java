@@ -18,6 +18,10 @@ public class State {
 
 	@Column(name = "state_name")
 	private String stateName;
+	
+	public State() {
+		
+	}
 
 	public State(String stateName) {
 		super();
