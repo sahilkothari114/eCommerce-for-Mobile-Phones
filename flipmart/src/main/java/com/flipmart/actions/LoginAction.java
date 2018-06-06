@@ -8,11 +8,7 @@ import org.apache.struts2.convention.annotation.Result;
 @Action(value = "login", results = {@Result(name = "success" , location = "/View/login.jsp")})
 public class LoginAction extends ActionSupport {
     
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Admin adm;
+    private Admin adm;
     
     @Override
     public String execute() {

@@ -9,13 +9,8 @@ import org.apache.struts2.convention.annotation.Result;
 
 @Action(value = "cart", results = {@Result(name = "success" , location = "/View/cart.jsp")})
 public class CartAction extends ActionSupport {
-    
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Cart products;
-    
+  
+    private Cart products;
     @Override
     public String execute() {
         this.products = new Cart(1, 1);
