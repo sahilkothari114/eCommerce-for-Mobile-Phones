@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.flipmart.util.EComConstants;
+import com.flipmart.util.FlipmartConstants;
 
 public class JDBC {
 
@@ -26,8 +26,8 @@ public class JDBC {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(
-					EComConstants.ADDRESS + ":" + EComConstants.PORT + "/" + EComConstants.DATABASE,
-					EComConstants.USER, EComConstants.PASSWORD);
+					FlipmartConstants.ADDRESS + ":" + FlipmartConstants.PORT + "/" + FlipmartConstants.DATABASE,
+					FlipmartConstants.USER, FlipmartConstants.PASSWORD);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

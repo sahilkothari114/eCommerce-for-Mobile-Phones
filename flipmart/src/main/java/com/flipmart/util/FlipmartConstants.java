@@ -1,6 +1,6 @@
 package com.flipmart.util;
 
-public class EComConstants {
+public class FlipmartConstants {
 
 	public final static String ADDRESS = "jdbc:postgresql://127.0.0.1";
 	public final static String DATABASE = "flipmart";
