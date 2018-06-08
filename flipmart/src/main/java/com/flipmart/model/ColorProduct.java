@@ -1,16 +1,16 @@
-package com.flipmart.dao;
+package com.flipmart.model;
 
 public class ColorProduct {
 
 	private long colorProductId;
-	private Color color;
+	private ColorEntity color;
 	private Product product;
 	private int stock;
 
 	public ColorProduct() {
 	}
 
-	public ColorProduct(Color color, Product product, int stock) {
+	public ColorProduct(ColorEntity color, Product product, int stock) {
 		this.color = color;
 		this.product = product;
 		this.stock = stock;
@@ -32,11 +32,11 @@ public class ColorProduct {
 		this.stock = stock;
 	}
 
-	public Color getColor() {
+	public ColorEntity getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+	public void setColor(ColorEntity color) {
 		this.color = color;
 	}
 

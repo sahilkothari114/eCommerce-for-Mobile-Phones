@@ -9,4 +9,4 @@
  * @author sahil
  *
  */
-package com.flipmart.dao;
+package com.flipmart.model;

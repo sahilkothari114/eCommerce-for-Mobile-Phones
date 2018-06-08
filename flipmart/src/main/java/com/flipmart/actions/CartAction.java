@@ -1,11 +1,11 @@
 package com.flipmart.actions;
 
-import com.flipmart.DatabaseOperations;
-import com.flipmart.dao.Cart;
-import com.opensymphony.xwork2.ActionSupport;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
+
+import com.flipmart.config.DatabaseConfiguration;
+import com.flipmart.model.Cart;
+import com.opensymphony.xwork2.ActionSupport;
 
 @Action(value = "cart", results = {@Result(name = "success" , location = "/View/cart.jsp")})
 public class CartAction extends ActionSupport {
@@ -19,9 +19,11 @@ public class CartAction extends ActionSupport {
     @Override
     public String execute() {
         this.products = new Cart(1, 1);
-        System.out.println("Test");
-        DatabaseOperations db = new DatabaseOperations();
+        
+        DatabaseConfiguration db = new DatabaseConfiguration();
+		db.createEntity();
 		db.testInsert();
+		
         return SUCCESS;
     }
 

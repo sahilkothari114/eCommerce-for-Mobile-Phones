@@ -1,4 +1,4 @@
-package com.flipmart.dao;
+package com.flipmart.model;
 
 public class Product {
 
@@ -13,22 +13,6 @@ public class Product {
 	private String processor;
 	private String description;
 	private boolean active;
-
-	public Product() {
-	}
-
-	public Product(String modelNo, String ProductName, int manufacturerId, double price, String os, int ram,
-			double Camera, String processor, String description) {
-		this.modelNo = modelNo;
-		this.ProductName = ProductName;
-		this.manufacturerId = manufacturerId;
-		this.price = price;
-		this.os = os;
-		this.ram = ram;
-		this.Camera = Camera;
-		this.processor = processor;
-		this.description = description;
-	}
 
 	public int getProductId() {
 		return productId;

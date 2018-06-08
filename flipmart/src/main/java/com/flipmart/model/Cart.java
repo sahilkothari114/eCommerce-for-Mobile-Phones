@@ -1,6 +1,8 @@
-package com.flipmart.dao;
+package com.flipmart.model;
 
 public class Cart {
+	
+	
 	private int userId;
 	private int colorProductId;
 

@@ -1,4 +1,4 @@
-package com.flipmart.dao;
+package com.flipmart.model;
 
 import java.sql.Date;
 
@@ -9,15 +9,7 @@ public class Orders {
 	private String status;
 	private double totalAmount;
 
-	public Orders() {
-	}
 
-	public Orders(int userId, Date orderDate, String status, double totalAmount) {
-		this.userId = userId;
-		this.orderDate = orderDate;
-		this.status = status;
-		this.totalAmount = totalAmount;
-	}
 
 	public int getOrderId() {
 		return orderId;

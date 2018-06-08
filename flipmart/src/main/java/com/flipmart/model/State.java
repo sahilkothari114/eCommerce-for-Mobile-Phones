@@ -1,4 +1,4 @@
-package com.flipmart.dao;
+package com.flipmart.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,24 +12,27 @@ import javax.persistence.Table;
 public class State {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "state_id")
 	private long stateId;
 
 	@Column(name = "state_name")
 	private String stateName;
-	
+
 	public State() {
-		
+
 	}
 
 	public State(String stateName) {
-		super();
 		this.stateName = stateName;
 	}
 
 	public long getStateId() {
 		return stateId;
+	}
+
+	public void setStateId(long stateId) {
+		this.stateId = stateId;
 	}
 
 	public String getStateName() {
@@ -40,7 +43,4 @@ public class State {
 		this.stateName = stateName;
 	}
 
-	public void setStateId(long stateId) {
-		this.stateId = stateId;
-	}
 }
