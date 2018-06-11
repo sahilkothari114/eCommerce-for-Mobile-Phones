@@ -1,15 +1,23 @@
 package com.flipmart.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class UsersEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -28,8 +36,9 @@ public class Users {
 	@Column(name = "passwrod")
 	private String password;
 
-	/* @Column(name="pincode") */
-	private long pincode;
+	@ManyToOne
+	@JoinColumn(name = "pincode")
+	private PincodeEntity pincode;
 
 	@Column(name = "street_address")
 	private String streetAddress;
@@ -40,17 +49,28 @@ public class Users {
 	@Column(name = "active")
 	private boolean active;
 
-	public Users(String firstName, String lastName, String email, String password, long pincode, String streetAddress,
-			String contactNo, boolean active) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.pincode = pincode;
-		this.streetAddress = streetAddress;
-		this.contactNo = contactNo;
-		this.active = active;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+	private List<ProductEntity> products = new ArrayList<>();
+
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "color_id"))
+	private List<ProductEntity> colors = new ArrayList<>();
+
+	public List<ProductEntity> getColors() {
+		return colors;
+	}
+
+	public void setColors(List<ProductEntity> colors) {
+		this.colors = colors;
+	}
+
+	public List<ProductEntity> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<ProductEntity> products) {
+		this.products = products;
 	}
 
 	public String getFirstName() {
@@ -85,11 +105,11 @@ public class Users {
 		this.password = password;
 	}
 
-	public long getPincode() {
+	public PincodeEntity getPincode() {
 		return pincode;
 	}
 
-	public void setPincode(long pincode) {
+	public void setPincode(PincodeEntity pincode) {
 		this.pincode = pincode;
 	}
 

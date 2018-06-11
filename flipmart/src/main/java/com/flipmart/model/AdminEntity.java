@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "admin")
-public class Admin {
+public class AdminEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -28,8 +30,9 @@ public class Admin {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "pincode")
-	private long pincode;
+	@ManyToOne
+	@JoinColumn(name = "pincode")
+	private PincodeEntity pincode;
 
 	@Column(name = "street_address")
 	private String streetAddress;
@@ -39,19 +42,6 @@ public class Admin {
 
 	@Column(name = "display_picture")
 	private String displayPicture;
-
-	public Admin(String firstName, String lastname, String eMail, String password, long pincode, String streetAddress,
-			String contactNo, String displayPicture) {
-		super();
-		this.firstName = firstName;
-		this.lastname = lastname;
-		this.email = eMail;
-		this.password = password;
-		this.pincode = pincode;
-		this.streetAddress = streetAddress;
-		this.contactNo = contactNo;
-		this.displayPicture = displayPicture;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -85,12 +75,41 @@ public class Admin {
 		this.password = password;
 	}
 
-	public long getPincode() {
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public PincodeEntity getPincode() {
 		return pincode;
 	}
 
-	public void setPincode(long pincode) {
+	public void setPincode(PincodeEntity pincode) {
 		this.pincode = pincode;
+	}
+
+	public String getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public void setAdminId(long adminId) {
+		this.adminId = adminId;
 	}
 
 	public String getStreetAddress() {

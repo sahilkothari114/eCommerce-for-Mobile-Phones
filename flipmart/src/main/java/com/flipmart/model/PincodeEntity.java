@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "pincode")
-public class Pincode {
+public class PincodeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -20,13 +20,7 @@ public class Pincode {
 
 	@ManyToOne
 	@JoinColumn(name = "city_id")
-	private City city;
-
-	public Pincode(long pincode, City city) {
-		super();
-		this.pincode = pincode;
-		this.city = city;
-	}
+	private CityEntity city;
 
 	public long getPincode() {
 		return pincode;
@@ -36,11 +30,11 @@ public class Pincode {
 		this.pincode = pincode;
 	}
 
-	public City getCity() {
+	public CityEntity getCity() {
 		return city;
 	}
 
-	public void setCity(City city) {
+	public void setCity(CityEntity city) {
 		this.city = city;
 	}
 }

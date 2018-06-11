@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "state")
-public class State {
+public class StateEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -18,14 +18,6 @@ public class State {
 
 	@Column(name = "state_name")
 	private String stateName;
-
-	public State() {
-
-	}
-
-	public State(String stateName) {
-		this.stateName = stateName;
-	}
 
 	public long getStateId() {
 		return stateId;

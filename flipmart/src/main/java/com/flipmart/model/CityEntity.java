@@ -2,6 +2,8 @@ package com.flipmart.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,31 +11,27 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "city")
-public class City {
+public class CityEntity {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "city_id")
-	private int cityId;
+	private long cityId;
 
 	@Column(name = "city_name")
 	private String cityName;
 
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
-	}
-
 	@ManyToOne
 	@JoinColumn(name = "state_id")
-	private State state;
+	private StateEntity state;
 
-	public City() {
 
+	public long getCityId() {
+		return cityId;
 	}
 
-	public City(String cityName, State state) {
-		super();
-		this.cityName = cityName;
-		this.state = state;
+	public void setCityId(long cityId) {
+		this.cityId = cityId;
 	}
 
 	public String getCityName() {
@@ -44,16 +42,12 @@ public class City {
 		this.cityName = cityName;
 	}
 
-	public State getState() {
+	public StateEntity getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(StateEntity state) {
 		this.state = state;
-	}
-
-	public int getCityId() {
-		return cityId;
 	}
 
 }

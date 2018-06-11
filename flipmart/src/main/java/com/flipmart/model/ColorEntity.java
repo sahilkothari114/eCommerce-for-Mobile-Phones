@@ -1,8 +1,15 @@
 package com.flipmart.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,16 +18,38 @@ public class ColorEntity {
 
 	@Id
 	@Column(name = "color_id")
-	private int colorId;
+	private long colorId;
 
 	@Column(name = "color_name")
 	private String colorName;
 
-	public int getId() {
+	@ManyToMany(mappedBy = "colors")
+	private List<UsersEntity> user = new ArrayList<UsersEntity>();
+
+	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ColorProductEntity> colorProductList = new ArrayList<>();
+
+	public List<ColorProductEntity> getProductColors() {
+		return colorProductList;
+	}
+
+	public void setProductColors(List<ColorProductEntity> productColors) {
+		this.colorProductList = productColors;
+	}
+
+	public List<UsersEntity> getUser() {
+		return user;
+	}
+
+	public void setUser(List<UsersEntity> user) {
+		this.user = user;
+	}
+
+	public long getColorId() {
 		return colorId;
 	}
 
-	public void setId(int colorId) {
+	public void setColorId(long colorId) {
 		this.colorId = colorId;
 	}
 
@@ -30,6 +59,21 @@ public class ColorEntity {
 
 	public void setColorName(String colorName) {
 		this.colorName = colorName;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		ColorEntity color = (ColorEntity) o;
+		return Objects.equals(colorName, color.colorName);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(colorName);
 	}
 
 }
