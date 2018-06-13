@@ -1,4 +1,4 @@
-package com.flipmart.model;
+package com.flipmart.eao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "city")
-public class CityEntity {
+public class City {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
@@ -23,7 +23,7 @@ public class CityEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "state_id")
-	private StateEntity state;
+	private State state;
 
 
 	public long getCityId() {
@@ -42,11 +42,11 @@ public class CityEntity {
 		this.cityName = cityName;
 	}
 
-	public StateEntity getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(StateEntity state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 

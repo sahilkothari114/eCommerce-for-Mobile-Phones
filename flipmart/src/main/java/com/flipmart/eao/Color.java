@@ -1,4 +1,4 @@
-package com.flipmart.model;
+package com.flipmart.eao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "color")
-public class ColorEntity {
+public class Color {
 
 	@Id
 	@Column(name = "color_id")
@@ -24,24 +24,24 @@ public class ColorEntity {
 	private String colorName;
 
 	@ManyToMany(mappedBy = "colors")
-	private List<UsersEntity> user = new ArrayList<UsersEntity>();
+	private List<Users> user = new ArrayList<Users>();
 
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ColorProductEntity> colorProductList = new ArrayList<>();
+	private List<ColorProduct> colorProductList = new ArrayList<>();
 
-	public List<ColorProductEntity> getProductColors() {
+	public List<ColorProduct> getProductColors() {
 		return colorProductList;
 	}
 
-	public void setProductColors(List<ColorProductEntity> productColors) {
+	public void setProductColors(List<ColorProduct> productColors) {
 		this.colorProductList = productColors;
 	}
 
-	public List<UsersEntity> getUser() {
+	public List<Users> getUser() {
 		return user;
 	}
 
-	public void setUser(List<UsersEntity> user) {
+	public void setUser(List<Users> user) {
 		this.user = user;
 	}
 
@@ -67,7 +67,7 @@ public class ColorEntity {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		ColorEntity color = (ColorEntity) o;
+		Color color = (Color) o;
 		return Objects.equals(colorName, color.colorName);
 	}
 

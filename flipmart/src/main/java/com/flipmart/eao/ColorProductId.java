@@ -1,4 +1,4 @@
-package com.flipmart.model;
+package com.flipmart.eao;
 
 import java.io.Serializable;
 import java.util.Objects;

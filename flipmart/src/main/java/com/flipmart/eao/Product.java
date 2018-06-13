@@ -1,4 +1,4 @@
-package com.flipmart.model;
+package com.flipmart.eao;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
-public class ProductEntity {
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -55,27 +55,27 @@ public class ProductEntity {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "manufaturer_id")
-	private ManufacturerEntity manufacturer;
+	private Manufacturer manufacturer;
 
 	@ManyToMany(mappedBy = "products")
-	private List<UsersEntity> user = new ArrayList<UsersEntity>();
+	private List<Users> user = new ArrayList<Users>();
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ColorProductEntity> productColorList = new ArrayList<>();
+	private List<ColorProduct> productColorList = new ArrayList<>();
 
-	public List<ColorProductEntity> getProductColor() {
+	public List<ColorProduct> getProductColor() {
 		return productColorList;
 	}
 
-	public void setProductColor(List<ColorProductEntity> productColor) {
+	public void setProductColor(List<ColorProduct> productColor) {
 		this.productColorList = productColor;
 	}
 
-	public List<UsersEntity> getUser() {
+	public List<Users> getUser() {
 		return user;
 	}
 
-	public void setUser(List<UsersEntity> user) {
+	public void setUser(List<Users> user) {
 		this.user = user;
 	}
 
@@ -159,23 +159,23 @@ public class ProductEntity {
 		this.active = active;
 	}
 
-	public ManufacturerEntity getManufacturer() {
+	public Manufacturer getManufacturer() {
 		return manufacturer;
 	}
 
-	public void setManufacturer(ManufacturerEntity manufacturer) {
+	public void setManufacturer(Manufacturer manufacturer) {
 		this.manufacturer = manufacturer;
 	}
 
-	public void addColor(ColorEntity color) {
-		ColorProductEntity colorProduct = new ColorProductEntity(this, color);
+	public void addColor(Color color) {
+		ColorProduct colorProduct = new ColorProduct(this, color);
 		productColorList.add(colorProduct);
 		color.getProductColors().add(colorProduct);
 	}
 
-	public void removeColor(ColorEntity color) {
-		for (Iterator<ColorProductEntity> iterator = productColorList.iterator(); iterator.hasNext();) {
-			ColorProductEntity colorProducts = iterator.next();
+	public void removeColor(Color color) {
+		for (Iterator<ColorProduct> iterator = productColorList.iterator(); iterator.hasNext();) {
+			ColorProduct colorProducts = iterator.next();
 
 			if (colorProducts.getProduct().equals(this) && colorProducts.getColor().equals(color)) {
 				iterator.remove();
@@ -194,7 +194,7 @@ public class ProductEntity {
 		if (o == null || getClass() != o.getClass())
 			return false;
 
-		ProductEntity product = (ProductEntity) o;
+		Product product = (Product) o;
 		return Objects.equals(modelNo, product.modelNo);
 	}
 

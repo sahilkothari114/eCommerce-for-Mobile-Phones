@@ -6,15 +6,14 @@
 	<persistence-unit name="flipmartDB"
 		transaction-type="RESOURCE_LOCAL">
 
-		<class>com.flipmart.model.ColorEntity</class>
-		<class>com.flipmart.model.StateEntity</class>
-		<class>com.flipmart.model.CityEntity</class>
-		<class>com.flipmart.model.ManufacturerEntity</class>
-		<class>com.flipmart.model.PincodeEntity</class>
-		<class>com.flipmart.model.UsersEntity</class>
-		<class>com.flipmart.model.AdminEntity</class>
-		<class>com.flipmart.model.ProductEntity</class>
-		<class>com.flipmart.model.ColorProductEntity</class>
+		<class>com.flipmart.eao.Color</class>
+		<class>com.flipmart.eao.State</class>
+		<class>com.flipmart.eao.City</class>
+		<class>com.flipmart.eao.Manufacturer</class>
+		<class>com.flipmart.eao.Pincode</class>
+		<class>com.flipmart.eao.Users</class>
+		<class>com.flipmart.eao.Admin</class>
+		<class>com.flipmart.eao.Product</class>
 
 		<properties>
 			<!-- Configuring The Database Connection Details -->
@@ -27,8 +26,8 @@
 				value="root" />
 
 
-			<property name="hbm2ddl.auto" value="create" />
-			<!-- <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" /> -->
+			<!-- <property name="hbm2ddl.auto" value="create" />
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" /> -->
 		</properties>
 	</persistence-unit>
 </persistence>

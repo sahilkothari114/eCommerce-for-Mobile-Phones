@@ -1,4 +1,4 @@
-package com.flipmart.model;
+package com.flipmart.eao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class UsersEntity {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -38,7 +38,7 @@ public class UsersEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "pincode")
-	private PincodeEntity pincode;
+	private Pincode pincode;
 
 	@Column(name = "street_address")
 	private String streetAddress;
@@ -51,25 +51,25 @@ public class UsersEntity {
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private List<ProductEntity> products = new ArrayList<>();
+	private List<Product> products = new ArrayList<>();
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "color_id"))
-	private List<ProductEntity> colors = new ArrayList<>();
+	private List<Product> colors = new ArrayList<>();
 
-	public List<ProductEntity> getColors() {
+	public List<Product> getColors() {
 		return colors;
 	}
 
-	public void setColors(List<ProductEntity> colors) {
+	public void setColors(List<Product> colors) {
 		this.colors = colors;
 	}
 
-	public List<ProductEntity> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<ProductEntity> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 
@@ -105,11 +105,11 @@ public class UsersEntity {
 		this.password = password;
 	}
 
-	public PincodeEntity getPincode() {
+	public Pincode getPincode() {
 		return pincode;
 	}
 
-	public void setPincode(PincodeEntity pincode) {
+	public void setPincode(Pincode pincode) {
 		this.pincode = pincode;
 	}
 

@@ -4,6 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.flipmart.eao.Color;
+import com.flipmart.eao.Manufacturer;
+import com.flipmart.eao.Product;
 import com.flipmart.util.FlipmartConstants;
 
 public class DatabaseConfiguration {
@@ -22,17 +25,16 @@ public class DatabaseConfiguration {
 			transactionObj.begin();
 		}
 
-	/*	ColorEntity c1 = new ColorEntity();
+		/*ColorEntity c1 = new ColorEntity();
 		ColorEntity c2 = new ColorEntity();
 		c1.setColorName("blue");
 		c2.setColorName("purple");
 
 		//entityMgrObj.persist(c1);
 		//entityMgrObj.persist(c2);
-
 		ManufacturerEntity manufacturer = new ManufacturerEntity();
 		manufacturer.setActive(true);
-		manufacturer.setName("Sony");*/
+		manufacturer.setName("Sony");
 
 		/*entityMgrObj.persist(manufacturer);
 
@@ -62,9 +64,9 @@ public class DatabaseConfiguration {
 		user.setPassword("test");
 		user.setPincode(pincode);
 		
-		entityMgrObj.persist(user);*/
+		entityMgrObj.persist(user);
 
-		/*ProductEntity product = new ProductEntity();
+		ProductEntity product = new ProductEntity();
 		product.setActive(true);
 		product.setCamera(2);
 		product.setDescription("testing");
@@ -80,7 +82,6 @@ public class DatabaseConfiguration {
 		//product.setUser(user);
 		
 		entityMgrObj.persist(product);*/
-
 		transactionObj.commit();
 	}
 }

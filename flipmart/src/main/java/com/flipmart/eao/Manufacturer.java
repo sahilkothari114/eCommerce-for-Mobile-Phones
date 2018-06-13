@@ -1,4 +1,4 @@
-package com.flipmart.model;
+package com.flipmart.eao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "manufacturer")
-public class ManufacturerEntity {
+public class Manufacturer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
