@@ -6,9 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -17,18 +14,17 @@ import javax.persistence.Table;
 @Table(name = "color_product")
 public class ColorProduct {
 
-	/*@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "color_product_id")
-	private long id;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}*/
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	 * 
+	 * @Column(name = "color_product_id") private long id;
+	 * 
+	 * public long getId() { return id; }
+	 * 
+	 * public void setId(long id) { this.id = id; }
+	 */
 
 	@EmbeddedId
 	private ColorProductId colorProductId;
@@ -55,6 +51,9 @@ public class ColorProduct {
 
 	public ColorProductId getColorProductId() {
 		return colorProductId;
+	}
+
+	public ColorProduct() {
 	}
 
 	public void setColorProductId(ColorProductId colorProductId) {

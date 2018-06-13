@@ -18,16 +18,16 @@
 		<properties>
 			<!-- Configuring The Database Connection Details -->
 			<property name="javax.persistence.jdbc.driver"
-				value="com.mysql.jdbc.Driver" />
+				value="org.postgresql.Driver" /><!-- "com.mysql.jdbc.Driver" -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/flipmart" />
-			<property name="javax.persistence.jdbc.user" value="root" />
+				value="jdbc:postgresql://localhost:5432/flipmart" /><!-- "jdbc:mysql://localhost:3306/flipmart" -->
+			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password"
-				value="root" />
+				value="admin" />
 
 
-			<!-- <property name="hbm2ddl.auto" value="create" />
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" /> -->
+			<!-- <property name="hbm2ddl.auto" value="create" /> <property name="javax.persistence.schema-generation.database.action" 
+				value="drop-and-create" /> -->
 		</properties>
 	</persistence-unit>
 </persistence>

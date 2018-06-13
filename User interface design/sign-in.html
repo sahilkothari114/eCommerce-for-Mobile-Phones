@@ -27,7 +27,8 @@
 		<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
 
 		
-
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		
 		<!-- Icons/Glyphs -->
 		<link rel="stylesheet" href="assets/css/font-awesome.css">
@@ -40,7 +41,7 @@
 
 
 	</head>
-    <body class="cnt-home">
+    <body class="cnt-home" ng-app="myApp" ng-controller="usersController">
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1"> 
   
@@ -154,8 +155,8 @@
 		<div class="sign-in-page">
 			<div class="row">
 				<!-- Sign-in -->			
-<div class="col-md-6 col-sm-6 sign-in">
-	<h4 class="">Sign in</h4>
+                <div class="col-md-6 col-sm-6 sign-in">
+	            <h4 class="">Sign in</h4>
 	<p class="">Hello, Welcome to your account.</p>
 	<form class="register-form outer-top-xs" role="form">
 		<div class="form-group">
@@ -177,46 +178,46 @@
 	<p class="text title-tag-line">Create your new account.</p>
 	<form class="register-form outer-top-xs" role="form">
 		<div class="form-group">
-	    	<label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-	    	<input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2" >
+	    	<label class="info-title" for="form-email">Email Address <span>*</span></label>
+	    	<input type="email" class="form-control unicase-form-control text-input" id="form-email" ng-model="email">
 	  	</div>
         <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">First Name <span>*</span></label>
-		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-firstname">First Name <span>*</span></label>
+		    <input type="text" class="form-control unicase-form-control text-input" id="form-firstname" ng-model="firstName">
 		</div>
 		<div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Last Name <span>*</span></label>
-		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-lastname">Last Name <span>*</span></label>
+		    <input type="text" class="form-control unicase-form-control text-input" id="form-lastname" ng-model="lastName">
 		</div>
         <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-phonenumber">Phone Number <span>*</span></label>
+		    <input type="number" class="form-control unicase-form-control text-input" id="form-phonenumber" ng-model="phoneNumber" >
 		</div>
         <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Pin code </label>
-		    <input type="text" pattern="[0-9]{6}" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-pincode">Pincode </label>
+		    <input type="number" pattern="[0-9]{6}" class="form-control unicase-form-control text-input" id="form-pincode" ng-model="pincode">
 		</div>
 		<div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1" >Street Address </label>
-		    <textarea class="form-control unicase-form-control text-input" id="exampleInputEmail1" cols="2" ></textarea>
+		    <label class="info-title" for="form-streetaddress" >Street Address </label>
+		    <textarea class="form-control unicase-form-control text-input" id="form-streetaddress" cols="2" ng-model="streetAddress"></textarea>
 		</div>
 	    <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">City </label>
-		    <input type="text" pattern="[0-9]{6}" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-city">City </label>
+		    <input type="text" class="form-control unicase-form-control text-input" id="form-city" ng-model="city" >
 		</div>
 		<div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">State </label>
-		    <input type="text" pattern="[0-9]{6}" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-state">State </label>
+		    <input type="text" class="form-control unicase-form-control text-input" id="form-state" ng-model="state">
 		</div>
         <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-password">Password <span>*</span></label>
+		    <input type="password" class="form-control unicase-form-control text-input" id="form-password" ng-model="password">
 		</div>
          <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-		    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		    <label class="info-title" for="form-confirm-password">Confirm Password <span>*</span></label>
+		    <input type="password" class="form-control unicase-form-control text-input" id="form-confirm-password" ng-model="confirmPassword">
 		</div>
-	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+	  	<button type="submit" ng-click="createUser()" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
 	</form>
 	
 	
@@ -449,20 +450,25 @@
 
 	<!-- For demo purposes – can be removed on production -->
 	
-	<script src="switchstylesheet/switchstylesheet.html"></script>
+	
 	
 	<script>
-		$(document).ready(function(){ 
-			$(".changecolor").switchstylesheet( { seperator:"color"} );
-			$('.show-theme-options').click(function(){
-				$(this).parent().toggleClass('open');
-				return false;
-			});
-		});
+	
 
-		$(window).bind("load", function() {
-		   $('.show-theme-options').delay(2000).trigger('click');
-		});
+        var app = angular.module('myApp',[]);
+        app.controller('usersController',function($scope,$http){
+            $scope.createUser = function() {
+                //console.log($scope.email);
+                $http({
+                    method='POST',
+                    url='/flipmart/login.action'
+                }).success(function(data,status,headers,config){
+                    console.log(data);
+                }).error(function(data,status,headers,config){
+                    console.log(data);
+                });
+            }
+        })
 	</script>
 	<!-- For demo purposes – can be removed on production : End -->
 

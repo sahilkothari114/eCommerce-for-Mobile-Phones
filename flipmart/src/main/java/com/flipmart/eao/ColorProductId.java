@@ -26,6 +26,9 @@ public class ColorProductId implements Serializable {
 		this.productId = productId;
 	}
 
+	public ColorProductId() {
+	}
+
 	public long getColorId() {
 		return colorId;
 	}
