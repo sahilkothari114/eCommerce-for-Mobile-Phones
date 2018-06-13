@@ -48,13 +48,13 @@ public class ColorProduct {
 		this.color = color;
 		this.colorProductId = new ColorProductId(product.getProductId(), color.getColorId());
 	}
+	public ColorProduct() {
+	}	
 
 	public ColorProductId getColorProductId() {
 		return colorProductId;
 	}
 
-	public ColorProduct() {
-	}
 
 	public void setColorProductId(ColorProductId colorProductId) {
 		this.colorProductId = colorProductId;
