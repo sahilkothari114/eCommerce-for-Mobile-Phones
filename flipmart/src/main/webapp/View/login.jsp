@@ -15,7 +15,7 @@
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
 
-<title>Flipmart premium HTML5 & CSS3 Template</title>
+<title>Flipmart</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -31,9 +31,9 @@
 
 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	src="assets/js/angular.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	src="assets/js/jquery-1.11.1.min.js"></script>
 
 <!-- Icons/Glyphs -->
 <link rel="stylesheet" href="assets/css/font-awesome.css">
@@ -248,11 +248,11 @@
 									id="form-lastname" ng-model="lastName">
 							</div>
 							<div class="form-group">
-								<label class="info-title" for="form-phonenumber">Phone
+								<label class="info-title" for="form-contactNo">Phone
 									Number <span>*</span>
 								</label> <input type="number"
 									class="form-control unicase-form-control text-input"
-									id="form-phonenumber" ng-model="phoneNumber">
+									id="form-contactNo" ng-model="contactNo">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-pincode">Pincode </label> <input
@@ -589,14 +589,28 @@
 	<script>
 		var app = angular.module('myApp', []);
 		app.controller('usersController', function($scope, $http) {
+			//$scope.users = [];
 			$scope.createUser = function() {
-				//console.log($scope.email);
-				$http({
-					method : 'POST',
-					url : '/flipmart/cart.action',
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).then(function(success){
-					console.log("success")
+				/* $scope.users.push({'email':$scope.email,'firstName':$scope.firstName,'lastName':$scope.lastName,'streetAddress':$scope.streetAddress,
+				'phoneNumber':$scope.phoneNumber,'pincode':$scope.pincode,'city':$scope.city,'state':$scope.state,'password':$scope.password}); */
+				
+				
+				 var user = {
+					email:$scope.email,
+					firstName:$scope.firstName,
+					lastName:$scope.lastName,
+					streetAddress:$scope.streetAddress,
+					contactNo:$scope.contactNo,
+					pincode:$scope.pincode,
+					city:$scope.city,
+					state:$scope.state,
+					password:$scope.password
+				}; 
+				//console.log(user);
+				//var data =  JSON.stringify(user);
+				//console.log(user);
+				$http.post('/flipmart/signup.action/user', user).then(function(response){
+					console.log(response);
 				});
 			}
 		});

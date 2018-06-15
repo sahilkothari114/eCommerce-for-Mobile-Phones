@@ -8,4 +8,5 @@ public class FlipmartConstants {
 	public final static String PASSWORD = "root";
 	public final static String PORT = "5432";*/
 	public final static String PERSISTENCE_UNIT_NAME = "flipmartDB";
+	public final static String CHARACTER_ENCODING = "UTF-8";
 }

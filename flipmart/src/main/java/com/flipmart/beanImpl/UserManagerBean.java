@@ -18,4 +18,10 @@ public class UserManagerBean implements UserManager{
 		return null;
 	}
 
+	@Override
+	public void addUser(Users user) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
