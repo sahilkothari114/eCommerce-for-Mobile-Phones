@@ -1,6 +1,8 @@
 package com.flipmart.actions;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import com.flipmart.eao.Pincode;
 import com.flipmart.eao.State;
 import com.flipmart.eao.Users;
 import com.flipmart.util.FlipmartConstants;
+import com.flipmart.util.PasswordHash;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -34,7 +37,7 @@ public class SignupAction extends ActionSupport {
 	static final Logger logger = Logger.getLogger(SignupAction.class);
 	static HttpServletRequest request;
 
-	@EJB(beanName="UserManagerBean")
+	@EJB(beanName = "UserManagerBean")
 	private UserManager userManager;
 
 	@Override
@@ -51,43 +54,47 @@ public class SignupAction extends ActionSupport {
 			request = ServletActionContext.getRequest();
 			String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
 			JsonNode data = mapper.readTree(jsonResponse);
-			logger.info("Consuming data from client: "+data);
-			
+			logger.info("Consuming data from client: " + data);
+
 			createNewUser(data);
 
-		} catch (IOException e) {
+		} catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	private void createNewUser(JsonNode userDetails) {
+	private void createNewUser(JsonNode userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		// TODO Auto-generated method stub
-		System.out.println("User Datils: "+userDetails);
+		System.out.println("User Datils: " + userDetails);
+
+		String password = new String(userDetails.get(FlipmartConstants.KEY_PASSWORD).textValue());
 		
+		password = PasswordHash.generatePasswordHash(password);
+
 		State state = new State();
 		state.setStateName("Gujarat");
-		
+
 		City city = new City();
 		city.setState(state);
 		city.setCityName("Nadiad");
-		
+
 		Pincode pincode = new Pincode();
 		pincode.setPincode(387001);
 		pincode.setCity(city);
-		
+
 		Users user = new Users();
 		user.setFirstName(userDetails.get(FlipmartConstants.KEY_FIRST_NAME).textValue());
 		user.setLastName(userDetails.get(FlipmartConstants.KEY_LAST_NAME).textValue());
 		user.setEmail(userDetails.get(FlipmartConstants.KEY_EMAIL).textValue());
 		user.setStreetAddress(userDetails.get(FlipmartConstants.KEY_STREET_ADDRESS).textValue());
 		user.setContactNo(userDetails.get(FlipmartConstants.KEY_CONTACT_NUMBER).textValue());
-		user.setPassword(userDetails.get(FlipmartConstants.KEY_PASSWORD).textValue());
+		user.setPassword(password);
 		user.setPincode(pincode);
 		user.setActive(true);
-		
-		//userManager = new UserManagerBean();
+
+		// userManager = new UserManagerBean();
 		UserManagerBean bean = new UserManagerBean();
 		bean.initialize();
 		bean.addUser(user);

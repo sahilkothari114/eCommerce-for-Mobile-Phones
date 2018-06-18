@@ -22,5 +22,7 @@ public class FlipmartConstants {
 	public final static String KEY_CITY = "city";
 	public final static String KEY_STATE = "state";
 	public final static String KEY_PASSWORD = "password";
+	public final static String PBKDF2 = "PBKDF2WithHmacSHA1";
+	public final static String SHA1PRNG = "SHA1PRNG";
 }
 
