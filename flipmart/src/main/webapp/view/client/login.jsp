@@ -51,7 +51,7 @@
 
 
 </head>
-<body class="cnt-home" ng-app="myApp" ng-controller="usersController">
+<body class="cnt-home" data-ng-app="myApp" data-ng-controller="usersController">
 	<!-- ============================================== HEADER ============================================== -->
 	<header class="header-style-1">
 
@@ -231,67 +231,67 @@
 									<span>*</span>
 								</label> <input type="email"
 									class="form-control unicase-form-control text-input"
-									id="form-email" ng-model="email">
+									id="form-email" data-ng-model="email">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-firstname">First
 									Name <span>*</span>
 								</label> <input type="text"
 									class="form-control unicase-form-control text-input"
-									id="form-firstname" ng-model="firstName">
+									id="form-firstname" data-ng-model="firstName">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-lastname">Last Name
 									<span>*</span>
 								</label> <input type="text"
 									class="form-control unicase-form-control text-input"
-									id="form-lastname" ng-model="lastName">
+									id="form-lastname" data-ng-model="lastName">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-contactNo">Phone
 									Number <span>*</span>
 								</label> <input type="number"
 									class="form-control unicase-form-control text-input"
-									id="form-contactNo" ng-model="contactNo">
+									id="form-contactNo" data-ng-model="contactNo">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-pincode">Pincode </label> <input
 									type="number" pattern="[0-9]{6}"
 									class="form-control unicase-form-control text-input"
-									id="form-pincode" ng-model="pincode">
+									id="form-pincode" data-ng-model="pincode">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-streetaddress">Street
 									Address </label>
 								<textarea class="form-control unicase-form-control text-input"
-									id="form-streetaddress" cols="2" ng-model="streetAddress"></textarea>
+									id="form-streetaddress" cols="2" data-ng-model="streetAddress"></textarea>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-city">City </label> <input
 									type="text"
 									class="form-control unicase-form-control text-input"
-									id="form-city" ng-model="city">
+									id="form-city" data-ng-model="city">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-state">State </label> <input
 									type="text"
 									class="form-control unicase-form-control text-input"
-									id="form-state" ng-model="state">
+									id="form-state" data-ng-model="state">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-password">Password <span>*</span></label>
 								<input type="password"
 									class="form-control unicase-form-control text-input"
-									id="form-password" ng-model="password">
+									id="form-password" data-ng-model="password">
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-confirm-password">Confirm
 									Password <span>*</span>
 								</label> <input type="password"
 									class="form-control unicase-form-control text-input"
-									id="form-confirm-password" ng-model="confirmPassword">
+									id="form-confirm-password" data-ng-model="confirmPassword">
 							</div>
-							<button type="submit" ng-click="createUser()"
+							<button type="submit" data-ng-click="createUser()"
 								class="btn-upper btn btn-primary checkout-page-button">Sign
 								Up</button>
 						</form>
@@ -606,22 +606,14 @@
 					state:$scope.state,
 					password:$scope.password
 				}; 
-				//console.log(user);
-				//var data =  JSON.stringify(user);
-				//console.log(user);
+				
 				$http.post('/flipmart/signup.action/user', user).then(function(response){
 					console.log(response);
 				});
 			}
 		});
 	</script>
-	<!-- For demo purposes – can be removed on production : End -->
-
-
-
 </body>
-
-<!-- Mirrored from www.themesground.com/flipmart-demo/HTML/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 May 2018 08:30:05 GMT -->
 </html>
 
 

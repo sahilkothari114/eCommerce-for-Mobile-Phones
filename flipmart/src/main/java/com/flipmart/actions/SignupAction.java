@@ -14,20 +14,27 @@ import org.jboss.logging.Logger;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flipmart.bean.UserManager;
+import com.flipmart.beanImpl.UserManagerBean;
+import com.flipmart.eao.City;
+import com.flipmart.eao.Pincode;
+import com.flipmart.eao.State;
+import com.flipmart.eao.Users;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Action(value = "signup", results = { @Result(name = "success", location = "/View/login.jsp") })
+/**
+ * @author Shagufta
+ *
+ */
+@Action(value = "signup", results = {
+		@Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp") })
 public class SignupAction extends ActionSupport {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	static final Logger logger = Logger.getLogger(SignupAction.class);
 	static HttpServletRequest request;
 
-	@EJB
+	@EJB(beanName="UserManagerBean")
 	private UserManager userManager;
 
 	@Override
@@ -38,18 +45,51 @@ public class SignupAction extends ActionSupport {
 	}
 
 	@Action("/user")
-	public void getUserDetails() {
+	public void addUserDetails() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			request = ServletActionContext.getRequest();
-			String jsonResponse = IOUtils.toString(request.getInputStream(),FlipmartConstants.CHARACTER_ENCODING);
+			String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
 			JsonNode data = mapper.readTree(jsonResponse);
-			System.out.println(data);
+			logger.info("Consuming data from client: "+data);
 			
+			createNewUser(data);
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	}
+
+	private void createNewUser(JsonNode userDetails) {
+		// TODO Auto-generated method stub
+		System.out.println("User Datils: "+userDetails);
+		
+		State state = new State();
+		state.setStateName("Gujarat");
+		
+		City city = new City();
+		city.setState(state);
+		city.setCityName("Nadiad");
+		
+		Pincode pincode = new Pincode();
+		pincode.setPincode(387001);
+		pincode.setCity(city);
+		
+		Users user = new Users();
+		user.setFirstName(userDetails.get(FlipmartConstants.KEY_FIRST_NAME).textValue());
+		user.setLastName(userDetails.get(FlipmartConstants.KEY_LAST_NAME).textValue());
+		user.setEmail(userDetails.get(FlipmartConstants.KEY_EMAIL).textValue());
+		user.setStreetAddress(userDetails.get(FlipmartConstants.KEY_STREET_ADDRESS).textValue());
+		user.setContactNo(userDetails.get(FlipmartConstants.KEY_CONTACT_NUMBER).textValue());
+		user.setPassword(userDetails.get(FlipmartConstants.KEY_PASSWORD).textValue());
+		user.setPincode(pincode);
+		user.setActive(true);
+		
+		//userManager = new UserManagerBean();
+		UserManagerBean bean = new UserManagerBean();
+		bean.initialize();
+		bean.addUser(user);
 	}
 }

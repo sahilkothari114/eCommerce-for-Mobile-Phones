@@ -4,9 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import com.flipmart.eao.Color;
-import com.flipmart.eao.Manufacturer;
-import com.flipmart.eao.Product;
 import com.flipmart.util.FlipmartConstants;
 
 public class DatabaseConfiguration {

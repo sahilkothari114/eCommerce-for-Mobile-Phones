@@ -150,7 +150,7 @@
 						<port>9999</port>
 					</httpConnector>
 					<webApp>
-						<contextPath>/${build.finalName}</contextPath>
+						<contextPath>/${project.build.finalName}</contextPath>
 					</webApp>
 					<stopKey>CTRL+C</stopKey>
 					<stopPort>8999</stopPort>

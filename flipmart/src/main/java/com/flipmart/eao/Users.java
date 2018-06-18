@@ -33,7 +33,7 @@ public class Users {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "passwrod")
+	@Column(name = "password")
 	private String password;
 
 	@ManyToOne
