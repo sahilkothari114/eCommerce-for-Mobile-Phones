@@ -245,7 +245,7 @@
 									Name <span>*</span>
 								</label> <input type="text" name="signupFname"
 									class="form-control unicase-form-control text-input"
-									id="form-firstname" data-ng-model="signup.fname" ng-required="true">
+									id="form-firstname" data-ng-model="signup.FirstName" ng-required="true">
 									<div ng-show="signupForm.signupFname.$touched && signupForm.signupFname.$invalid">
 										<small>Enter a Valid First Name</small>
 									</div>
@@ -255,7 +255,7 @@
 									<span>*</span>
 								</label> <input type="text" name="signupLname"
 									class="form-control unicase-form-control text-input"
-									id="form-lastname" data-ng-model="signip.lname" ng-required="true">
+									id="form-lastname" data-ng-model="signup.LastName" ng-required="true">
 									<div ng-show="signupForm.signupLname.$touched && signupForm.signupLname.$invalid">
 										<small>Enter a Valid Last Name</small>
 									</div>
@@ -645,22 +645,22 @@
 				
 				
 				 var user = {
-					email:$scope.email,
-					firstName:$scope.firstName,
-					lastName:$scope.lastName,
-					streetAddress:$scope.streetAddress,
-					contactNo:$scope.contactNo,
-					pincode:$scope.pincode,
-					city:$scope.city,
-					state:$scope.state,
-					password:$scope.password
+					email:$scope.signup.email,
+					firstName:$scope.signup.FirstName,
+					lastName:$scope.signup.LastName,
+					streetAddress:$scope.signup.street,
+					contactNo:$scope.signup.contact,
+					pincode:$scope.signup.pin,
+					city:$scope.signup.city,
+					state:$scope.signup.state,
+					password:$scope.signup.password
 				}; 
 				
 				$http.post('/flipmart/signup.action/user', user).then(function(response){
 					console.log(response);
 				});
 			}
-			
+                            
 			
 				
 		});

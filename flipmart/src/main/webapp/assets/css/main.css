@@ -5704,7 +5704,6 @@ age-container #owl-main .owl-next {
     font-weight: 400;
   }
 
-<<<<<<< HEAD
   .body-content .my-wishlist-page img {width:100%}
   .body-content .my-wishlist-page .my-wishlist table tbody tr:nth-child(even) {
     border-top: 1px solid #ddd;
@@ -5754,7 +5753,7 @@ age-container #owl-main .owl-next {
     color: #ff7878;
     font-size: 15px;
   }
-=======
+
 .body-content .my-wishlist-page img {width:100%}
 .body-content .my-wishlist-page .my-wishlist table tbody tr:nth-child(even) {
   border-top: 1px solid #ddd;
@@ -5804,7 +5803,7 @@ age-container #owl-main .owl-next {
   color: #ff7878;
   font-size: 15px;
 }
->>>>>>> 6269931c1f4f54f14fddf165fda4b5e58f486230
+
 
   /*===================================================================================*/
 /*  Signup and login
@@ -5912,10 +5911,10 @@ age-container #owl-main .owl-next {
 /*===================================================================================*/
 
 .home-banner {
-<<<<<<< HEAD
+
   margin-top: 30px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
-=======
+
     margin-top: 30px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
 	}
@@ -5938,5 +5937,5 @@ age-container #owl-main .owl-next {
 }
 .table{
   
->>>>>>> 6269931c1f4f54f14fddf165fda4b5e58f486230
+
 }
