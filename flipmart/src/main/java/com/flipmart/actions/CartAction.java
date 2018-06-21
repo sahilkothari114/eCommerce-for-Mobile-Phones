@@ -9,16 +9,16 @@ import com.opensymphony.xwork2.ActionSupport;
 @Action(value = "cart", results = {
 		@Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "cart.jsp") })
 public class CartAction extends ActionSupport {
-
+/*
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String execute() {
-		/*
+		
 		 * DatabaseConfiguration configuration = new DatabaseConfiguration();
 		 * configuration.createEntity();
-		 */
+		 
 		System.out.println("In Cart");
 		return SUCCESS;
-	}
+	}*/
 }
