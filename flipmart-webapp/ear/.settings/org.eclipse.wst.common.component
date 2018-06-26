@@ -8,5 +8,8 @@
         <dependent-module archiveName="flipmart-webapp-ejb.jar" deploy-path="/" handle="module:/resource/flipmart-webapp-ejb/flipmart-webapp-ejb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="postgresql.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/postgresql/postgresql/9.1-901-1.jdbc4/postgresql-9.1-901-1.jdbc4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
