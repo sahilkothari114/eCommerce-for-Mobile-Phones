@@ -33,7 +33,7 @@ public class LoginAction extends ActionSupport {
 	}
 	static HttpServletRequest request;
 	
-	@Action("/user")
+	@Action("user")
 	public void addUserDetails() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {

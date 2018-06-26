@@ -34,6 +34,12 @@
 		</license>
 	</licenses>
 
+	<properties>
+		<project.java.version>1.8</project.java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
 	<dependencies>
 
 		<!-- Depend on the ejb module and war so that we can package them -->
