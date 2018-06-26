@@ -18,25 +18,25 @@
 <title>Flipmart</title>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/blue.css">
-<link rel="stylesheet" href="../assets/css/owl.carousel.css">
-<link rel="stylesheet" href="../assets/css/owl.transitions.css">
-<link rel="stylesheet" href="../assets/css/animate.min.css">
-<link rel="stylesheet" href="../assets/css/rateit.css">
-<link rel="stylesheet" href="../assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="./assets/css/main.css">
+<link rel="stylesheet" href="./assets/css/blue.css">
+<link rel="stylesheet" href="./assets/css/owl.carousel.css">
+<link rel="stylesheet" href="./assets/css/owl.transitions.css">
+<link rel="stylesheet" href="./assets/css/animate.min.css">
+<link rel="stylesheet" href="./assets/css/rateit.css">
+<link rel="stylesheet" href="./assets/css/bootstrap-select.min.css">
 
 
 <script
-	src="../assets/js/angular.min.js"></script>
+	src="./assets/js/angular.min.js"></script>
 <script
-	src="../assets/js/jquery-1.11.1.min.js"></script>
+	src="./assets/js/jquery-1.11.1.min.js"></script>
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="../assets/css/font-awesome.css">
+<link rel="stylesheet" href="./assets/css/font-awesome.css">
 
 <!-- Fonts -->
 <link
@@ -78,7 +78,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 						<!-- ============================================================= LOGO ============================================================= -->
 						<div class="logo">
-							<a href="home.html"> <img src="../assets/images/logo.png" alt="">
+							<a href="home.html"> <img src="./assets/images/logo.png" alt="">
 							</a>
 						</div>
 						<!-- /.logo -->
@@ -311,80 +311,80 @@
 						class="owl-carousel brand-slider custom-carousel owl-theme">
 						<div class="item m-t-15">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand1.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand1.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item m-t-10">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand2.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand2.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand3.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand3.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand4.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand4.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand5.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand5.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand6.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand6.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand2.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand2.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand4.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand4.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand1.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand1.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="../assets/images/brands/brand5.png"
-								src="../assets/images/blank.gif" alt="">
+								data-echo="./assets/images/brands/brand5.png"
+								src="./assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
@@ -545,11 +545,11 @@
 				<div class="col-xs-12 col-sm-6 no-padding">
 					<div class="clearfix payment-methods">
 						<ul>
-							<li><img src="../assets/images/payments/1.png" alt=""></li>
-							<li><img src="../assets/images/payments/2.png" alt=""></li>
-							<li><img src="../assets/images/payments/3.png" alt=""></li>
-							<li><img src="../assets/images/payments/4.png" alt=""></li>
-							<li><img src="../assets/images/payments/5.png" alt=""></li>
+							<li><img src="./assets/images/payments/1.png" alt=""></li>
+							<li><img src="./assets/images/payments/2.png" alt=""></li>
+							<li><img src="./assets/images/payments/3.png" alt=""></li>
+							<li><img src="./assets/images/payments/4.png" alt=""></li>
+							<li><img src="./assets/images/payments/5.png" alt=""></li>
 						</ul>
 					</div>
 					<!-- /.payment-methods -->
@@ -566,21 +566,21 @@
 	<!-- For demo purposes – can be removed on production : End -->
 
 	<!-- JavaScripts placed at the end of the document so the pages load faster -->
-	<script src="../assets/js/jquery-1.11.1.min.js"></script>
+	<script src="./assets/js/jquery-1.11.1.min.js"></script>
 
-	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="./assets/js/bootstrap.min.js"></script>
 
-	<script src="../assets/js/bootstrap-hover-dropdown.min.js"></script>
-	<script src="../assets/js/owl.carousel.min.js"></script>
+	<script src="./assets/js/bootstrap-hover-dropdown.min.js"></script>
+	<script src="./assets/js/owl.carousel.min.js"></script>
 
-	<script src="../assets/js/echo.min.js"></script>
-	<script src="../assets/js/jquery.easing-1.3.min.js"></script>
-	<script src="../assets/js/bootstrap-slider.min.js"></script>
-	<script src="../assets/js/jquery.rateit.min.js"></script>
-	<script type="text/javascript" src="../assets/js/lightbox.min.js"></script>
-	<script src="../assets/js/bootstrap-select.min.js"></script>
-	<script src="../assets/js/wow.min.js"></script>
-	<script src="../assets/js/scripts.js"></script>
+	<script src="./assets/js/echo.min.js"></script>
+	<script src="./assets/js/jquery.easing-1.3.min.js"></script>
+	<script src="./assets/js/bootstrap-slider.min.js"></script>
+	<script src="./assets/js/jquery.rateit.min.js"></script>
+	<script type="text/javascript" src="./assets/js/lightbox.min.js"></script>
+	<script src="./assets/js/bootstrap-select.min.js"></script>
+	<script src="./assets/js/wow.min.js"></script>
+	<script src="./assets/js/scripts.js"></script>
 
 	<!-- For demo purposes – can be removed on production -->
 
@@ -607,7 +607,7 @@
 					password:$scope.password
 				}; 
 				
-				$http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
+				$http.post('/flipmart-webapp-web/login.action/user', user).then(function(response){
 					console.log(response);
 				});
 			}

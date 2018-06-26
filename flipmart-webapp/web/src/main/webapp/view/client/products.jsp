@@ -15,19 +15,19 @@
 <title>Flipmart</title>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/blue.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.css">
-<link rel="stylesheet" href="assets/css/owl.transitions.css">
-<link rel="stylesheet" href="assets/css/animate.min.css">
-<link rel="stylesheet" href="assets/css/rateit.css">
-<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="./assets/css/main.css">
+<link rel="stylesheet" href="./assets/css/blue.css">
+<link rel="stylesheet" href="./assets/css/owl.carousel.css">
+<link rel="stylesheet" href="./assets/css/owl.transitions.css">
+<link rel="stylesheet" href="./assets/css/animate.min.css">
+<link rel="stylesheet" href="./assets/css/rateit.css">
+<link rel="stylesheet" href="./assets/css/bootstrap-select.min.css">
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="./assets/css/font-awesome.css">
 
 <!-- Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
@@ -58,7 +58,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="home.html"> <img src="assets/images/logo.png" alt=""> </a> </div>
+          <div class="logo"> <a href="home.html"> <img src="./assets/images/logo.png" alt=""> </a> </div>
           <!-- /.logo --> 
           <!-- ============================================================= LOGO : END ============================================================= --> </div>
         <!-- /.logo-holder -->
@@ -92,7 +92,7 @@
                 <div class="cart-item product-summary">
                   <div class="row">
                     <div class="col-xs-4">
-                      <div class="image"> <a href="detail.html"><img src="assets/images/cart.jpg" alt=""></a> </div>
+                      <div class="image"> <a href="detail.html"><img src="./assets/images/cart.jpg" alt=""></a> </div>
                     </div>
                     <div class="col-xs-7">
                       <h3 class="name"><a href="index8a95.html?page-detail">Simple Product</a></h3>
@@ -198,7 +198,7 @@
            
             <!-- ============================================== Testimonials: END ============================================== -->
             
-            <div class="home-banner"> <img src="assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
+            <div class="home-banner"> <img src="./assets/images/banners/LHS-banner.jpg" alt="Image"> </div>
           </div>
           <!-- /.sidebar-filter --> 
         </div>
@@ -259,7 +259,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p5.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p5.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -285,7 +285,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p1.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p1.jpg" alt=""></a> </div>
                           
                         </div>
                         <!-- /.product-image -->
@@ -312,7 +312,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p6.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p6.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -338,7 +338,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p6.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p6.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -364,7 +364,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p7.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p7.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -390,7 +390,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p8.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p8.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -416,7 +416,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p9.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p9.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -442,7 +442,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p10.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p10.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -468,7 +468,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p2.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p2.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -494,7 +494,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p11.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p11.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -520,7 +520,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p12.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p12.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -546,7 +546,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="assets/images/products/p14.jpg" alt=""></a> </div>
+                          <div class="image"> <a href="detail.html"><img  src="./assets/images/products/p14.jpg" alt=""></a> </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -608,34 +608,34 @@
     <div id="brands-carousel" class="logo-slider wow fadeInUp">
       <div class="logo-slider-inner">
         <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-          <div class="item m-t-15"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item m-t-15"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand1.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item m-t-10"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item m-t-10"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand2.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand3.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand4.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand5.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand6.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand2.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand4.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand1.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item-->
           
-          <div class="item"> <a href="#" class="image"> <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt=""> </a> </div>
+          <div class="item"> <a href="#" class="image"> <img data-echo="./assets/images/brands/brand5.png" src="./assets/images/blank.gif" alt=""> </a> </div>
           <!--/.item--> 
         </div>
         <!-- /.owl-carousel #logo-slider --> 
@@ -759,11 +759,11 @@
       <div class="col-xs-12 col-sm-6 no-padding">
         <div class="clearfix payment-methods">
           <ul>
-            <li><img src="assets/images/payments/1.png" alt=""></li>
-            <li><img src="assets/images/payments/2.png" alt=""></li>
-            <li><img src="assets/images/payments/3.png" alt=""></li>
-            <li><img src="assets/images/payments/4.png" alt=""></li>
-            <li><img src="assets/images/payments/5.png" alt=""></li>
+            <li><img src="./assets/images/payments/1.png" alt=""></li>
+            <li><img src="./assets/images/payments/2.png" alt=""></li>
+            <li><img src="./assets/images/payments/3.png" alt=""></li>
+            <li><img src="./assets/images/payments/4.png" alt=""></li>
+            <li><img src="./assets/images/payments/5.png" alt=""></li>
           </ul>
         </div>
         <!-- /.payment-methods --> 
@@ -778,17 +778,17 @@
 <!-- For demo purposes â can be removed on production : End --> 
 
 <!-- JavaScripts placed at the end of the document so the pages load faster --> 
-<script src="assets/js/jquery-1.11.1.min.js"></script> 
-<script src="assets/js/bootstrap.min.js"></script> 
-<script src="assets/js/bootstrap-hover-dropdown.min.js"></script> 
-<script src="assets/js/owl.carousel.min.js"></script> 
-<script src="assets/js/echo.min.js"></script> 
-<script src="assets/js/jquery.easing-1.3.min.js"></script> 
-<script src="assets/js/bootstrap-slider.min.js"></script> 
-<script src="assets/js/jquery.rateit.min.js"></script> 
-<script src="assets/js/bootstrap-select.min.js"></script> 
-<script src="assets/js/wow.min.js"></script> 
-<script src="assets/js/scripts.js"></script>
+<script src="./assets/js/jquery-1.11.1.min.js"></script> 
+<script src="./assets/js/bootstrap.min.js"></script> 
+<script src="./assets/js/bootstrap-hover-dropdown.min.js"></script> 
+<script src="./assets/js/owl.carousel.min.js"></script> 
+<script src="./assets/js/echo.min.js"></script> 
+<script src="./assets/js/jquery.easing-1.3.min.js"></script> 
+<script src="./assets/js/bootstrap-slider.min.js"></script> 
+<script src="./assets/js/jquery.rateit.min.js"></script> 
+<script src="./assets/js/bootstrap-select.min.js"></script> 
+<script src="./assets/js/wow.min.js"></script> 
+<script src="./assets/js/scripts.js"></script>
 </body>
 
 <!-- Mirrored from www.themesground.com/flipmart-demo/HTML/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 May 2018 08:29:29 GMT -->
