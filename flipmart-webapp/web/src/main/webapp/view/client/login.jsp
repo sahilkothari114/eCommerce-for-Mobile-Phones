@@ -21,22 +21,22 @@
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/blue.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.css">
-<link rel="stylesheet" href="assets/css/owl.transitions.css">
-<link rel="stylesheet" href="assets/css/animate.min.css">
-<link rel="stylesheet" href="assets/css/rateit.css">
-<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/blue.css">
+<link rel="stylesheet" href="../assets/css/owl.carousel.css">
+<link rel="stylesheet" href="../assets/css/owl.transitions.css">
+<link rel="stylesheet" href="../assets/css/animate.min.css">
+<link rel="stylesheet" href="../assets/css/rateit.css">
+<link rel="stylesheet" href="../assets/css/bootstrap-select.min.css">
 
 
 <script
-	src="assets/js/angular.min.js"></script>
+	src="../assets/js/angular.min.js"></script>
 <script
-	src="assets/js/jquery-1.11.1.min.js"></script>
+	src="../assets/js/jquery-1.11.1.min.js"></script>
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="../assets/css/font-awesome.css">
 
 <!-- Fonts -->
 <link
