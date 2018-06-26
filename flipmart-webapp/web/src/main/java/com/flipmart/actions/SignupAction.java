@@ -17,7 +17,6 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flipmart.persistence.Users;
 import com.flipmart.service.UserService;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
@@ -33,12 +32,6 @@ public class SignupAction extends ActionSupport implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//static final Logger logger = Logger.getLogger(SignupAction.class);
 	static HttpServletRequest request;
-
-	/*
-	 * @EJB(beanName = "UserManagerBean") private UserManager userManager;
-	 */
-
-	private Users user;
 
 	@Override
 	public String execute() {
