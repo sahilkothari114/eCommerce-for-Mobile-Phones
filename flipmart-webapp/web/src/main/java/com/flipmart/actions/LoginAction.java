@@ -16,15 +16,21 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flipmart.service.UserService;
+import com.flipmart.service.UserServiceLocal;
+
+import com.flipmart.persistence.Users;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
+import javax.ejb.EJB;
 
 @Action(value = "login", results = {
 		@Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp") })
 public class LoginAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
+        
+        @EJB
+        public UserServiceLocal service;
 
 	@Override
 	public String execute() {
@@ -61,11 +67,11 @@ public class LoginAction extends ActionSupport {
 		Context ctx = null;
 		try {
 			ctx = new InitialContext();
-			UserService us = (UserService) ctx.lookup("java:global/flipmart/UserServiceBean");
+			UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp_-_ear/flipmart-webapp-ejb/UserService");
 			us.addUser(null);
 		} catch (NamingException e) {
 			e.printStackTrace();
-			// logger.log(Level.SEVERE,"Unable to retrieve the UserServiceBean.",e);
+			// logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
 		} finally {
 			if (ctx != null)
 				try {
@@ -101,6 +107,8 @@ public class LoginAction extends ActionSupport {
 		 * // userManager = new UserManagerBean(); UserManagerBean bean = new
 		 * UserManagerBean(); //bean.initialize(); bean.addUser(user);
 		 */
+                //service = new UserService();
+//                service.addUser(new Users());
 	}
 
 }
