@@ -8,8 +8,7 @@
 <!-- Meta -->
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport"	content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
@@ -18,25 +17,26 @@
 <title>Flipmart</title>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="./assets/css/main.css">
-<link rel="stylesheet" href="./assets/css/blue.css">
-<link rel="stylesheet" href="./assets/css/owl.carousel.css">
-<link rel="stylesheet" href="./assets/css/owl.transitions.css">
-<link rel="stylesheet" href="./assets/css/animate.min.css">
-<link rel="stylesheet" href="./assets/css/rateit.css">
-<link rel="stylesheet" href="./assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/blue.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.css">
+<link rel="stylesheet" href="assets/css/owl.transitions.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/rateit.css">
+<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
 
 
 <script
-	src="./assets/js/angular.min.js"></script>
+	src="assets/js/angular.min.js"></script>
 <script
-	src="./assets/js/jquery-1.11.1.min.js"></script>
+	src="assets/js/jquery-1.11.1.min.js"></script>
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="./assets/css/font-awesome.css">
+<link rel="stylesheet" href="assets/css/font-awesome.css">
 
 <!-- Fonts -->
 <link
@@ -78,7 +78,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 						<!-- ============================================================= LOGO ============================================================= -->
 						<div class="logo">
-							<a href="home.html"> <img src="./assets/images/logo.png" alt="">
+							<a href="home.html"> <img src="assets/images/logo.png" alt="">
 							</a>
 						</div>
 						<!-- /.logo -->
@@ -200,22 +200,29 @@
 					<div class="col-md-6 col-sm-6 sign-in">
 						<h4 class="">Sign in</h4>
 						<p class="">Hello, Welcome to your account.</p>
-						<form class="register-form outer-top-xs" role="form">
+						<form class="register-form outer-top-xs" role="form" name="loginForm">
 							<div class="form-group">
 								<label class="info-title" for="exampleInputEmail1">Email
 									Address <span>*</span>
-								</label> <input type="email"
+								</label> <input type="email" name="loginEmail"
 									class="form-control unicase-form-control text-input"
-									id="exampleInputEmail1">
+									id="login-email" data-ng-model="login.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true" tabindex="1">
+									
+									<div ng-show="loginForm.loginEmail.$touched && loginForm.loginEmail.$invalid">
+										<small>Enter a Valid Email</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="exampleInputPassword1">Password
 									<span>*</span>
-								</label> <input type="password"
+								</label> <input type="password" name="loginPassword"
 									class="form-control unicase-form-control text-input"
-									id="exampleInputPassword1">
+									id="loginPassword" data-ng-model="login.password" tabindex="2" ng-required="true">
+									<div ng-show="loginForm.loginPassword.$touched && loginForm.loginPassword.$invalid">
+										<small>Password Required</small>
+									</div>
 							</div>
-							<button type="submit"
+							<button type="submit" ng-disabled="loginForm.$invalid"
 								class="btn-upper btn btn-primary checkout-page-button">Login</button>
 						</form>
 					</div>
@@ -225,74 +232,113 @@
 					<div class="col-md-6 col-sm-6 create-new-account">
 						<h4 class="checkout-subtitle">Create a new account</h4>
 						<p class="text title-tag-line">Create your new account.</p>
-						<form class="register-form outer-top-xs" role="form">
+						<!-- sign up form-->
+						{{signup}}
+						<form class="register-form outer-top-xs" name="signupForm" role="form" novalidate>
 							<div class="form-group">
 								<label class="info-title" for="form-email">Email Address
 									<span>*</span>
-								</label> <input type="email"
+								</label> 
+								<input type="email" name="singupEmail"
 									class="form-control unicase-form-control text-input"
-									id="form-email" data-ng-model="email">
+									id="form-email" data-ng-model="signup.email"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true">
+									<div ng-show="signupForm.singupEmail.$touched && signupForm.singupEmail.$invalid">
+										<small>Enter a Valid Email</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-firstname">First
 									Name <span>*</span>
-								</label> <input type="text"
+								</label> <input type="text" name="signupFname"
 									class="form-control unicase-form-control text-input"
-									id="form-firstname" data-ng-model="firstName">
+									id="form-firstname" data-ng-model="signup.fname" ng-required="true">
+									<div ng-show="signupForm.signupFname.$touched && signupForm.signupFname.$invalid">
+										<small>Enter a Valid First Name</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-lastname">Last Name
 									<span>*</span>
-								</label> <input type="text"
+								</label> <input type="text" name="signupLname"
 									class="form-control unicase-form-control text-input"
-									id="form-lastname" data-ng-model="lastName">
+									id="form-lastname" data-ng-model="signup.lname" ng-required="true">
+									<div ng-show="signupForm.signupLname.$touched && signupForm.signupLname.$invalid">
+										<small>Enter a Valid Last Name</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-contactNo">Phone
 									Number <span>*</span>
-								</label> <input type="number"
+								</label> <input type="text" name="signupCon"
 									class="form-control unicase-form-control text-input"
-									id="form-contactNo" data-ng-model="contactNo">
+									id="form-contactNo" data-ng-model="signup.contact" ng-required="true" ng-minlength="10" ng-maxlength="10">
+									<div ng-show="signupForm.signupCon.$touched && signupForm.signupCon.$invalid">
+										<small>Enter a Valid Contact Number</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-pincode">Pincode </label> <input
-									type="number" pattern="[0-9]{6}"
+									type="text" pattern="[0-9]{6}" name="signupPin"
 									class="form-control unicase-form-control text-input"
-									id="form-pincode" data-ng-model="pincode">
+									id="form-pincode" data-ng-model="signup.pin" ng-required="true" ng-minlength="6" ng-maxlength="6">
+									<div ng-show="signupForm.signupPin.$touched && signupForm.signupPin.$invalid">
+										<small>Enter a Valid Pincode Number</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-streetaddress">Street
 									Address </label>
 								<textarea class="form-control unicase-form-control text-input"
-									id="form-streetaddress" cols="2" data-ng-model="streetAddress"></textarea>
+									id="form-streetaddress" cols="2" data-ng-model="signup.street"></textarea>
+									
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-city">City </label> <input
-									type="text"
+									type="text" name="signupCity"
 									class="form-control unicase-form-control text-input"
-									id="form-city" data-ng-model="city">
+									id="form-city" data-ng-model="signup.city" ng-required="true">
+									<div ng-show="signupForm.signupCity.$touched && signupForm.signupCity.$invalid">
+										<small>Enter a Valid City</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-state">State </label> <input
-									type="text"
+									type="text" name="signupState"
 									class="form-control unicase-form-control text-input"
-									id="form-state" data-ng-model="state">
+									id="form-state" data-ng-model="signup.state" ng-required="true">
+									<div ng-show="signupForm.signupState.$touched && signupForm.signupState.$invalid">
+										<small>Enter a Valid State</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-password">Password <span>*</span></label>
-								<input type="password"
+								<input type="password" name="signuppass"
 									class="form-control unicase-form-control text-input"
-									id="form-password" data-ng-model="password">
+									id="form-password" data-ng-model="signup.password" ng-required="true" ng-minlength="5" ng-maxlength="15">
+									<div ng-show="signupForm.signuppass.$touched && signupForm.signuppass.$invalid">
+										<small>Enter a Valid type of Password</small>
+									</div>
+									<small ng-show="signupForm.signuppass.$dirty && signupForm.signuppass.$error.minlength">too short!</small>
+									<small ng-show="signupForm.signuppass.$dirty && signupForm.signuppass.$error.maxlength">too long!</small>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="form-confirm-password">Confirm
 									Password <span>*</span>
-								</label> <input type="password"
+								</label> <input type="password" name="signupcpass"
 									class="form-control unicase-form-control text-input"
-									id="form-confirm-password" data-ng-model="confirmPassword">
+									id="form-confirm-password" data-ng-model="signup.confirmPass" ng-required="true" ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
+							ng-change="cpassword_error_show = cpassword_error_show + 1">
+							{{signup.password}}-{{signup.confirmPass}}
+									<small ng-show="cpassword_error_show > 0 && signup.password !== signup.confirmPass">Password Mismatch</small>
+							<small style="color:green;" ng-show="cpassword_error_show > 0 && signup.password === signup.confirmPass">Password match</small>
+							
+								
 							</div>
+							
+							
+							
 							<button type="submit" data-ng-click="createUser()"
-								class="btn-upper btn btn-primary checkout-page-button">Sign
+								class="btn-upper btn btn-primary checkout-page-button" ng-disabled="signupForm.$invalid">Sign
 								Up</button>
 						</form>
 
@@ -311,80 +357,80 @@
 						class="owl-carousel brand-slider custom-carousel owl-theme">
 						<div class="item m-t-15">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand1.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand1.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item m-t-10">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand2.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand2.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand3.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand3.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand4.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand4.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand5.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand5.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand6.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand6.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand2.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand2.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand4.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand4.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand1.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand1.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
 
 						<div class="item">
 							<a href="#" class="image"> <img
-								data-echo="./assets/images/brands/brand5.png"
-								src="./assets/images/blank.gif" alt="">
+								data-echo="assets/images/brands/brand5.png"
+								src="assets/images/blank.gif" alt="">
 							</a>
 						</div>
 						<!--/.item-->
@@ -545,11 +591,11 @@
 				<div class="col-xs-12 col-sm-6 no-padding">
 					<div class="clearfix payment-methods">
 						<ul>
-							<li><img src="./assets/images/payments/1.png" alt=""></li>
-							<li><img src="./assets/images/payments/2.png" alt=""></li>
-							<li><img src="./assets/images/payments/3.png" alt=""></li>
-							<li><img src="./assets/images/payments/4.png" alt=""></li>
-							<li><img src="./assets/images/payments/5.png" alt=""></li>
+							<li><img src="assets/images/payments/1.png" alt=""></li>
+							<li><img src="assets/images/payments/2.png" alt=""></li>
+							<li><img src="assets/images/payments/3.png" alt=""></li>
+							<li><img src="assets/images/payments/4.png" alt=""></li>
+							<li><img src="assets/images/payments/5.png" alt=""></li>
 						</ul>
 					</div>
 					<!-- /.payment-methods -->
@@ -566,21 +612,22 @@
 	<!-- For demo purposes – can be removed on production : End -->
 
 	<!-- JavaScripts placed at the end of the document so the pages load faster -->
-	<script src="./assets/js/jquery-1.11.1.min.js"></script>
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
 
-	<script src="./assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
 
-	<script src="./assets/js/bootstrap-hover-dropdown.min.js"></script>
-	<script src="./assets/js/owl.carousel.min.js"></script>
+	<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
 
-	<script src="./assets/js/echo.min.js"></script>
-	<script src="./assets/js/jquery.easing-1.3.min.js"></script>
-	<script src="./assets/js/bootstrap-slider.min.js"></script>
-	<script src="./assets/js/jquery.rateit.min.js"></script>
-	<script type="text/javascript" src="./assets/js/lightbox.min.js"></script>
-	<script src="./assets/js/bootstrap-select.min.js"></script>
-	<script src="./assets/js/wow.min.js"></script>
-	<script src="./assets/js/scripts.js"></script>
+	<script src="assets/js/echo.min.js"></script>
+	<script src="assets/js/jquery.easing-1.3.min.js"></script>
+	<script src="assets/js/bootstrap-slider.min.js"></script>
+	<script src="assets/js/jquery.rateit.min.js"></script>
+	<script type="text/javascript" src="assets/js/lightbox.min.js"></script>
+	<script src="assets/js/bootstrap-select.min.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
+	
 
 	<!-- For demo purposes – can be removed on production -->
 
@@ -607,11 +654,22 @@
 					password:$scope.password
 				}; 
 				
-				$http.post('/flipmart-webapp-web/login.action/user', user).then(function(response){
+				$http.post('/flipmart/signup.action/user', user).then(function(response){
 					console.log(response);
 				});
 			}
+			
+			
+				
 		});
+		
+		
+	</script>
+	
+	
+	<!--confitm password-->
+	<script>
+		
 	</script>
 </body>
 </html>
