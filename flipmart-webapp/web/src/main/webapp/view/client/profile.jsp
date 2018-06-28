@@ -178,7 +178,7 @@
 							<div class="shopping-cart">
 								<div class="col-md-12 col-sm-12 estimate-ship-tax">
 								<form class="profile-form outer-top-xs" role="form" name="ProfileForm">
-								{{profile}}
+								
 									<table class="table">		
 										<tbody>
 											<tr>
