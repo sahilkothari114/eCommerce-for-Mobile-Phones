@@ -233,7 +233,7 @@
 						<h4 class="checkout-subtitle">Create a new account</h4>
 						<p class="text title-tag-line">Create your new account.</p>
 						<!-- sign up form-->
-						{{signup}}
+						
 						<form class="register-form outer-top-xs" name="signupForm" role="form" novalidate>
 							<div class="form-group">
 								<label class="info-title" for="form-email">Email Address
@@ -328,7 +328,7 @@
 									class="form-control unicase-form-control text-input"
 									id="form-confirm-password" data-ng-model="signup.confirmPass" ng-required="true" ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
 							ng-change="cpassword_error_show = cpassword_error_show + 1">
-							{{signup.password}}-{{signup.confirmPass}}
+							
 									<small ng-show="cpassword_error_show > 0 && signup.password !== signup.confirmPass">Password Mismatch</small>
 							<small style="color:green;" ng-show="cpassword_error_show > 0 && signup.password === signup.confirmPass">Password match</small>
 							
