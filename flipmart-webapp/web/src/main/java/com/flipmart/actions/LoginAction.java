@@ -24,68 +24,62 @@ import com.opensymphony.xwork2.ActionSupport;
 import javax.ejb.EJB;
 
 @Action(value = "login", results = {
-		@Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp") })
+    @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp")})
 public class LoginAction extends ActionSupport {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+   
+    @Override
+    public String execute() {
+        System.out.println("Called");
+        return SUCCESS;
+    }
+    static HttpServletRequest request;
+
+    @Action("user")
+    public void addUserDetails() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        request = ServletActionContext.getRequest();
+        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        JsonNode data = mapper.readTree(jsonResponse);
+        // logger.info("Consuming data from client: " + data);
+        System.out.println("Creating user");
+        createNewUser(data);
+
+    }
+  
+
+    private void createNewUser(JsonNode userDetails) {
+        // TODO Auto-generated method stub
+       
+        Context ctx = null;
+
+        try {
+            ctx = new InitialContext();
         
-        @EJB
-        public UserServiceLocal service;
+            UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService");
+        
+            us.addUser(null);
+    
+        } catch (NamingException e) {
+            // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
+            
+        } finally {
+            if (ctx != null) {
+                try {
+                    ctx.close();
+                } catch (NamingException t) {
+            
+                }
+            }
+        }
 
-	@Override
-	public String execute() {
-		System.out.println("Called");
-		return SUCCESS;
-	}
-	static HttpServletRequest request;
-	
-	@Action("user")
-	public void addUserDetails() {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			request = ServletActionContext.getRequest();
-			String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-			JsonNode data = mapper.readTree(jsonResponse);
-			// logger.info("Consuming data from client: " + data);
+        // String password = new
+        // String(userDetails.get(FlipmartConstants.KEY_PASSWORD).textValue());
+        // password = PasswordHash.generatePasswordHash(password);
 
-			createNewUser(data);
-
-		} catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	private void createNewUser(JsonNode userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
-		// TODO Auto-generated method stub
-		System.out.println("User Datils: " + userDetails);
-
-		// String remoteUser =
-		// FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-
-		Context ctx = null;
-		try {
-			ctx = new InitialContext();
-			UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp_-_ear/flipmart-webapp-ejb/UserService");
-			us.addUser(null);
-		} catch (NamingException e) {
-			e.printStackTrace();
-			// logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
-		} finally {
-			if (ctx != null)
-				try {
-					ctx.close();
-				} catch (Throwable t) {
-				}
-		}
-
-		// String password = new
-		// String(userDetails.get(FlipmartConstants.KEY_PASSWORD).textValue());
-
-		// password = PasswordHash.generatePasswordHash(password);
-
-		/*
+        /*
 		 * State state = new State(); state.setStateName("Gujarat");
 		 * 
 		 * City city = new City(); city.setState(state); city.setCityName("Nadiad");
@@ -106,9 +100,7 @@ public class LoginAction extends ActionSupport {
 		 * 
 		 * // userManager = new UserManagerBean(); UserManagerBean bean = new
 		 * UserManagerBean(); //bean.initialize(); bean.addUser(user);
-		 */
-                //service = new UserService();
-//                service.addUser(new Users());
-	}
+         */
+    }
 
 }

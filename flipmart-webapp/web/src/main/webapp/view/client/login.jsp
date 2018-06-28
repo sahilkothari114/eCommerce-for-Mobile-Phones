@@ -654,10 +654,10 @@
 					password:$scope.password
 				}; 
 				
-				$http.post('/flipmart/signup.action/user', user).then(function(response){
+				$http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
 					console.log(response);
 				});
-			}
+			};
 			
 			
 				
