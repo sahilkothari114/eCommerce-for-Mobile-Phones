@@ -15,7 +15,7 @@ import com.flipmart.persistence.Users;
  *
  * @author Shagufta
  */
-@Stateless
+@Stateless(name = "userService")
 public class UserService implements UserServiceLocal {
 
 	@Override
