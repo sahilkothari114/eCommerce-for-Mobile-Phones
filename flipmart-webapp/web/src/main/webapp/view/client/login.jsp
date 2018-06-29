@@ -201,23 +201,30 @@
 					<div class="col-md-6 col-sm-6 sign-in">
 						<h4 class="">Sign in</h4>
 						<p class="">Hello, Welcome to your account.</p>
-						<form class="register-form outer-top-xs" role="form">
+						<form class="register-form outer-top-xs" role="form" name="loginForm">
 							<div class="form-group">
 								<label class="info-title" for="exampleInputEmail1">Email
 									Address <span>*</span>
-								</label> <input type="email"
+								</label><input type="email" name="loginEmail"
 									class="form-control unicase-form-control text-input"
-									id="exampleInputEmail1" required autofocus="autofocus" tabindex="1">
+									id="login-email" data-ng-model="login.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true" tabindex="1">
+									
+									<div ng-show="loginForm.loginEmail.$touched && loginForm.loginEmail.$invalid">
+										<small>Enter a Valid Email</small>
+									</div>
 							</div>
 							<div class="form-group">
 								<label class="info-title" for="exampleInputPassword1">Password
 									<span>*</span>
-								</label> <input type="password"
+								</label> <input type="password" name="loginPassword"
 									class="form-control unicase-form-control text-input"
-									id="exampleInputPassword1" required tabindex="2" data-va>
+									id="loginPassword" data-ng-model="login.password" tabindex="2" ng-required="true">
+									<div ng-show="loginForm.loginPassword.$touched && loginForm.loginPassword.$invalid">
+										<small>Password Required</small>
+									</div>
 							</div>
 							<button type="submit"
-								class="btn-upper btn btn-primary checkout-page-button">Login</button>
+								class="btn-upper btn btn-primary checkout-page-button" data-ng-click="loginUser()">Login</button>
 						</form>
 					</div>
 					<!-- Sign-in -->
@@ -227,7 +234,7 @@
 						<h4 class="checkout-subtitle">Create a new account</h4>
 						<p class="text title-tag-line">Create your new account.</p>
 						<!-- sign up form-->
-						{{signup}}
+						
 						<form class="register-form outer-top-xs" name="signupForm" role="form" novalidate>
 							<div class="form-group">
 								<label class="info-title" for="form-email">Email Address
@@ -235,7 +242,7 @@
 								</label> 
 								<input type="email" name="singupEmail"
 									class="form-control unicase-form-control text-input"
-									id="form-email" data-ng-model="signup.email" ng-required="true">
+									id="form-email" data-ng-model="signup.email"ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true">
 									<div ng-show="signupForm.singupEmail.$touched && signupForm.singupEmail.$invalid">
 										<small>Enter a Valid Email</small>
 									</div>
@@ -322,7 +329,7 @@
 									class="form-control unicase-form-control text-input"
 									id="form-confirm-password" data-ng-model="signup.confirmPass" ng-required="true" ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
 							ng-change="cpassword_error_show = cpassword_error_show + 1">
-							{{signup.password}}-{{signup.confirmPass}}
+							
 									<small ng-show="cpassword_error_show > 0 && signup.password !== signup.confirmPass">Password Mismatch</small>
 							<small style="color:green;" ng-show="cpassword_error_show > 0 && signup.password === signup.confirmPass">Password match</small>
 							
@@ -330,14 +337,6 @@
 							</div>
 							
 							
-							<!--password :-<input type="password" name="pass" ng-model="pass" required ng-init="password_error_show = 0" ng-focus="password_error_show = 1"
-							ng-change="password_error_show = password_error_show + 1">
-							<br/>
-							confirm password :-<input type="password" name="cpass" ng-model="cpass" required ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
-							ng-change="cpassword_error_show = cpassword_error_show + 1">
-							<p><span ng-show="cpassword_error_show > 0 && pass !== cpass">Password Mismatch</span>
-							<span ng-show="cpassword_error_show > 0 && pass === cpass">Password match</span>
-							</p>-->
 							
 							<button type="submit" data-ng-click="createUser()"
 								class="btn-upper btn btn-primary checkout-page-button" ng-disabled="signupForm.$invalid">Sign
@@ -660,11 +659,22 @@
 
 					console.log(response);
 				});
-
-			
-                            
-
 			};
+                        
+                        $scope.loginUser = function(){
+                          var loginUser = {
+                              email:$scope.login.email,
+                              password:$scope.login.password
+                          };
+                          
+                          
+                          
+                          $http.post('fill the URL for this', loginUser).then(function(response){
+
+				console.log(response);	
+				});
+                            
+                        };
 			
 			
 				
