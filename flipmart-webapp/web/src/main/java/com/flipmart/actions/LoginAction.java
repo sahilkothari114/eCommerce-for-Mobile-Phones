@@ -25,9 +25,11 @@ import javax.naming.NamingException;
     @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp")})
 public class LoginAction extends ActionSupport {
 
-//        @EJB
+//    @EJB
 //    private UserServiceLocal service;
-
+    
+    private static final long serialVersionUID = 1L;
+   
     @Override
     public String execute() {
         System.out.println("Called");
@@ -36,20 +38,18 @@ public class LoginAction extends ActionSupport {
     static HttpServletRequest request;
 
     @Action("user")
-    public void addUserDetails() {
+    public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         ObjectMapper mapper = new ObjectMapper();
-        try {
-            request = ServletActionContext.getRequest();
-            String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-            JsonNode data = mapper.readTree(jsonResponse);
-            createNewUser(data);
 
-        } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
+        request = ServletActionContext.getRequest();
+        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        JsonNode data = mapper.readTree(jsonResponse);
+        // logger.info("Consuming data from client: " + data);
+        System.out.println("Creating user");
+        createNewUser(data);
 
     }
-
+ 
     public void createNewUser(JsonNode userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         System.out.println("User Datils: " + userDetails);
@@ -57,7 +57,7 @@ public class LoginAction extends ActionSupport {
         Context ctx = null;
         try {
             ctx = new InitialContext();
-            UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp_-_ear/flipmart-webapp-ejb/UserService");
+            UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService!com.flipmart.service.UserServiceLocal");
             us.addUser(null);
         } catch (NamingException e) {
             e.printStackTrace();
