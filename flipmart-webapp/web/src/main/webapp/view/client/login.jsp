@@ -338,7 +338,7 @@
 							
 							
 							
-							<button type="submit" data-ng-click="createUser()"
+							<button type="submit" id="signup_btn" data-ng-click="createUser()"
 								class="btn-upper btn btn-primary checkout-page-button" ng-disabled="signupForm.$invalid">Sign
 								Up</button>
 						</form>
@@ -632,12 +632,29 @@
 
 	<!-- For demo purposes – can be removed on production -->
 
-
+        <script>
+                         var password = document.getElementById("form-password");
+                        var confirmpass= document.getElementById("form-confirm-password");
+                        var signupBtn= document.getElementById("signup_btn");
+                        
+                      
+                        
+                        password.onkeyup =function(){
+                     var isValid = (password.value===confirmpass.value) && (password.value.length>0)&&password.value.length>=5;
+                      signupBtn.disabled=!isValid;
+                    }
+                        confirmpass.onkeyup =function(){
+                     var isValid = (password.value===confirmpass.value);
+                      signupBtn.disabled=!isValid;
+                    }
+        </script>
 
 	<script>
 		var app = angular.module('myApp', []);
 		app.controller('usersController', function($scope, $http) {
 			//$scope.users = [];
+                       
+                        
 			$scope.createUser = function() {
 				/* $scope.users.push({'email':$scope.email,'firstName':$scope.firstName,'lastName':$scope.lastName,'streetAddress':$scope.streetAddress,
 				'phoneNumber':$scope.phoneNumber,'pincode':$scope.pincode,'city':$scope.city,'state':$scope.state,'password':$scope.password}); */
