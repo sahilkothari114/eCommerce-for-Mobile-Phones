@@ -13,6 +13,7 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flipmart.persistence.Users;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
@@ -39,15 +40,30 @@ public class LoginAction extends ActionSupport {
 
     @Action("user")
     public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        ObjectMapper mapper = new ObjectMapper();
+         ObjectMapper mapper = new ObjectMapper();
 
-        request = ServletActionContext.getRequest();
-        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        JsonNode data = mapper.readTree(jsonResponse);
+       request = ServletActionContext.getRequest();
+       // String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+       
+       
+       
+      String jsonData= request.getParameter("JsonData");
+      jsonData=jsonData.substring(13,jsonData.length()-2);
+      try{
+          Users user1=mapper.readValue(jsonData,Users.class);
+         
+     System.out.println("Palak");
+      System.out.println(user1);
+      }catch (Exception e)
+      {e.printStackTrace();}
+     
+      
+
+    //  String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        /*JsonNode data = mapper.readTree(jsonResponse);
         // logger.info("Consuming data from client: " + data);
         System.out.println("Creating user");
-        createNewUser(data);
-
+        createNewUser(data);*/
     }
  
     public void createNewUser(JsonNode userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
