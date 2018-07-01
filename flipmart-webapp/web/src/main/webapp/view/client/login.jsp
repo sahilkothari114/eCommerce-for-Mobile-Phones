@@ -666,13 +666,21 @@
 					lastName:$scope.signup.LastName,
 					streetAddress:$scope.signup.street,
 					contactNo:$scope.signup.contact,
-					pincode:$scope.signup.pin,
 					city:$scope.signup.city,
 					state:$scope.signup.state,
 					password:$scope.signup.password
 				}; 
+                                
+                                var pincode = {
+                                    pincode:$scope.signup.pin
+                                };
+                                
+                                var userData = {
+                                  user:user,
+                                  pincode:pincode
+                                };
 				
-				$http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
+				$http.post('/flipmart-webapp-web/signup.action/user', userData).then(function(response){
 
 					console.log(response);
 				});

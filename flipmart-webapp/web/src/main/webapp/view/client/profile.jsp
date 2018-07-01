@@ -185,7 +185,7 @@
 												<td>
 													<div class="form-group">
 														<label class="info-title control-label">First Name <span>*</span></label>
-														<input type="text" class="form-control unicase-form-control text-input" placeholder="Enter first name "
+														<input type="text" class="form-control unicase-form-control text-input"
 														name="firstName" data-ng-model="profile.FirstName">
 														  <div ng-show="ProfileForm.firstName.$touched && ProfileForm.firstName.$invalid">
 															<small>Enter a Valid First Name</small>
@@ -196,7 +196,7 @@
 
 													<div class="form-group">
 														<label class="info-title control-label">Last Name <span>*</span></label>
-														<input type="text" class="form-control unicase-form-control text-input" placeholder="Enter Last name "
+														<input type="text" class="form-control unicase-form-control text-input" 
 														name="lastName" data-ng-model="profile.LastName">
 														  <div ng-show="ProfileForm.lastName.$touched && ProfileForm.lastName.$invalid">
 															<small>Enter a Valid Last Name</small>
@@ -204,7 +204,7 @@
 													</div>
 												</td>
 											</tr>
-											<tr>
+										<tr>
 											
 												<td>
 													<div class="form-group">
@@ -224,7 +224,7 @@
 												<td>
 													<div class="form-group">
 														<label class="info-title control-label">confirm password </label>
-														<input type="password" name="NewConfirmPassword"
+														<input id="New_Confirm_Password" type="password" name="NewConfirmPassword"
 															class="form-control unicase-form-control text-input"
 																id="New_Confirm_Password" data-ng-model="profile.NewConfirmPassword" ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
 																ng-change="cpassword_error_show = cpassword_error_show + 1" ng-disabled="ProfileForm.NewPassword.$pristine||(profile.NewPassword.length==0)">
@@ -238,7 +238,7 @@
 												<td>
 													<div class="form-group">
 														<label class="info-title control-label">Contact No <span>*</span> </label>
-														<input type="text" name="Contact" pattern="[0-9]{10}" class="form-control unicase-form-control text-input" placeholder="9999999999" data-ng-model="profile.NewContact" ng-minlength="10" ng-maxlength="10">
+														<input type="text" name="Contact" pattern="[0-9]{10}" class="form-control unicase-form-control text-input"  data-ng-model="profile.NewContact" ng-minlength="10" ng-maxlength="10">
 														<div ng-show="ProfileForm.Contact.$touched && ProfileForm.Contact.$invalid">
 															<small>Enter a Valid Contact Number</small>
 														</div>
@@ -251,7 +251,7 @@
 														
 														<input type="email" name="NewEmail"
 															class="form-control unicase-form-control text-input"
-															id="New_email" data-ng-model="profile.NewEmail" placeholder="abc@gmail.com" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+															id="New_email" data-ng-model="profile.NewEmail"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
 														<div ng-show="ProfileForm.NewEmail.$touched && ProfileForm.NewEmail.$invalid">
 															<small>Enter a Valid Email</small>
 														</div>
@@ -264,7 +264,7 @@
 														<label class="info-title control-label">Postal Code<span>*</span></label>
 														
 													<input type="text" pattern="[0-9]{6}" name="NewPincode" class="form-control unicase-form-control text-input"
-													id="New_pincode" data-ng-model="profile.Pincode" placeholder="123456" ng-minlength="6" ng-maxlength="6">
+													id="New_pincode" data-ng-model="profile.NewPincode" ng-minlength="6" ng-maxlength="6">
 													<div ng-show="ProfileForm.NewPincode.$touched && ProfileForm.NewPincode.$invalid">
 														<small>Enter a Valid Pincode Number</small>
 													</div>
@@ -274,15 +274,16 @@
 												<td>
 													<div class="form-group">
 														<label class="info-title control-label">City <span>*</span></label>
-														<select class="form-control unicase-form-control selectpicker">
+                                                                                                                <input type="text" name="NewCity" class="form-control unicase-form-control text-input"
+													id="New_City" data-ng-model="profile.NewCity">
+<!--														<select class="form-control unicase-form-control selectpicker" data-ng-model="profile.NewCity" ng-options="city for city in City">
 															<option>--Select options--</option>
-															<option>Mumbai</option>
-															<option>Ahmedabad</option>
-															<option>Surat </option>
-															<option>Kolkata </option>
-															<option>Delhi
-															</option>
-														</select>
+															<option value="Mumbai">Mumbai</option>
+															<option value="Ahmedabad">Ahmedabad</option>
+															<option value="Surat">Surat </option>
+															<option value="Kolkata">Kolkata </option>
+															<option value="Delhi">Delhi</option>
+														</select>-->
 													</div>
 												</td>
 											</tr>
@@ -290,14 +291,16 @@
 												<td>
 													<div class="form-group">
 														<label class="info-title control-label">State/Province <span>*</span></label>
-														<select class="form-control unicase-form-control selectpicker">
+                                                                                                                <input type="text" name="NewState" class="form-control unicase-form-control text-input"
+													id="New_State" data-ng-model="profile.NewState">
+<!--														<select class="form-control unicase-form-control selectpicker" data-ng-model="profile.NewState">
 															<option>--Select options--</option>
-															<option>TamilNadu</option>
-															<option>Kerala</option>
-															<option>Andhra Pradesh</option>
-															<option>Karnataka</option>
-															<option>Madhya Pradesh</option>
-														</select>
+															<option value="TamilNadu">TamilNadu</option>
+															<option value="Kerala">Kerala</option>
+															<option value="Andhra Pradesh">Andhra Pradesh</option>
+															<option value="Karnataka">Karnataka</option>
+															<option value="Madhya Pradesh">Madhya Pradesh</option>
+														</select>-->
 													</div>
 													</td>
 													<td>
@@ -323,7 +326,7 @@
 											<tr>
 												<td>
 													<div class="cart-checkout-btn col-sm-7">
-														<button type="submit" class="btn btn-primary checkout-btn" ng-disabled="ProfileForm.$invalid" data-ng-click="updateUser()">UPDATE</button>
+														<button id="checkout_btn" type="submit" class="btn btn-primary checkout-btn" ng-disabled="ProfileForm.$invalid" data-ng-click="updateUser()">UPDATE</button>
 
 													</div>
 												</td>
@@ -556,13 +559,35 @@
 						<script src="assets/js/bootstrap-select.min.js"></script>
 						<script src="assets/js/wow.min.js"></script>
 						<script src="assets/js/scripts.js"></script>
-
-
-
+                                                
+                                    <script>
+                                    var password = document.getElementById("New_Password");
+                                    var confirmpass= document.getElementById("New_Confirm_Password");
+                                    var checkBtn= document.getElementById("checkout_btn");
+                        
+                      
+                        
+                                    password.onkeyup =function(){
+                                    var isValid = (password.value===confirmpass.value)&&password.value.length>=5;
+                                    checkBtn.disabled=!isValid;  
+                                    
+                                        if(password.value.length===0)
+                                               checkBtn.disabled=false;
+                                  //  checkBtn.disabled=password.value.length===0;
+                                 
+                                    }
+                                    confirmpass.onkeyup =function(){
+                                    var isValid = (password.value===confirmpass.value);
+                                    checkBtn.disabled=!isValid;
+                                       }
+                                    </script>
 						<script>
 						var app = angular.module('myApp',[]);
 						
 						app.controller('profileController',function($scope,$http){
+                                                    
+                                                    
+                                                    
                                                     
                                                     $scope.updateUser = function(){
                                                             
@@ -572,18 +597,29 @@
                                                                 lastName:$scope.profile.LastName,
                                                                 streetAddress:$scope.profile.NewAddress,
                                                                 contactNo:$scope.profile.NewContact,
-                        					pincode:$scope.profile.NewPincode,
                                                 		city:$scope.profile.NewCity,
                                                                 state:$scope.profile.NewState,
                                     				password:$scope.profile.NewPassword
+                                                                
                                                             };
-                                           $http.post('/Fill the URL', userData).then(function(response){
-
+                                                            
+                                                            var pincode = {
+                                                              pincode:$scope.profile.NewPincode  
+                                                            };
+                                                            
+                                                            var userUpdate= {
+                                                              userData:userData,
+                                                              pincode:pincode
+                                                            };
+                                                         $http.post('/flipmart-webapp-web/signup.action/user', userUpdate).then(function(response){
+s
                                                     	console.log(response);
-                                            });
+                                                         });
         
                                                     };
 							
+                                                        
+      
 						});
 						</script>
 

@@ -560,7 +560,6 @@
 		$scope.cartCheckout = function(){
                     
                     var cart={
-                        pincode:$scope.cart.pincode,
                         city:$scope.cart.city,
                         state:$scope.cart.state,
                         streetAddress:$scope.cart.NewAddress,
@@ -568,7 +567,17 @@
                         
                         
                     };
-                    $http.post('Add URL for action', cart).then(function(response){
+                    
+                    var pincode={
+                          pincode:$scope.cart.pincode
+                    };
+                    
+                    var checkoutCart = {
+                      cart:cart,
+                      pincode:pincode
+                    };
+                    
+                    $http.post('/flipmart-webapp-web/signup.action/user', cartCheckout).then(function(response){
 
 					console.log(response);
 				});
