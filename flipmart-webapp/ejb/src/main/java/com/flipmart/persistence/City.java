@@ -1,5 +1,6 @@
 package com.flipmart.persistence;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "city")
-public class City {
+public class City implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "city_id")
 	private long cityId;
 

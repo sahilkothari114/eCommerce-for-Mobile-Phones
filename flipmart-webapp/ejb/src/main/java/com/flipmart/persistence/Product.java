@@ -1,5 +1,6 @@
 package com.flipmart.persistence;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,10 +20,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private long productId;
 
@@ -60,7 +61,7 @@ public class Product {
 	@ManyToMany(mappedBy = "products")
 	private List<Users> user = new ArrayList<Users>();
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	/*@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ColorProduct> productColorList = new ArrayList<ColorProduct>();
 
 	public List<ColorProduct> getProductColor() {
@@ -69,7 +70,7 @@ public class Product {
 
 	public void setProductColor(List<ColorProduct> productColor) {
 		this.productColorList = productColor;
-	}
+	}*/
 
 	public List<Users> getUser() {
 		return user;
@@ -167,7 +168,7 @@ public class Product {
 		this.manufacturer = manufacturer;
 	}
 
-	public void addColor(Color color) {
+	/*public void addColor(Color color) {
 		ColorProduct colorProduct = new ColorProduct(this, color);
 		productColorList.add(colorProduct);
 		color.getProductColors().add(colorProduct);
@@ -184,8 +185,8 @@ public class Product {
 				colorProducts.setColor(null);
 			}
 		}
-	}
-
+	}*/
+        
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
