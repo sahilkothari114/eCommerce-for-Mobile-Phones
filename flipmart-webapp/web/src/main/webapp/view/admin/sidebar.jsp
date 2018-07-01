@@ -28,7 +28,7 @@
 					<li>
                         <a href="addManufacturer.jsp">
                             <i class="material-icons">person</i>
-                            <p>Add Manufacture</p>
+                            <p>Add Manufacturer</p>
                         </a>
                     </li>
                     

@@ -9,7 +9,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-										<a href="profile_new.html">Edit Profile</a>
+										<a href="user.jsp">Edit Profile</a>
                                         <a href="logout.html">Logout</a>
                                     </li>
                                    
