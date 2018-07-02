@@ -1,6 +1,6 @@
 package com.flipmart.persistence;
 
-import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,17 +12,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "city")
-public class City implements Serializable{
+public class City {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "city_id")
 	private long cityId;
 
 	@Column(name = "city_name")
 	private String cityName;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "state_id")
 	private State state;
 

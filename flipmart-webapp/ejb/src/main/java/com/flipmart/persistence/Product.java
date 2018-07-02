@@ -1,6 +1,5 @@
 package com.flipmart.persistence;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,10 +20,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
-public class Product implements Serializable{
+public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "product_id")
 	private long productId;
 
@@ -58,10 +58,11 @@ public class Product implements Serializable{
 	@JoinColumn(name = "manufaturer_id")
 	private Manufacturer manufacturer;
 
-	@ManyToMany(mappedBy = "products")
-	private List<Users> user = new ArrayList<Users>();
+//	@ManyToMany(mappedBy = "products")
+//	private List<Users> user = new ArrayList<Users>();
 
-	/*@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+        @JoinColumn(name = "product_id")
 	private List<ColorProduct> productColorList = new ArrayList<ColorProduct>();
 
 	public List<ColorProduct> getProductColor() {
@@ -70,14 +71,6 @@ public class Product implements Serializable{
 
 	public void setProductColor(List<ColorProduct> productColor) {
 		this.productColorList = productColor;
-	}*/
-
-	public List<Users> getUser() {
-		return user;
-	}
-
-	public void setUser(List<Users> user) {
-		this.user = user;
 	}
 
 	public long getProductId() {
@@ -168,7 +161,7 @@ public class Product implements Serializable{
 		this.manufacturer = manufacturer;
 	}
 
-	/*public void addColor(Color color) {
+	public void addColor(Color color) {
 		ColorProduct colorProduct = new ColorProduct(this, color);
 		productColorList.add(colorProduct);
 		color.getProductColors().add(colorProduct);
@@ -185,8 +178,8 @@ public class Product implements Serializable{
 				colorProducts.setColor(null);
 			}
 		}
-	}*/
-        
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
