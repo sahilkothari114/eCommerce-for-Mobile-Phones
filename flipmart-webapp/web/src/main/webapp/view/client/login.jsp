@@ -659,28 +659,35 @@
 				/* $scope.users.push({'email':$scope.email,'firstName':$scope.firstName,'lastName':$scope.lastName,'streetAddress':$scope.streetAddress,
 				'phoneNumber':$scope.phoneNumber,'pincode':$scope.pincode,'city':$scope.city,'state':$scope.state,'password':$scope.password}); */
 				
+                               
 				
 				 var user = {
-					email:$scope.signup.email,
+					
 					firstName:$scope.signup.FirstName,
 					lastName:$scope.signup.LastName,
-					streetAddress:$scope.signup.street,
+                                        email:$scope.signup.email,
+                                        password:$scope.signup.password,	
+					pincode:{
+                                                pincode:$scope.signup.pin,
+                                                city :{
+                                                    city:$scope.signup.city,
+                                                    state:{
+                                                       state:$scope.signup.state 
+                                                    }
+                                                }
+                                               
+                                        },
+                                        streetAddress:$scope.signup.street,
 					contactNo:$scope.signup.contact,
-					city:$scope.signup.city,
-					state:$scope.signup.state,
-					password:$scope.signup.password
+                                        active:true
+					
 				}; 
                                 
-                                var pincode = {
-                                    pincode:$scope.signup.pin
-                                };
+                               
                                 
-                                var userData = {
-                                  user:user,
-                                  pincode:pincode
-                                };
+                               
 				
-				$http.post('/flipmart-webapp-web/signup.action/user', userData).then(function(response){
+				$http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
 
 					console.log(response);
 				});
