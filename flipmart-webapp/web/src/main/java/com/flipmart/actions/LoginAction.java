@@ -21,7 +21,6 @@ import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.flipmart.util.PasswordHash;
 import com.opensymphony.xwork2.ActionSupport;
-import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -35,7 +34,7 @@ public class LoginAction extends ActionSupport {
 
     @Override
     public String execute() {
-        System.out.println("Called");
+
         return SUCCESS;
     }
 
@@ -47,18 +46,39 @@ public class LoginAction extends ActionSupport {
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         System.out.println(jsonResponse);
 
-        /*try {
-            Users user1 = mapper.readValue(jsonData, Users.class);
+        String jsonData = "{\n"
+                + "	\"firstName\": \"shagufta\",\n"
+                + "	\"lastName\": \"shaikh\",\n"
+                + "	\"email\": \"shagufta@gmail.com\",\n"
+                + "	\"password\": \"testt\",\n"
+                + "	\"pincode\": {\n"
+                + "		\"pincode\": 387001,\n"
+                + "		\"city\": {\n"
+                + "			\"cityName\": \"Gandhinagar\",\n"
+                + "			\"state\": {\n"
+                + "				\"stateName\": \"Gujarat\"\n"
+                + "			}\n"
+                + "		}\n"
+                + "	},\n"
+                + "	\"streetAddress\": \"sample street address\",\n"
+                + "	\"contactNo\": \"9898989898\",\n"
+                + "	\"active\": true\n"
+                + "}";
+        
+        {
+
+}
+        try {
+            Users user1 = mapper.readValue(jsonResponse, Users.class);
 
             System.out.println("Palak");
             System.out.println(user1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        JsonNode data = mapper.readTree(jsonResponse);
+        } catch (IOException e) {
+        }
+        //JsonNode data = mapper.readTree(jsonResponse);
         // logger.info("Consuming data from client: " + data);
         System.out.println("Creating user");
-        createNewUser(data);
+        //createNewUser(data);
     }
 
     public void createNewUser(JsonNode userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -86,27 +106,24 @@ public class LoginAction extends ActionSupport {
 
             Users user = new Users();
             user.setFirstName(userDetails.get(FlipmartConstants.KEY_FIRST_NAME).textValue());
-            user.setLastName(userDetails.get(FlipmartConstants.KEY_LAST_NAME).textValue()
-            );
+            user.setLastName(userDetails.get(FlipmartConstants.KEY_LAST_NAME).textValue());
             user.setEmail(userDetails.get(FlipmartConstants.KEY_EMAIL).textValue());
             user.setStreetAddress(userDetails.get(FlipmartConstants.KEY_STREET_ADDRESS).
                     textValue());
             user.setContactNo(userDetails.get(FlipmartConstants.KEY_CONTACT_NUMBER).
-                    textValue()
-            );
+                    textValue());
             user.setPassword(password);
             user.setPincode(pincode);
             user.setActive(true);
 
-            us.addUser(user);
+            us.addUser(new Users());
         } catch (NamingException e) {
-            e.printStackTrace();
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
         } finally {
             if (ctx != null) {
                 try {
                     ctx.close();
-                } catch (Throwable t) {
+                } catch (NamingException t) {
                 }
             }
         }

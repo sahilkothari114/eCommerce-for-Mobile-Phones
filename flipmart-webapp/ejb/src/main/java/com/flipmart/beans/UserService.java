@@ -34,6 +34,7 @@ public class UserService implements UserServiceLocal {
     @Override
     public void addUser(Users user) {
         System.out.println("Add user");
+        
         if (!transactionObj.isActive()) {
             transactionObj.begin();
         }
