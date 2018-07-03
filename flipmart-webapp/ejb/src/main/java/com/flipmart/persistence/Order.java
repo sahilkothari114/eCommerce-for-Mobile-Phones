@@ -26,7 +26,7 @@ import javax.persistence.Table;
  * @author sahil
  */
 @Entity
-@Table(name = "Order")
+@Table(name = "order")
 public class Order implements Serializable {
 
     
@@ -52,6 +52,16 @@ public class Order implements Serializable {
     @JoinTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"))
     private List<ColorProduct> colorProductOrder = new ArrayList<ColorProduct>();
 
+    @Column(name = "active")
+    private boolean active;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
     public List<ColorProduct> getColorProductOrder() {
         return colorProductOrder;
     }

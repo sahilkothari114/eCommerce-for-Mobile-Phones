@@ -18,6 +18,7 @@ import com.flipmart.persistence.City;
 import com.flipmart.persistence.Pincode;
 import com.flipmart.persistence.State;
 import com.flipmart.persistence.Users;
+import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.flipmart.util.PasswordHash;
@@ -37,7 +38,6 @@ public class LoginAction extends ActionSupport {
 
     @Override
     public String execute() {
-
         return SUCCESS;
     }
 
@@ -54,49 +54,116 @@ public class LoginAction extends ActionSupport {
 
             System.out.println("Palak");
             System.out.println(user1);
+            //createNewUser(user1);
+            
         } catch (IOException e) {
+            System.out.println(e);
         }
         System.out.println("Creating user");
-        //createNewUser(data);
+            Long pin = new Long(387001);
+            findPincode(pin);
+
+        
     }
 
-    public void createNewUser(JsonNode userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public void createNewUser(Users userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         System.out.println("User Datils: " + userDetails);
+//        service.addUser(new Users());
         Context ctx = null;
         try {
             ctx = new InitialContext();
             UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService!com.flipmart.service.UserServiceLocal");
 
-            String password = userDetails.get(FlipmartConstants.KEY_PASSWORD).textValue();
+//            String password = userDetails.get("user").get(FlipmartConstants.KEY_PASSWORD).textValue();
+//            password = PasswordHash.generatePasswordHash(password);
+//
+//            State state = new State();
+//            state.setStateName("Gujarat");
+//
+//            City city = new City();
+//            city.setState(state);
+//            city.setCityName("Nadiad");
+//
+//            Pincode pincode = new Pincode();
+//            pincode.setPincode(387001);
+//            pincode.setCity(city);
+//
+//            Users user = new Users();
+//            user.setFirstName(userDetails.get("user").get(FlipmartConstants.KEY_FIRST_NAME).textValue());
+//            user.setLastName(userDetails.get("user").get(FlipmartConstants.KEY_LAST_NAME).textValue()
+//            );
+//            user.setEmail(userDetails.get("user").get(FlipmartConstants.KEY_EMAIL).textValue());
+//            user.setStreetAddress(userDetails.get("user").get(FlipmartConstants.KEY_STREET_ADDRESS).
+//                    textValue());
+//            user.setContactNo(userDetails.get("user").get(FlipmartConstants.KEY_CONTACT_NUMBER).
+//                    textValue()
+//            );
+//            user.setPassword(password);
+//            user.setPincode(pincode);
+//            user.setActive(true);
+            String password = userDetails.getPassword();
             password = PasswordHash.generatePasswordHash(password);
-
+            userDetails.setPassword(password);
+            
             State state = new State();
-            state.setStateName("Gujarat");
+            state.setStateName("Rajasthan");
 
             City city = new City();
             city.setState(state);
-            city.setCityName("Nadiad");
+            city.setCityName("jaipur");
 
             Pincode pincode = new Pincode();
             pincode.setPincode(387001);
             pincode.setCity(city);
+            
+            userDetails.setPincode(pincode);
+            
+            us.addUser(userDetails);
+        } catch (NamingException e) {
+            e.printStackTrace();
+            // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
+        } finally {
+            if (ctx != null) {
+                try {
+                    ctx.close();
+                } catch (Throwable t) {
+                }
+            }
+        }
 
-            Users user = new Users();
-            user.setFirstName(userDetails.get(FlipmartConstants.KEY_FIRST_NAME).textValue());
-            user.setLastName(userDetails.get(FlipmartConstants.KEY_LAST_NAME).textValue());
-            user.setEmail(userDetails.get(FlipmartConstants.KEY_EMAIL).textValue());
-            user.setStreetAddress(userDetails.get(FlipmartConstants.KEY_STREET_ADDRESS).
-                    textValue());
-            user.setContactNo(userDetails.get(FlipmartConstants.KEY_CONTACT_NUMBER).
-                    textValue());
-            user.setPassword(password);
-            user.setPincode(pincode);
-            user.setActive(true);
+        // userManager = new UserManagerBean(); UserManagerBean bean = new
+        //UserManagerBean(); //bean.initialize(); bean.addUser(user);
+    }
 
-            us.addUser(new Users());
+    @Action("validate")
+    public JsonNode validateUser(JsonNode user) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Users user1 = mapper.treeToValue(user, Users.class);
+
+            System.out.println(user1);
+            return null;
+        } catch (JsonProcessingException ex) {
+            // Logger.getLogger(LoginAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void findPincode(Long pincode) {
+        Context ctx = null;
+        try {
+            ctx = new InitialContext();
+            PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
+            
+            Pincode pincodeObject = pincodeService.findByPincode(pincode);
+            System.out.println("----------------------------------------");
+            System.out.println(pincodeObject.getCity().getCityName());
+            System.out.println(pincodeObject.getCity().getState().getStateName());
+            System.out.println("----------------------------------------");
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
+            System.out.println("----"+e.getMessage());
         } finally {
             if (ctx != null) {
                 try {
@@ -105,19 +172,5 @@ public class LoginAction extends ActionSupport {
                 }
             }
         }
-    }
-
-    @Action("validate")
-    public JsonNode validateUser(JsonNode user) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            Users user1 = mapper.treeToValue(user, Users.class);
-            
-            System.out.println(user1);
-            return null;
-        } catch (JsonProcessingException ex) {
-           // Logger.getLogger(LoginAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 }

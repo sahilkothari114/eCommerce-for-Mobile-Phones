@@ -44,6 +44,17 @@ public class Admin implements Serializable {
 
 	@Column(name = "display_picture")
 	private String displayPicture;
+        
+        @Column(name = "active")
+        private boolean active;
+
+        public boolean isActive() {
+            return active;
+        }
+
+        public void setActive(boolean active) {
+            this.active = active;
+        }
 
 	public String getFirstName() {
 		return firstName;
