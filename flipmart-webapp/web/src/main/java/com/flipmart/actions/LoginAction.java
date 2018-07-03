@@ -19,6 +19,7 @@ import com.flipmart.persistence.City;
 import com.flipmart.persistence.Pincode;
 import com.flipmart.persistence.State;
 import com.flipmart.persistence.Users;
+import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.flipmart.util.PasswordHash;
@@ -129,7 +130,29 @@ public class LoginAction extends ActionSupport {
         // userManager = new UserManagerBean(); UserManagerBean bean = new
         //UserManagerBean(); //bean.initialize(); bean.addUser(user);
     }
-
+        public void findPincode(Long pincode) {
+        Context ctx = null;
+        try {
+            ctx = new InitialContext();
+            PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
+            
+            Pincode pincodeObject = pincodeService.findByPincode(pincode);
+            System.out.println("----------------------------------------");
+            System.out.println(pincodeObject.getCity().getCityName());
+            System.out.println(pincodeObject.getCity().getState().getStateName());
+            System.out.println("----------------------------------------");
+        } catch (NamingException e) {
+            // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
+            System.out.println("----"+e.getMessage());
+        } finally {
+            if (ctx != null) {
+                try {
+                    ctx.close();
+                } catch (NamingException t) {
+                }
+            }
+        }
+    }
     @Action("validate")
     public void validateUser() throws IOException,JsonProcessingException{
             request = ServletActionContext.getRequest();
