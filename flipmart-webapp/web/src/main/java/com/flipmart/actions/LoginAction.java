@@ -38,6 +38,7 @@ public class LoginAction extends ActionSupport {
         return SUCCESS;
     }
 
+    
     @Action("user")
     public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         ObjectMapper mapper = new ObjectMapper();
@@ -80,7 +81,6 @@ public class LoginAction extends ActionSupport {
     public void createNewUser(JsonNode userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         System.out.println("User Datils: " + userDetails);
-//        service.addUser(new Users());
         Context ctx = null;
         try {
             ctx = new InitialContext();
@@ -123,9 +123,11 @@ public class LoginAction extends ActionSupport {
                 }
             }
         }
-
-        // userManager = new UserManagerBean(); UserManagerBean bean = new
-        //UserManagerBean(); //bean.initialize(); bean.addUser(user);
     }
-
+    
+    @Action("validate")
+    public JsonNode validateUser(JsonNode user){
+        
+        return null;
+    }
 }
