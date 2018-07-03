@@ -637,7 +637,6 @@
                                                     var confirmpass = document.getElementById("form-confirm-password");
                                                     var signupBtn = document.getElementById("signup_btn");
 
-<<<<<<< HEAD
 	<script>
 		var app = angular.module('myApp', []);
 		app.controller('usersController', function($scope, $http) {
@@ -645,9 +644,6 @@
                        
                         
 			$scope.createUser = function() {
-				/* $scope.users.push({'email':$scope.email,'firstName':$scope.firstName,'lastName':$scope.lastName,'streetAddress':$scope.streetAddress,
-				'phoneNumber':$scope.phoneNumber,'pincode':$scope.pincode,'city':$scope.city,'state':$scope.state,'password':$scope.password}); */
-				
                                
 				
 				 var user = {
@@ -677,7 +673,6 @@
                                
 				
 				$http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
-
 					console.log(response);
 				});
 			};
@@ -690,11 +685,8 @@
                           
                           
                           
-                          $http.post('fill the URL for this', loginUser).then(function(response){
-=======
->>>>>>> origin/master
-
-
+                          $http.post('/flipmart-webapp-web/signup.action/validate', loginUser).then(function(response){
+                                console.log(response);
                                                     password.onkeyup = function () {
                                                         var isValid = (password.value === confirmpass.value) && (password.value.length > 0) && password.value.length >= 5;
                                                         signupBtn.disabled = !isValid;
@@ -704,7 +696,6 @@
                                                         signupBtn.disabled = !isValid;
                                                     }
         </script>
-
         <script>
                     var app = angular.module('myApp', []);
                     app.controller('usersController', function ($scope, $http) {
@@ -737,22 +728,13 @@
                              
                 
                                 $http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
-
                                 console.log(response);
                                 });
                         };
-
-
-
                     });
-
-
         </script>
-
-
-        <!--confitm password-->
-        <script>
-
+      
+                                       
         </script>
     </body>
 </html>

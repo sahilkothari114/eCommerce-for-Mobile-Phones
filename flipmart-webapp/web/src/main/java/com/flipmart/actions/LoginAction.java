@@ -1,5 +1,6 @@
 package com.flipmart.actions;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -24,6 +25,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import org.apache.logging.log4j.Logger;
 
 @Action(value = "login", results = {
     @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp")})
@@ -31,6 +33,7 @@ public class LoginAction extends ActionSupport {
 
     static HttpServletRequest request;
     private static final long serialVersionUID = 1L;
+    //static final Logger logger = Logger.getLogger(LoginAction.class);
 
     @Override
     public String execute() {
@@ -38,7 +41,6 @@ public class LoginAction extends ActionSupport {
         return SUCCESS;
     }
 
-    
     @Action("user")
     public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         ObjectMapper mapper = new ObjectMapper();
@@ -47,28 +49,6 @@ public class LoginAction extends ActionSupport {
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         System.out.println(jsonResponse);
 
-        String jsonData = "{\n"
-                + "	\"firstName\": \"shagufta\",\n"
-                + "	\"lastName\": \"shaikh\",\n"
-                + "	\"email\": \"shagufta@gmail.com\",\n"
-                + "	\"password\": \"testt\",\n"
-                + "	\"pincode\": {\n"
-                + "		\"pincode\": 387001,\n"
-                + "		\"city\": {\n"
-                + "			\"cityName\": \"Gandhinagar\",\n"
-                + "			\"state\": {\n"
-                + "				\"stateName\": \"Gujarat\"\n"
-                + "			}\n"
-                + "		}\n"
-                + "	},\n"
-                + "	\"streetAddress\": \"sample street address\",\n"
-                + "	\"contactNo\": \"9898989898\",\n"
-                + "	\"active\": true\n"
-                + "}";
-        
-        {
-
-}
         try {
             Users user1 = mapper.readValue(jsonResponse, Users.class);
 
@@ -76,8 +56,6 @@ public class LoginAction extends ActionSupport {
             System.out.println(user1);
         } catch (IOException e) {
         }
-        //JsonNode data = mapper.readTree(jsonResponse);
-        // logger.info("Consuming data from client: " + data);
         System.out.println("Creating user");
         //createNewUser(data);
     }
@@ -128,10 +106,18 @@ public class LoginAction extends ActionSupport {
             }
         }
     }
-    
+
     @Action("validate")
-    public JsonNode validateUser(JsonNode user){
-        
+    public JsonNode validateUser(JsonNode user) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Users user1 = mapper.treeToValue(user, Users.class);
+            
+            System.out.println(user1);
+            return null;
+        } catch (JsonProcessingException ex) {
+           // Logger.getLogger(LoginAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 }

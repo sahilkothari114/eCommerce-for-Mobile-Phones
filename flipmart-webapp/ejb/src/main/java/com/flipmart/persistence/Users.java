@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -163,4 +162,9 @@ public class Users implements Serializable{
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
+    @Override
+    public String toString() {
+        return "Users{" + "userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", pincode=" + pincode + ", streetAddress=" + streetAddress + ", contactNo=" + contactNo + ", active=" + active + '}';
+    }
 }
