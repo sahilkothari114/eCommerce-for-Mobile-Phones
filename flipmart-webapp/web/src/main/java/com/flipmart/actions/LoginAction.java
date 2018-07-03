@@ -1,3 +1,4 @@
+
 package com.flipmart.actions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,7 +19,6 @@ import com.flipmart.persistence.City;
 import com.flipmart.persistence.Pincode;
 import com.flipmart.persistence.State;
 import com.flipmart.persistence.Users;
-import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.flipmart.util.PasswordHash;
@@ -26,18 +26,19 @@ import com.opensymphony.xwork2.ActionSupport;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 
 @Action(value = "login", results = {
     @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp")})
 public class LoginAction extends ActionSupport {
 
-    static HttpServletRequest request;
+    private static HttpServletRequest request;
     private static final long serialVersionUID = 1L;
-    //static final Logger logger = Logger.getLogger(LoginAction.class);
+    private static final Logger logger = Logger.getLogger(LoginAction.class);
 
     @Override
     public String execute() {
+
         return SUCCESS;
     }
 
@@ -47,23 +48,16 @@ public class LoginAction extends ActionSupport {
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        System.out.println(jsonResponse);
-
+        System.out.println("JSON DATA : " + jsonResponse);
         try {
             Users user1 = mapper.readValue(jsonResponse, Users.class);
 
-            System.out.println("Palak");
+            System.out.print("Object : ");
             System.out.println(user1);
-            //createNewUser(user1);
-            
-        } catch (IOException e) {
-            System.out.println(e);
+        } 
+        catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-        System.out.println("Creating user");
-            Long pin = new Long(387001);
-            findPincode(pin);
-
-        
     }
 
     public void createNewUser(Users userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -137,40 +131,13 @@ public class LoginAction extends ActionSupport {
     }
 
     @Action("validate")
-    public JsonNode validateUser(JsonNode user) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            Users user1 = mapper.treeToValue(user, Users.class);
-
+    public void validateUser() throws IOException,JsonProcessingException{
+            request = ServletActionContext.getRequest();
+            String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+            ObjectMapper mapper = new ObjectMapper();   
+            System.out.println("-> " + jsonResponse);
+            Users user1 = mapper.readValue(jsonResponse, Users.class);            
             System.out.println(user1);
-            return null;
-        } catch (JsonProcessingException ex) {
-            // Logger.getLogger(LoginAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    public void findPincode(Long pincode) {
-        Context ctx = null;
-        try {
-            ctx = new InitialContext();
-            PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
-            
-            Pincode pincodeObject = pincodeService.findByPincode(pincode);
-            System.out.println("----------------------------------------");
-            System.out.println(pincodeObject.getCity().getCityName());
-            System.out.println(pincodeObject.getCity().getState().getStateName());
-            System.out.println("----------------------------------------");
-        } catch (NamingException e) {
-            // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
-            System.out.println("----"+e.getMessage());
-        } finally {
-            if (ctx != null) {
-                try {
-                    ctx.close();
-                } catch (NamingException t) {
-                }
-            }
-        }
     }
 }
+

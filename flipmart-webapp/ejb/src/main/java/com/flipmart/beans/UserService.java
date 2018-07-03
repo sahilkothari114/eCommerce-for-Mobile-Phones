@@ -4,12 +4,12 @@ import com.flipmart.service.UserServiceLocal;
 import javax.ejb.Stateless;
 
 import com.flipmart.persistence.Users;
-import java.time.Period;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -18,8 +18,10 @@ import javax.persistence.Query;
 @Stateless
 public class UserService implements UserServiceLocal {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
     private static EntityTransaction transactionObj;
+
+    private static final Logger logger = Logger.getLogger(UserService.class);
 
     public UserService() {
         entityManager = Persistence.createEntityManagerFactory("flipmart")
@@ -35,13 +37,15 @@ public class UserService implements UserServiceLocal {
 
     @Override
     public void addUser(Users user) {
-        System.out.println("Add user");
+        logger.info("Begining transaction");
 
         if (!transactionObj.isActive()) {
             transactionObj.begin();
         }
+        logger.info("Persisting user");
         entityManager.persist(user);
 
+        logger.info("Persisting user success");
         transactionObj.commit();
     }
 
@@ -52,13 +56,31 @@ public class UserService implements UserServiceLocal {
             String password = user.getPassword();
             Query query = entityManager.createQuery("SELECT u.user_id FROM USERS u WHERE first_name = " + userName + " AND password = " + password + " ;");
             Users result = (Users) query.getSingleResult();
-            
-            if(result!=null)
+
+            if (result != null) {
+                logger.info("Valid user");
                 return true;
-            
+            }
+            logger.info("No such user found");
             return false;
         }
+        logger.info("user object is null");
         return false;
+    }
+
+    @Override
+    public Users findByUserName(String userName) {
+        if (userName != null) {
+            Query query = entityManager.createQuery("SELECT * FROM USERS u WHERE first_name = "+userName+" ;");
+            Users user =(Users) query.getSingleResult();
+            
+            if(user!=null){
+                return user;
+            }
+            logger.error("could not find details of the user");
+        }
+        logger.error("user name is null");
+        return null;
     }
 
 }
