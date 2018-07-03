@@ -1,7 +1,6 @@
 package com.flipmart.service;
 
 import com.flipmart.persistence.Users;
-import java.util.List;
 import javax.ejb.Local;
 
 @Local

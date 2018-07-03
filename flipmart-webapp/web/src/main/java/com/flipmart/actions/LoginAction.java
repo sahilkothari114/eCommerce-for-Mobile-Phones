@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
     @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp")})
 public class LoginAction extends ActionSupport {
 
-    static HttpServletRequest request;
+    private static HttpServletRequest request;
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(LoginAction.class);
 
@@ -47,7 +47,7 @@ public class LoginAction extends ActionSupport {
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        System.out.println(jsonResponse);
+        logger.info(jsonResponse);
 
         try {
             Users user = mapper.readValue(jsonResponse, Users.class);
