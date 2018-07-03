@@ -8,4 +8,5 @@ public interface UserServiceLocal {
         public Boolean findUserByNameAndPassword(Users user);
 	public Users findByUserId(Long userId);
 	public void addUser(Users user);
+        public Users findByUserName(String userName);
 }
