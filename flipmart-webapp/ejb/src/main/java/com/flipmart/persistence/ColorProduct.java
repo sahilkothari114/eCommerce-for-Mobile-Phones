@@ -1,11 +1,16 @@
 package com.flipmart.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -29,12 +34,14 @@ public class ColorProduct {
 	@EmbeddedId
 	private ColorProductId colorProductId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@MapsId("colorId")
+        @JoinColumn(name = "color_id")
 	private Color color;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@MapsId("productId")
+        @JoinColumn(name = "product_id")
 	private Product product;
 
 	@Column(name = "stock")
@@ -42,6 +49,28 @@ public class ColorProduct {
 
 	@Column(name = "active")
 	private boolean active;
+        
+        @ManyToMany(mappedBy = "colorProductCart",cascade = CascadeType.ALL)
+	private List<Users> user = new ArrayList<Users>();
+        
+        @ManyToMany(mappedBy = "colorProductOrder",cascade = CascadeType.ALL)
+	private List<Order> OrderList = new ArrayList<Order>();
+
+        public List<Users> getUser() {
+            return user;
+        }
+
+        public void setUser(List<Users> user) {
+            this.user = user;
+        }
+
+        public List<Order> getOrderList() {
+            return OrderList;
+        }
+
+        public void setOrderList(List<Order> OrderList) {
+            this.OrderList = OrderList;
+        }
 
 	public ColorProduct(Product product, Color color) {
 		this.product = product;

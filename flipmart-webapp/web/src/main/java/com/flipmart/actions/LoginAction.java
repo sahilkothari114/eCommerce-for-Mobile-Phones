@@ -65,8 +65,12 @@ public class LoginAction extends ActionSupport {
                 + "	\"contactNo\": \"9898989898\",\n"
                 + "	\"active\": true\n"
                 + "}";
+        
+        {
+
+}
         try {
-            Users user1 = mapper.readValue(jsonData, Users.class);
+            Users user1 = mapper.readValue(jsonResponse, Users.class);
 
             System.out.println("Palak");
             System.out.println(user1);

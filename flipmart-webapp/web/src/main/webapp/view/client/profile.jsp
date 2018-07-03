@@ -590,28 +590,35 @@
                                                     
                                                     
                                                     $scope.updateUser = function(){
+                                                        
+                                                    
+                                                            
+                                                            
                                                             
                                                             var userData = {
-                                                                email:$scope.profile.NewEmail,
                                                                 firstName:$scope.profile.FirstName,
                                                                 lastName:$scope.profile.LastName,
+                                                                email:$scope.profile.NewEmail,
+                                                                password:$scope.profile.NewPassword,
+                                                                pincode:{
+                                                                       pincode:$scope.profile.NewPincode,
+                                                                       city :
+                                                                        {
+                                                                        city:$scope.profile.NewCity,
+                                                                        state:{ state:$scope.profile.NewState }
+                                                                        }
+                                               
+                                                                },
                                                                 streetAddress:$scope.profile.NewAddress,
                                                                 contactNo:$scope.profile.NewContact,
-                                                		city:$scope.profile.NewCity,
-                                                                state:$scope.profile.NewState,
-                                    				password:$scope.profile.NewPassword
+                                                		
+                                                                
+                                    				
                                                                 
                                                             };
                                                             
-                                                            var pincode = {
-                                                              pincode:$scope.profile.NewPincode  
-                                                            };
-                                                            
-                                                            var userUpdate= {
-                                                              userData:userData,
-                                                              pincode:pincode
-                                                            };
-                                                         $http.post('/flipmart-webapp-web/signup.action/user', userUpdate).then(function(response){
+                                                          
+                                                         $http.post('/flipmart-webapp-web/signup.action/user', userData).then(function(response){
 s
                                                     	console.log(response);
                                                          });

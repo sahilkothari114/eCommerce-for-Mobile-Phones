@@ -559,25 +559,24 @@
 	app.controller('cartController',function($scope,$http){
 		$scope.cartCheckout = function(){
                     
-                    var cart={
-                        city:$scope.cart.city,
-                        state:$scope.cart.state,
-                        streetAddress:$scope.cart.NewAddress,
-			contactNo:$scope.cart.Contact
-                        
-                        
+                    var checkoutCart={
+                         pincode:{
+                                  pincode:$scope.cart.pincode,
+                                    city :
+                                    {
+                                        city:$scope.cart.city,
+                                            state:{ state:$scope.cart.state }
+                                     }
+                                               
+                                  },
+                                  streetAddress:$scope.cart.NewAddress,
+                                  contactNo:$scope.cart.Contact
+                                                		
                     };
                     
-                    var pincode={
-                          pincode:$scope.cart.pincode
-                    };
                     
-                    var checkoutCart = {
-                      cart:cart,
-                      pincode:pincode
-                    };
                     
-                    $http.post('/flipmart-webapp-web/signup.action/user', cartCheckout).then(function(response){
+                    $http.post('/flipmart-webapp-web/signup.action/user', checkoutCart).then(function(response){
 
 					console.log(response);
 				});

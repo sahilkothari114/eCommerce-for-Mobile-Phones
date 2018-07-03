@@ -7,7 +7,10 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,16 +20,18 @@ import javax.persistence.Table;
 public class Color {
 
 	@Id
+        @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "color_id")
 	private long colorId;
 
 	@Column(name = "color_name")
 	private String colorName;
 
-	@ManyToMany(mappedBy = "colors")
-	private List<Users> user = new ArrayList<Users>();
+//	@ManyToMany(mappedBy = "colors")
+//	private List<Users> user = new ArrayList<Users>();
 
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
+        @JoinColumn(name = "color_id")
 	private List<ColorProduct> colorProductList = new ArrayList<ColorProduct>();
 
 	public List<ColorProduct> getProductColors() {
@@ -37,13 +42,7 @@ public class Color {
 		this.colorProductList = productColors;
 	}
 
-	public List<Users> getUser() {
-		return user;
-	}
 
-	public void setUser(List<Users> user) {
-		this.user = user;
-	}
 
 	public long getColorId() {
 		return colorId;

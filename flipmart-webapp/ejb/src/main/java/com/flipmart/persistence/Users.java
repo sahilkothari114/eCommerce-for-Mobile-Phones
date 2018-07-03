@@ -1,11 +1,11 @@
 package com.flipmart.persistence;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,14 +14,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable{
+public class Users {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "user_id")
 	private long userId;
 
@@ -37,7 +38,7 @@ public class Users implements Serializable{
 	@Column(name = "password")
 	private String password;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "pincode")
 	private Pincode pincode;
 
@@ -50,29 +51,37 @@ public class Users implements Serializable{
 	@Column(name = "active")
 	private boolean active;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private List<Product> products = new ArrayList<Product>();
+//	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+//	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+//	private List<Product> products = new ArrayList<Product>();
+//
+//	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+//	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "color_id"))
+//	private List<Product> colors = new ArrayList<Product>();
+        
+        @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"))
+	private List<ColorProduct> colorProductCart = new ArrayList<ColorProduct>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "color_id"))
-	private List<Product> colors = new ArrayList<Product>();
+        @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Order> OrderList = new ArrayList<Order>();
 
-	public List<Product> getColors() {
-		return colors;
-	}
+        public List<Order> getOrderList() {
+            return OrderList;
+        }
 
-	public void setColors(List<Product> colors) {
-		this.colors = colors;
-	}
+        public void setOrderList(List<Order> OrderList) {
+            this.OrderList = OrderList;
+        }
+        
+        
+        public List<ColorProduct> getColorProductCart() {
+            return colorProductCart;
+        }
 
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
+        public void setColorProductCart(List<ColorProduct> colorProductCart) {
+            this.colorProductCart = colorProductCart;
+        }
 
 	public String getFirstName() {
 		return firstName;
