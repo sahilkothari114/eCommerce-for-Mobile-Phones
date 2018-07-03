@@ -12,7 +12,6 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flipmart.persistence.City;
 import com.flipmart.persistence.Pincode;
@@ -44,7 +43,7 @@ public class LoginAction extends ActionSupport {
 
     @Action("user")
     public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper  = new ObjectMapper();
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
@@ -54,6 +53,7 @@ public class LoginAction extends ActionSupport {
 
             System.out.print("Object : ");
             System.out.println(user1);
+            createNewUser(user1);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -114,8 +114,7 @@ public class LoginAction extends ActionSupport {
 
             us.addUser(userDetails);
         } catch (NamingException e) {
-            e.printStackTrace();
-            // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
+            System.out.println(e.getMessage());
         } finally {
             if (ctx != null) {
                 try {
@@ -124,9 +123,6 @@ public class LoginAction extends ActionSupport {
                 }
             }
         }
-
-        // userManager = new UserManagerBean(); UserManagerBean bean = new
-        //UserManagerBean(); //bean.initialize(); bean.addUser(user);
     }
 
     @Action("pincode")
@@ -164,7 +160,7 @@ public class LoginAction extends ActionSupport {
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println("-> " + jsonResponse);
+        System.out.println(" -> " + jsonResponse);
         Users user1 = mapper.readValue(jsonResponse, Users.class);
         System.out.println(user1);
     }

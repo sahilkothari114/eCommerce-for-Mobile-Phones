@@ -48,6 +48,12 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.interceptor</groupId>
+                    <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Import the JPA API, we use provided scope as the API is included in 

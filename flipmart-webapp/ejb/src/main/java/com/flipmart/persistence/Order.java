@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.flipmart.persistence;
 
 import java.io.Serializable;
@@ -46,7 +41,7 @@ public class Order implements Serializable {
     private String status;
     
     @Column(name="total_amt")
-    private String totalAmountt;
+    private double totalAmountt;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"))
@@ -86,11 +81,11 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public String getTotalAmountt() {
+    public double getTotalAmountt() {
         return totalAmountt;
     }
 
-    public void setTotalAmountt(String totalAmountt) {
+    public void setTotalAmountt(double totalAmountt) {
         this.totalAmountt = totalAmountt;
     }
     
@@ -133,6 +128,5 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "com.flipmart.persistence.Order[ id=" + orderId + " ]";
-    }
-    
+    }    
 }
