@@ -1,4 +1,3 @@
-
 package com.flipmart.actions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -55,8 +54,7 @@ public class LoginAction extends ActionSupport {
 
             System.out.print("Object : ");
             System.out.println(user1);
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -100,7 +98,7 @@ public class LoginAction extends ActionSupport {
             String password = userDetails.getPassword();
             password = PasswordHash.generatePasswordHash(password);
             userDetails.setPassword(password);
-            
+
             State state = new State();
             state.setStateName("Rajasthan");
 
@@ -111,9 +109,9 @@ public class LoginAction extends ActionSupport {
             Pincode pincode = new Pincode();
             pincode.setPincode(387001);
             pincode.setCity(city);
-            
+
             userDetails.setPincode(pincode);
-            
+
             us.addUser(userDetails);
         } catch (NamingException e) {
             e.printStackTrace();
@@ -130,20 +128,27 @@ public class LoginAction extends ActionSupport {
         // userManager = new UserManagerBean(); UserManagerBean bean = new
         //UserManagerBean(); //bean.initialize(); bean.addUser(user);
     }
-        public void findPincode(Long pincode) {
+
+    @Action("pincode")
+    public void findPincode() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        request = ServletActionContext.getRequest();
+        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        Pincode pincode = mapper.readValue(jsonResponse, Pincode.class);
+        
         Context ctx = null;
         try {
             ctx = new InitialContext();
             PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
-            
-            Pincode pincodeObject = pincodeService.findByPincode(pincode);
+
+            Pincode pincodeObject = pincodeService.findByPincode(pincode.getPincode());
             System.out.println("----------------------------------------");
             System.out.println(pincodeObject.getCity().getCityName());
             System.out.println(pincodeObject.getCity().getState().getStateName());
             System.out.println("----------------------------------------");
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
-            System.out.println("----"+e.getMessage());
+            System.out.println("----" + e.getMessage());
         } finally {
             if (ctx != null) {
                 try {
@@ -153,14 +158,14 @@ public class LoginAction extends ActionSupport {
             }
         }
     }
+
     @Action("validate")
-    public void validateUser() throws IOException,JsonProcessingException{
-            request = ServletActionContext.getRequest();
-            String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-            ObjectMapper mapper = new ObjectMapper();   
-            System.out.println("-> " + jsonResponse);
-            Users user1 = mapper.readValue(jsonResponse, Users.class);            
-            System.out.println(user1);
+    public void validateUser() throws IOException, JsonProcessingException {
+        request = ServletActionContext.getRequest();
+        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println("-> " + jsonResponse);
+        Users user1 = mapper.readValue(jsonResponse, Users.class);
+        System.out.println(user1);
     }
 }
-
