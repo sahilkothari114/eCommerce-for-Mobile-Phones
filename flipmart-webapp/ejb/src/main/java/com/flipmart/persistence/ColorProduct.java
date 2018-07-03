@@ -1,5 +1,6 @@
 package com.flipmart.persistence;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "color_product")
-public class ColorProduct {
+public class ColorProduct implements Serializable{
 
 	/*
 	 * @Id

@@ -1,5 +1,6 @@
 package com.flipmart.persistence;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "state")
-public class State {
+public class State implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
