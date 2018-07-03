@@ -25,7 +25,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.apache.logging.log4j.Logger;
 
 @Action(value = "login", results = {
     @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "login.jsp")})
@@ -47,14 +46,15 @@ public class LoginAction extends ActionSupport {
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        System.out.println(jsonResponse);
-
+        System.out.println("JSON DATA : " + jsonResponse);
         try {
             Users user1 = mapper.readValue(jsonResponse, Users.class);
 
-            System.out.println("Palak");
+            System.out.print("Object : ");
             System.out.println(user1);
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
+            System.out.println(e.getMessage());
         }
         System.out.println("Creating user");
         //createNewUser(data);
@@ -108,16 +108,12 @@ public class LoginAction extends ActionSupport {
     }
 
     @Action("validate")
-    public JsonNode validateUser(JsonNode user) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            Users user1 = mapper.treeToValue(user, Users.class);
-            
+    public void validateUser() throws IOException,JsonProcessingException{
+            request = ServletActionContext.getRequest();
+            String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+            ObjectMapper mapper = new ObjectMapper();   
+            System.out.println("-> " + jsonResponse);
+            Users user1 = mapper.readValue(jsonResponse, Users.class);            
             System.out.println(user1);
-            return null;
-        } catch (JsonProcessingException ex) {
-           // Logger.getLogger(LoginAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 }

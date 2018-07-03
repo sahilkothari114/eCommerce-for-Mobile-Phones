@@ -637,104 +637,88 @@
                                                     var confirmpass = document.getElementById("form-confirm-password");
                                                     var signupBtn = document.getElementById("signup_btn");
 
-	<script>
-		var app = angular.module('myApp', []);
-		app.controller('usersController', function($scope, $http) {
-			//$scope.users = [];
-                       
-                        
-			$scope.createUser = function() {
-                               
-				
-				 var user = {
-					
-					firstName:$scope.signup.FirstName,
-					lastName:$scope.signup.LastName,
-                                        email:$scope.signup.email,
-                                        password:$scope.signup.password,	
-					pincode:{
-                                                pincode:$scope.signup.pin,
-                                                city :{
-                                                    city:$scope.signup.city,
-                                                    state:{
-                                                       state:$scope.signup.state 
-                                                    }
-                                                }
-                                               
-                                        },
-                                        streetAddress:$scope.signup.street,
-					contactNo:$scope.signup.contact,
-                                        active:true
-					
-				}; 
-                                
-                               
-                                
-                               
-				
-				$http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
-					console.log(response);
-				});
-			};
-                        
-                        $scope.loginUser = function(){
-                          var loginUser = {
-                              email:$scope.login.email,
-                              password:$scope.login.password
-                          };
-                          
-                          
-                          
-                          $http.post('/flipmart-webapp-web/signup.action/validate', loginUser).then(function(response){
-                                console.log(response);
-                                                    password.onkeyup = function () {
-                                                        var isValid = (password.value === confirmpass.value) && (password.value.length > 0) && password.value.length >= 5;
-                                                        signupBtn.disabled = !isValid;
-                                                    }
-                                                    confirmpass.onkeyup = function () {
-                                                        var isValid = (password.value === confirmpass.value);
-                                                        signupBtn.disabled = !isValid;
-                                                    }
-        </script>
-        <script>
-                    var app = angular.module('myApp', []);
-                    app.controller('usersController', function ($scope, $http) {
-                        $scope.createUser = function () {
-                            
-                          
-                           
-                           var user = {
-                                    firstName:$scope.signup.FirstName,
-                                    lastName:$scope.signup.LastName,
-                                    email:$scope.signup.email,
-                                    password:$scope.signup.password,    
-                                    pincode:{
-                                      pincode:$scope.signup.pin,
-                                      city :{
-                                        cityName:$scope.signup.city,
-                                        state:{
-                                        stateName:$scope.signup.state
-                                               }
-                                            }
-                                             
-                                       },
-                                    streetAddress:$scope.signup.street,
-                                    contactNo:$scope.signup.contact,
-                                    active:true
-                                };
-                               
-                             
-                               
-                             
-                
-                                $http.post('/flipmart-webapp-web/signup.action/user', user).then(function(response){
-                                console.log(response);
-                                });
-                        };
-                    });
-        </script>
-      
-                                       
+//		var app = angular.module('myApp', []);
+//		app.controller('usersController', function($scope, $http) {
+//			//$scope.users = [];
+//                       
+//                        
+//			$scope.createUser = function() {
+//                               
+//				
+//				 var user = {
+//					
+//					firstName:$scope.signup.FirstName,
+//					lastName:$scope.signup.LastName,
+//                                        email:$scope.signup.email,
+//                                        password:$scope.signup.password,	
+//					pincode:{
+//                                                pincode:$scope.signup.pin,
+//                                                city :{
+//                                                    city:$scope.signup.city,
+//                                                    state:{
+//                                                       state:$scope.signup.state 
+//                                                    }
+//                                                }
+//                                               
+//                                        },
+//                                        streetAddress:$scope.signup.street,
+//					contactNo:$scope.signup.contact,
+//                                        active:true
+//					
+//				}; 
+//                                
+//                               
+//                                
+//                               
+//				
+//				$http.post('/flipmart-webapp-web/user', user).then(function(response){
+//					console.log(response);
+//				});
+//                            };
+
+                                                    var app = angular.module('myApp', []);
+                                                    app.controller('usersController', function ($scope, $http) {
+                                                        $scope.createUser = function () {
+
+
+
+                                                            var user = {
+                                                                firstName: $scope.signup.FirstName,
+                                                                lastName: $scope.signup.LastName,
+                                                                email: $scope.signup.email,
+                                                                password: $scope.signup.password,
+                                                                pincode: {
+                                                                    pincode: $scope.signup.pin,
+                                                                    city: {
+                                                                        cityName: $scope.signup.city,
+                                                                        state: {
+                                                                            stateName: $scope.signup.state
+                                                                        }
+                                                                    }
+
+                                                                },
+                                                                streetAddress: $scope.signup.street,
+                                                                contactNo: $scope.signup.contact,
+                                                                active: true
+                                                            };
+
+                                                            $http.post('/flipmart-webapp-web/user', user).then(function (response) {
+                                                                console.log(response);
+                                                            });
+                                                        };
+
+                                                        $scope.loginUser = function () {
+                                                            var loginUser = {
+                                                                email: $scope.login.email,
+                                                                password: $scope.login.password
+                                                            };
+
+                                                            $http.post('/flipmart-webapp-web/validate', loginUser).then(function (response) {
+                                                                console.log(response);
+                                                            });
+                                                        };
+                                                        
+                                                    });
         </script>
     </body>
 </html>
