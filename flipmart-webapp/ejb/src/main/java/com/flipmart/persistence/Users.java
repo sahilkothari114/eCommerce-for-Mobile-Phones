@@ -49,9 +49,9 @@ public class Users implements Serializable {
     @Column(name = "password")
     private String password;
 
-	@ManyToOne
-	@JoinColumn(name = "pincode")
-	private Pincode pincode;
+    @ManyToOne
+    @JoinColumn(name = "pincode")
+    private Pincode pincode;
 
     @Column(name = "street_address")
     private String streetAddress;
