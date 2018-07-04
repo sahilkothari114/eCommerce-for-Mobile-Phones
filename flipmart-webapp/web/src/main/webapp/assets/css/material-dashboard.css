@@ -397,11 +397,11 @@ Copyright (c) 2015 Daniel Eden
     -ms-overflow-style: none;
 }
 
-@supports(-ms-overflow-style: none) {
+/*@supports(-ms-overflow-style: none) {
     .ps-container {
         overflow: auto !important;
     }
-}
+}*/
 
 @media screen and (-ms-high-contrast: active),
 (-ms-high-contrast: none) {
