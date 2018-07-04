@@ -1,7 +1,21 @@
 var app = angular.module('myApp', []);
-app.controller('UserController',['$scope', 'UserService', function($scope, UserService) {
+app.controller('UserController',['$scope', '$http','UserService', function($scope, $http,UserService) {
         
     var self = this;
+    
+        $scope.loginUser = function () {
+            var loginUser = {
+                email: $scope.ctrl.login.email,
+                password: $scope.ctrl.login.password
+            };
+
+            $http.post('/flipmart-webapp-web/validate', loginUser).then(function (response) {
+                console.log(response);
+            });
+        };
+    
+
+    
     self.user={firstName:'',lastName:'',email:'',password:'',pincode: {
                 pincode: '',
                 city: {
@@ -31,44 +45,8 @@ app.controller('UserController',['$scope', 'UserService', function($scope, UserS
         );
     }
         
-//    $scope.createUser = function () {
-//        
-//
-//
-//        var user = {
-//            firstName: $scope.signup.FirstName,
-//            lastName: $scope.signup.LastName,
-//            email: $scope.signup.email,
-//            password: $scope.signup.password,
-//            pincode: {
-//                pincode: $scope.signup.pin,
-//                city: {
-//                    cityName: $scope.signup.city,
-//                    state: {
-//                        stateName: $scope.signup.state
-//                    }
-//                }
-//
-//            },
-//            streetAddress: $scope.signup.street,
-//            contactNo: $scope.signup.contact,
-//            active: true
-//        };
-//
-//        $http.post('/flipmart-webapp-web/user', user).then(function (response) {
-//            console.log(response);
-//        });
-//    };
-//
-//    $scope.loginUser = function () {
-//        var loginUser = {
-//            email: $scope.login.email,
-//            password: $scope.login.password
-//        };
-//
-//        $http.post('/flipmart-webapp-web/validate', loginUser).then(function (response) {
-//            console.log(response);
-//        });
-//    };
+
+
+    
 
 }]);

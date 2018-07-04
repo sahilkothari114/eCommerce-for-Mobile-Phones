@@ -201,13 +201,15 @@
                         <div class="col-md-6 col-sm-6 sign-in">
                             <h4 class="">Sign in</h4>
                             <p class="">Hello, Welcome to your account.</p>
+                            
                             <form class="register-form outer-top-xs" role="form" name="loginForm">
+                               {{ctrl.login}}
                                 <div class="form-group">
                                     <label class="info-title" for="exampleInputEmail1">Email
                                         Address <span>*</span>
                                     </label><input type="email" name="loginEmail"
                                                    class="form-control unicase-form-control text-input"
-                                                   id="login-email" data-ng-model="login.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true" tabindex="1">
+                                                   id="login-email" data-ng-model="ctrl.login.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true" tabindex="1">
 
                                     <div ng-show="loginForm.loginEmail.$touched && loginForm.loginEmail.$invalid">
                                         <small>Enter a Valid Email</small>
@@ -218,7 +220,7 @@
                                         <span>*</span>
                                     </label> <input type="password" name="loginPassword"
                                                     class="form-control unicase-form-control text-input"
-                                                    id="loginPassword" data-ng-model="login.password" tabindex="2" ng-required="true">
+                                                    id="loginPassword" data-ng-model="ctrl.login.password" tabindex="2" ng-required="true">
                                     <div ng-show="loginForm.loginPassword.$touched && loginForm.loginPassword.$invalid">
                                         <small>Password Required</small>
                                     </div>
@@ -330,8 +332,8 @@
                                                     id="form-confirm-password" data-ng-model="signup.confirmPass" ng-required="true" ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
                                                     ng-change="cpassword_error_show = cpassword_error_show + 1">
 
-                                    <small ng-show="cpassword_error_show > 0 && signup.password !== signup.confirmPass">Password Mismatch</small>
-                                    <small style="color:green;" ng-show="cpassword_error_show > 0 && signup.password === signup.confirmPass">Password match</small>
+                                    <small ng-show="cpassword_error_show > 0 && ctrl.user.password !== signup.confirmPass">Password Mismatch</small>
+                                    <small style="color:green;" ng-show="cpassword_error_show > 0 && ctrl.user.password === signup.confirmPass">Password match</small>
 
 
                                 </div>
