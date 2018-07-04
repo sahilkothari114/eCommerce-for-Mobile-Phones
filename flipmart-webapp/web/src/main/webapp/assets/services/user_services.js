@@ -1,13 +1,17 @@
 'use strict';
 
-angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $q){
+angular.module('myApp').factory('UserService', ['$http', '$q','$location','sessionService', function($http, $q,$location,sessionService){
 
     var SERVICE_URI = '/flipmart-webapp-web/user';
 
     var factory = {
         fetchAllUsers: fetchAllUsers,
         createUser: createUser,
-        deleteUser:deleteUser
+        deleteUser:deleteUser,
+        validateUser:validateUser,
+        logoutUser:logoutUser,
+        islogged:islogged,
+        loggedUser:loggedUser
     };
 
     return factory;
@@ -44,6 +48,35 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
   
 
 
+    function validateUser(user) {
+        
+        var deferred = $q.defer();
+        $http.post('/flipmart-webapp-web/validate', user)
+            .then(
+            sessionService.set('user',user.email),
+           console.log('user loged ',user),
+            function(errResponse){
+                console.error('Error while login User');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    
+    function logoutUser(){
+        sessionService.destroy('user');
+       // $location.path('/path');
+    }
+    
+    function loggedUser(){
+        return sessionService.get('user');
+    }
+    
+    function islogged(){
+        console.log('checking...');
+        if(sessionService.get('user')) return true;
+    }
 
     function deleteUser(id) {
         var deferred = $q.defer();

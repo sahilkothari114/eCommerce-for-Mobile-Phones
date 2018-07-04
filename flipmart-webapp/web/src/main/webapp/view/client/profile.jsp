@@ -45,7 +45,7 @@
 
 
 </head>
-<body class="cnt-home" data-ng-app="myApp" data-ng-controller="profileController">
+<body class="cnt-home" data-ng-app="myApp" data-ng-controller="UserController as ctrl">
 	<!-- ============================================== HEADER ============================================== -->
 	<header class="header-style-1">
 
@@ -177,6 +177,7 @@
 						<div class="row ">
 							<div class="shopping-cart">
 								<div class="col-md-12 col-sm-12 estimate-ship-tax">
+                                                                    
 								<form class="profile-form outer-top-xs" role="form" name="ProfileForm">
 								
 									<table class="table">		
@@ -208,7 +209,7 @@
 											
 												<td>
 													<div class="form-group">
-													
+                                                                                    
 														<label class="info-title control-label">New Password </label>
 														<input type="password" name="NewPassword"
 															class="form-control unicase-form-control text-input"
@@ -245,13 +246,14 @@
 													</div>
 												</td>
 												<td>
+                                                                                                    
 													<div class="form-group">
 														<label class="info-title control-label">Email <span>*</span> </label>
 														
 														
 														<input type="email" name="NewEmail"
 															class="form-control unicase-form-control text-input"
-															id="New_email" data-ng-model="profile.NewEmail"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+															id="New_email" data-ng-model="profile.NewEmail" ng-value="$scope.userlogedIn"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
 														<div ng-show="ProfileForm.NewEmail.$touched && ProfileForm.NewEmail.$invalid">
 															<small>Enter a Valid Email</small>
 														</div>
@@ -560,6 +562,12 @@
 						<script src="assets/js/wow.min.js"></script>
 						<script src="assets/js/scripts.js"></script>
                                                 
+                                                <script src="assets/app.js"></script>
+                                                <script src="assets/controllers/user_controller.js"></script>
+                                                <script src="assets/services/user_services.js"></script>
+                                                <script src="assets/services/sessionServices.js"></script>
+                                                
+                                                
                                     <script>
                                     var password = document.getElementById("New_Password");
                                     var confirmpass= document.getElementById("New_Confirm_Password");
@@ -581,7 +589,10 @@
                                     checkBtn.disabled=!isValid;
                                        }
                                     </script>
-						<script>
+                                    
+                                    
+                                    
+<!--						<script>
 						var app = angular.module('myApp',[]);
 						
 						app.controller('profileController',function($scope,$http){
@@ -619,7 +630,7 @@
                                                             
                                                           
                                                          $http.post('/flipmart-webapp-web/signup.action/user', userData).then(function(response){
-s
+
                                                     	console.log(response);
                                                          });
         
@@ -629,7 +640,7 @@ s
       
 						});
 						</script>
-
+-->
 					</body>
 
 					<!-- Mirrored from www.themesground.com/flipmart-demo/HTML/shopping-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 May 2018 08:29:30 GMT -->
