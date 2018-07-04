@@ -12,7 +12,6 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flipmart.persistence.City;
 import com.flipmart.persistence.Pincode;
@@ -20,6 +19,7 @@ import com.flipmart.persistence.State;
 import com.flipmart.persistence.Users;
 import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
+
 import com.flipmart.util.FlipmartConstants;
 import com.flipmart.util.PasswordHash;
 import com.opensymphony.xwork2.ActionSupport;
@@ -54,6 +54,7 @@ public class LoginAction extends ActionSupport {
 
             System.out.print("Object : ");
             System.out.println(user1);
+            createNewUser(user1);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -107,7 +108,7 @@ public class LoginAction extends ActionSupport {
             city.setCityName("jaipur");
 
             Pincode pincode = new Pincode();
-            pincode.setPincode(387001);
+            pincode.setPincode(310041);
             pincode.setCity(city);
 
             userDetails.setPincode(pincode);
@@ -142,10 +143,10 @@ public class LoginAction extends ActionSupport {
             PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
 
             Pincode pincodeObject = pincodeService.findByPincode(pincode.getPincode());
-            System.out.println("----------------------------------------");
-            System.out.println(pincodeObject.getCity().getCityName());
-            System.out.println(pincodeObject.getCity().getState().getStateName());
-            System.out.println("----------------------------------------");
+//            System.out.println("----------------------------------------");
+//            System.out.println(pincodeObject.getCity().getCityName());
+//            System.out.println(pincodeObject.getCity().getState().getStateName());
+//            System.out.println("----------------------------------------");
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
             System.out.println("----" + e.getMessage());

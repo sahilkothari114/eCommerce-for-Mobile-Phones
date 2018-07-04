@@ -26,10 +26,9 @@ import javax.persistence.Table;
  * @author sahil
  */
 @Entity
-@Table(name = "order")
+@Table(name = "\"order\"")
 public class Order implements Serializable {
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="order_id")
@@ -46,7 +45,7 @@ public class Order implements Serializable {
     private String status;
     
     @Column(name="total_amt")
-    private String totalAmountt;
+    private Double totalAmountt;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"))
@@ -86,14 +85,17 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public String getTotalAmountt() {
+
+
+    public Double getTotalAmountt() {
         return totalAmountt;
     }
 
-    public void setTotalAmountt(String totalAmountt) {
+    public void setTotalAmountt(Double totalAmountt) {
         this.totalAmountt = totalAmountt;
     }
-    
+
+
     public Long getOrderId() {
         return orderId;
     }

@@ -38,7 +38,7 @@ public class Users implements Serializable{
 	@Column(name = "password")
 	private String password;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name = "pincode")
 	private Pincode pincode;
 
