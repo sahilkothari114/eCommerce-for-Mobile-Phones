@@ -24,7 +24,6 @@ import javax.persistence.Table;
 @Table(name = "\"order\"")
 public class Order implements Serializable {
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="order_id")
@@ -88,7 +87,8 @@ public class Order implements Serializable {
     public void setTotalAmountt(double totalAmountt) {
         this.totalAmountt = totalAmountt;
     }
-    
+
+
     public Long getOrderId() {
         return orderId;
     }

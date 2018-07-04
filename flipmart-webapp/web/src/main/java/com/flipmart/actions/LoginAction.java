@@ -48,12 +48,8 @@ public class LoginAction extends ActionSupport {
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         logger.info("JSON DATA : " + jsonResponse);
-        try {
-            Users user = mapper.readValue(jsonResponse, Users.class);
-            createNewUser(user);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Users user = mapper.readValue(jsonResponse, Users.class);
+        createNewUser(user);
     }
 
     public void createNewUser(Users userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
