@@ -30,21 +30,21 @@ public class UserProfileAction extends ActionSupport {
     
     @Override
     public String execute() {
-        System.out.println("Called");
+        /*System.out.println("Called");
         try {
             fetchUserDetails();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(UserProfileAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         return SUCCESS;
     }
     
     @Action("userdetails")
     public JsonNode fetchUserDetails() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        //request = ServletActionContext.getRequest();
-        //String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        String jsonResponse = "{\"userName\": \"shagufta\"}";
+        request = ServletActionContext.getRequest();
+        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        //String jsonResponse = "{\"userName\": \"Shagufta\"}";
         JsonNode data = mapper.readTree(jsonResponse);
         
         String userName = data.get("userName").asText();

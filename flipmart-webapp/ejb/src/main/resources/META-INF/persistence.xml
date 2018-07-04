@@ -23,11 +23,11 @@
             <property name="javax.persistence.jdbc.user" value="postgres" />
             <property name="javax.persistence.jdbc.password" value="admin" />
             <!-- Properties for Hibernate -->
-            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="format_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create" />
             <property name="hibernate.show_sql" value="true" />
-            <property name="javax.persistence.schema-generation.database.action"  value="drop-and-create" />
+            <!--<property name="javax.persistence.schema-generation.database.action"  value="drop-and-create" />-->
         </properties>
     </persistence-unit>
 </persistence>

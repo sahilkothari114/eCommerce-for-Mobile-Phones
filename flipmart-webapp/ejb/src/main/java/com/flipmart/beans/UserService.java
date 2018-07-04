@@ -4,7 +4,6 @@ import com.flipmart.service.UserServiceLocal;
 import javax.ejb.Stateless;
 
 import com.flipmart.persistence.Users;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
@@ -77,8 +76,8 @@ public class UserService implements UserServiceLocal {
             transactionObj.begin();
         }
         if (userName != null) {
-            Query query = entityManager.createNamedQuery("find users by first_name");
-            query.setParameter("firts_name", userName);
+            Query query = entityManager.createNamedQuery("findUsersByFirstName");
+            query.setParameter("firstName", userName);
             Users user = (Users) query.getSingleResult();
 
             if (user != null) {

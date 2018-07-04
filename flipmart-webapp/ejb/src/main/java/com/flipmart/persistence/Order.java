@@ -21,7 +21,7 @@ import javax.persistence.Table;
  * @author sahil
  */
 @Entity
-@Table(name = "order")
+@Table(name = "\"order\"")
 public class Order implements Serializable {
 
     
