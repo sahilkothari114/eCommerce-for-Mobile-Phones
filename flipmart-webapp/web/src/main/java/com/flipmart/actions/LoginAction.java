@@ -47,12 +47,11 @@ public class LoginAction extends ActionSupport {
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        System.out.println("JSON DATA : " + jsonResponse);
+        logger.info("JSON DATA : " + jsonResponse);
         try {
-            Users user1 = mapper.readValue(jsonResponse, Users.class);
+            Users user = mapper.readValue(jsonResponse, Users.class);
 
-            System.out.print("Object : ");
-            System.out.println(user1);
+            createNewUser(user);
         } 
         catch (IOException e) {
             System.out.println(e.getMessage());
