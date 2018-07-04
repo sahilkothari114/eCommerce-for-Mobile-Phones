@@ -4,7 +4,6 @@ import com.flipmart.service.UserServiceLocal;
 import javax.ejb.Stateless;
 
 import com.flipmart.persistence.Users;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
@@ -51,6 +50,9 @@ public class UserService implements UserServiceLocal {
 
     @Override
     public Boolean findUserByNameAndPassword(Users user) {
+        if (!transactionObj.isActive()) {
+            transactionObj.begin();
+        }
         if (user != null) {
             String userName = user.getFirstName();
             String password = user.getPassword();
@@ -70,11 +72,16 @@ public class UserService implements UserServiceLocal {
 
     @Override
     public Users findByUserName(String userName) {
+        if (!transactionObj.isActive()) {
+            transactionObj.begin();
+        }
         if (userName != null) {
-            Query query = entityManager.createQuery("SELECT * FROM USERS u WHERE first_name = "+userName+" ;");
-            Users user =(Users) query.getSingleResult();
-            
-            if(user!=null){
+            Query query = entityManager.createNamedQuery("findUsersByFirstName");
+            query.setParameter("firstName", userName);
+            Users user = (Users) query.getSingleResult();
+
+            if (user != null) {
+                System.out.println("Data from backend "+user);
                 return user;
             }
             logger.error("could not find details of the user");

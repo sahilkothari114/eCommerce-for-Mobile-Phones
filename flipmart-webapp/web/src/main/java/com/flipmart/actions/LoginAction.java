@@ -19,7 +19,6 @@ import com.flipmart.persistence.State;
 import com.flipmart.persistence.Users;
 import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
-
 import com.flipmart.util.FlipmartConstants;
 import com.flipmart.util.PasswordHash;
 import com.opensymphony.xwork2.ActionSupport;
@@ -44,20 +43,13 @@ public class LoginAction extends ActionSupport {
 
     @Action("user")
     public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper  = new ObjectMapper();
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        System.out.println("JSON DATA : " + jsonResponse);
-        try {
-            Users user1 = mapper.readValue(jsonResponse, Users.class);
-
-            System.out.print("Object : ");
-            System.out.println(user1);
-            createNewUser(user1);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        logger.info("JSON DATA : " + jsonResponse);
+        Users user = mapper.readValue(jsonResponse, Users.class);
+        createNewUser(user);
     }
 
     public void createNewUser(Users userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -108,15 +100,14 @@ public class LoginAction extends ActionSupport {
             city.setCityName("jaipur");
 
             Pincode pincode = new Pincode();
-            pincode.setPincode(310041);
+            pincode.setPincode(387001);
             pincode.setCity(city);
 
             userDetails.setPincode(pincode);
 
             us.addUser(userDetails);
         } catch (NamingException e) {
-            e.printStackTrace();
-            // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
+            System.out.println(e.getMessage());
         } finally {
             if (ctx != null) {
                 try {
@@ -125,9 +116,6 @@ public class LoginAction extends ActionSupport {
                 }
             }
         }
-
-        // userManager = new UserManagerBean(); UserManagerBean bean = new
-        //UserManagerBean(); //bean.initialize(); bean.addUser(user);
     }
 
     @Action("pincode")
@@ -143,10 +131,10 @@ public class LoginAction extends ActionSupport {
             PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
 
             Pincode pincodeObject = pincodeService.findByPincode(pincode.getPincode());
-//            System.out.println("----------------------------------------");
-//            System.out.println(pincodeObject.getCity().getCityName());
-//            System.out.println(pincodeObject.getCity().getState().getStateName());
-//            System.out.println("----------------------------------------");
+            System.out.println("----------------------------------------");
+            System.out.println(pincodeObject.getCity().getCityName());
+            System.out.println(pincodeObject.getCity().getState().getStateName());
+            System.out.println("----------------------------------------");
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
             System.out.println("----" + e.getMessage());
@@ -165,7 +153,7 @@ public class LoginAction extends ActionSupport {
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println("-> " + jsonResponse);
+        System.out.println(" -> " + jsonResponse);
         Users user1 = mapper.readValue(jsonResponse, Users.class);
         System.out.println(user1);
     }

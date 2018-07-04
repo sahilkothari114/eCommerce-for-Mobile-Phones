@@ -52,7 +52,7 @@
 
 
     </head>
-    <body class="cnt-home" data-ng-app="myApp" data-ng-controller="usersController">
+    <body class="cnt-home" data-ng-app="myApp" data-ng-controller="UserController as ctrl">
         <!-- ============================================== HEADER ============================================== -->
         <header class="header-style-1">
 
@@ -235,14 +235,14 @@
                             <p class="text title-tag-line">Create your new account.</p>
                             <!-- sign up form-->
 
-                            <form class="register-form outer-top-xs" name="signupForm" role="form" novalidate>
+                            <form class="register-form outer-top-xs" name="signupForm" role="form" novalidate ng-submit="ctrl.submit()">
                                 <div class="form-group">
                                     <label class="info-title" for="form-email">Email Address
                                         <span>*</span>
                                     </label> 
                                     <input type="email" name="singupEmail"
                                            class="form-control unicase-form-control text-input"
-                                           id="form-email" data-ng-model="signup.email"ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true">
+                                           id="form-email" data-ng-model="ctrl.user.email"ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true">
                                     <div ng-show="signupForm.singupEmail.$touched && signupForm.singupEmail.$invalid">
                                         <small>Enter a Valid Email</small>
                                     </div>
@@ -252,7 +252,7 @@
                                         Name <span>*</span>
                                     </label> <input type="text" name="signupFname"
                                                     class="form-control unicase-form-control text-input"
-                                                    id="form-firstname" data-ng-model="signup.FirstName" ng-required="true">
+                                                    id="form-firstname" data-ng-model="ctrl.user.firstName" ng-required="true">
                                     <div ng-show="signupForm.signupFname.$touched && signupForm.signupFname.$invalid">
                                         <small>Enter a Valid First Name</small>
                                     </div>
@@ -262,7 +262,7 @@
                                         <span>*</span>
                                     </label> <input type="text" name="signupLname"
                                                     class="form-control unicase-form-control text-input"
-                                                    id="form-lastname" data-ng-model="signup.LastName" ng-required="true">
+                                                    id="form-lastname" data-ng-model="ctrl.user.lastName" ng-required="true">
                                     <div ng-show="signupForm.signupLname.$touched && signupForm.signupLname.$invalid">
                                         <small>Enter a Valid Last Name</small>
                                     </div>
@@ -272,7 +272,7 @@
                                         Number <span>*</span>
                                     </label> <input type="number" name="signupCon"
                                                     class="form-control unicase-form-control text-input"
-                                                    id="form-contactNo" data-ng-model="signup.contact" ng-required="true" ng-minlength="10" ng-maxlength="10">
+                                                    id="form-contactNo" data-ng-model="ctrl.user.contactNo" ng-required="true" ng-minlength="10" ng-maxlength="10">
                                     <div ng-show="signupForm.signupCon.$touched && signupForm.signupCon.$invalid">
                                         <small>Enter a Valid Contact Number</small>
                                     </div>
@@ -281,7 +281,7 @@
                                     <label class="info-title" for="form-pincode">Pincode </label> <input
                                         type="number" pattern="[0-9]{6}" name="signupPin"
                                         class="form-control unicase-form-control text-input"
-                                        id="form-pincode" data-ng-model="signup.pin" ng-required="true" ng-minlength="6" ng-maxlength="6">
+                                        id="form-pincode" data-ng-model="ctrl.user.pincode.pincode" ng-required="true" ng-minlength="6" ng-maxlength="6">
                                     <div ng-show="signupForm.signupPin.$touched && signupForm.signupPin.$invalid">
                                         <small>Enter a Valid Pincode Number</small>
                                     </div>
@@ -290,14 +290,14 @@
                                     <label class="info-title" for="form-streetaddress">Street
                                         Address </label>
                                     <textarea class="form-control unicase-form-control text-input"
-                                              id="form-streetaddress" cols="2" data-ng-model="signup.street"></textarea>
+                                              id="form-streetaddress" cols="2" data-ng-model="ctrl.user.streetAddress"></textarea>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="info-title" for="form-city">City </label> <input
                                         type="text" name="signupCity"
                                         class="form-control unicase-form-control text-input"
-                                        id="form-city" data-ng-model="signup.city" ng-required="true">
+                                        id="form-city" data-ng-model="ctrl.user.pincode.city.cityName" ng-required="true">
                                     <div ng-show="signupForm.signupCity.$touched && signupForm.signupCity.$invalid">
                                         <small>Enter a Valid City</small>
                                     </div>
@@ -306,7 +306,7 @@
                                     <label class="info-title" for="form-state">State </label> <input
                                         type="text" name="signupState"
                                         class="form-control unicase-form-control text-input"
-                                        id="form-state" data-ng-model="signup.state" ng-required="true">
+                                        id="form-state" data-ng-model="ctrl.user.pincode.city.state.stateName" ng-required="true">
                                     <div ng-show="signupForm.signupState.$touched && signupForm.signupState.$invalid">
                                         <small>Enter a Valid State</small>
                                     </div>
@@ -315,7 +315,7 @@
                                     <label class="info-title" for="form-password">Password <span>*</span></label>
                                     <input type="password" name="signuppass"
                                            class="form-control unicase-form-control text-input"
-                                           id="form-password" data-ng-model="signup.password" ng-required="true" ng-minlength="5" ng-maxlength="15">
+                                           id="form-password" data-ng-model="ctrl.user.password" ng-required="true" ng-minlength="5" ng-maxlength="15">
                                     <div ng-show="signupForm.signuppass.$touched && signupForm.signuppass.$invalid">
                                         <small>Enter a Valid type of Password</small>
                                     </div>
@@ -338,7 +338,7 @@
 
 
 
-                                <button type="submit" id="signup_btn" data-ng-click="createUser()"
+                                <button type="submit" id="signup_btn"
                                         class="btn-upper btn btn-primary checkout-page-button" ng-disabled="signupForm.$invalid">Sign
                                     Up</button>
                             </form>
@@ -628,97 +628,68 @@
         <script src="assets/js/bootstrap-select.min.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/scripts.js"></script>
-
-
+        <script src="assets/controllers/user_controller.js"></script>
+        <script src="assets/services/user_services.js"></script>
         <!-- For demo purposes – can be removed on production -->
 
         <script>
-                                                    var password = document.getElementById("form-password");
-                                                    var confirmpass = document.getElementById("form-confirm-password");
-                                                    var signupBtn = document.getElementById("signup_btn");
+                           var password = document.getElementById("form-password");
+                           var confirmpass = document.getElementById("form-confirm-password");
+                           var signupBtn = document.getElementById("signup_btn");
+                                                    
+                                                    
+                       password.onkeyup =function(){
+                     var isValid = (password.value===confirmpass.value) && (password.value.length>0)&&password.value.length>=5;
+                      signupBtn.disabled=!isValid;
+                    }
+                        confirmpass.onkeyup =function(){
+                     var isValid = (password.value===confirmpass.value);
+                      signupBtn.disabled=!isValid;
+                    }
 
-//		var app = angular.module('myApp', []);
-//		app.controller('usersController', function($scope, $http) {
-//			//$scope.users = [];
-//                       
-//                        
-//			$scope.createUser = function() {
-//                               
-//				
-//				 var user = {
-//					
-//					firstName:$scope.signup.FirstName,
-//					lastName:$scope.signup.LastName,
-//                                        email:$scope.signup.email,
-//                                        password:$scope.signup.password,	
-//					pincode:{
-//                                                pincode:$scope.signup.pin,
-//                                                city :{
-//                                                    city:$scope.signup.city,
-//                                                    state:{
-//                                                       state:$scope.signup.state 
-//                                                    }
-//                                                }
-//                                               
-//                                        },
-//                                        streetAddress:$scope.signup.street,
-//					contactNo:$scope.signup.contact,
-//                                        active:true
-//					
-//				}; 
-//                                
-//                               
-//                                
-//                               
-//				
-//				$http.post('/flipmart-webapp-web/user', user).then(function(response){
-//					console.log(response);
-//				});
-//                            };
-
-                                                    var app = angular.module('myApp', []);
-                                                    app.controller('usersController', function ($scope, $http) {
-                                                        $scope.createUser = function () {
-
-
-
-                                                            var user = {
-                                                                firstName: $scope.signup.FirstName,
-                                                                lastName: $scope.signup.LastName,
-                                                                email: $scope.signup.email,
-                                                                password: $scope.signup.password,
-                                                                pincode: {
-                                                                    pincode: $scope.signup.pin,
-                                                                    city: {
-                                                                        cityName: $scope.signup.city,
-                                                                        state: {
-                                                                            stateName: $scope.signup.state
-                                                                        }
-                                                                    }
-
-                                                                },
-                                                                streetAddress: $scope.signup.street,
-                                                                contactNo: $scope.signup.contact,
-                                                                active: true
-                                                            };
-
-                                                            $http.post('/flipmart-webapp-web/user', user).then(function (response) {
-                                                                console.log(response);
-                                                            });
-                                                        };
-
-                                                        $scope.loginUser = function () {
-                                                            var loginUser = {
-                                                                email: $scope.login.email,
-                                                                password: $scope.login.password
-                                                            };
-
-                                                            $http.post('/flipmart-webapp-web/validate', loginUser).then(function (response) {
-                                                                console.log(response);
-                                                            });
-                                                        };
-                                                        
-                                                    });
+//                                                    var app = angular.module('myApp', []);
+//                                                    app.controller('usersController', function ($scope, $http) {
+//                                                        $scope.createUser = function () {
+//
+//
+//
+//                                                            var user = {
+//                                                                firstName: $scope.signup.FirstName,
+//                                                                lastName: $scope.signup.LastName,
+//                                                                email: $scope.signup.email,
+//                                                                password: $scope.signup.password,
+//                                                                pincode: {
+//                                                                    pincode: $scope.signup.pin,
+//                                                                    city: {
+//                                                                        cityName: $scope.signup.city,
+//                                                                        state: {
+//                                                                            stateName: $scope.signup.state
+//                                                                        }
+//                                                                    }
+//
+//                                                                },
+//                                                                streetAddress: $scope.signup.street,
+//                                                                contactNo: $scope.signup.contact,
+//                                                                active: true
+//                                                            };
+//
+//                                                            $http.post('/flipmart-webapp-web/user', user).then(function (response) {
+//                                                                console.log(response);
+//                                                            });
+//                                                        };
+//
+//                                                        $scope.loginUser = function () {
+//                                                            var loginUser = {
+//                                                                email: $scope.login.email,
+//                                                                password: $scope.login.password
+//                                                            };
+//
+//                                                            $http.post('/flipmart-webapp-web/validate', loginUser).then(function (response) {
+//                                                                console.log(response);
+//                                                            });
+//                                                        };
+//                                                        
+//                                                    });
         </script>
     </body>
 </html>
