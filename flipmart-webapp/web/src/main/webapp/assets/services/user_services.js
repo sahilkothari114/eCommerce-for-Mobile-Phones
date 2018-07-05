@@ -11,7 +11,9 @@ angular.module('myApp').factory('UserService', ['$http', '$q','$location','sessi
         validateUser:validateUser,
         logoutUser:logoutUser,
         islogged:islogged,
-        loggedUser:loggedUser
+        loggedUser:loggedUser,
+        userDetails:userDetails,
+        getCity:getCity
     };
 
     return factory;
@@ -45,8 +47,38 @@ angular.module('myApp').factory('UserService', ['$http', '$q','$location','sessi
         );
         return deferred.promise;
     }
-  
-
+        function getCity(pin) {
+            var deferred = $q.defer();
+            console.log('request for city');
+//            $http.post('/flipmart-webapp-web/pincode', pin)
+//                    .then(
+//                            function (response) {
+//                                console.error('city get',response);
+//                                
+//                            },
+//                            function (errResponse) {
+//                                console.error('Error while login User');
+//                                deferred.reject(errResponse);
+//                            }
+//                    );
+        return deferred.promise;
+        }
+        function userDetails(userId) {
+            console.log('user details');
+            var deferred = $q.defer();
+            $http.post('/flipmart-webapp-web/userdetails', userId)
+                    .then(
+                           function (response) {
+                                console.log('logged user details ',response);
+                                deferred.reject(response);
+                            } ,
+                            function (errResponse) {
+                                console.error('Error while login User');
+                                deferred.reject(errResponse);
+                            }
+                    );
+            return deferred.promise;
+        }
 
     function validateUser(user) {
         
@@ -80,7 +112,7 @@ angular.module('myApp').factory('UserService', ['$http', '$q','$location','sessi
 
     function deleteUser(id) {
         var deferred = $q.defer();
-        $http.delete(REST_SERVICE_URI+id)
+        $http.delete(''+id)
             .then(
             function (response) {
                 deferred.resolve(response.data);
