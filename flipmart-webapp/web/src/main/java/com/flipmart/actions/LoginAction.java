@@ -33,7 +33,7 @@ public class LoginAction extends ActionSupport {
 
     private static HttpServletRequest request;
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(LoginAction.class);
+    private static final Logger LOGGER = Logger.getLogger(LoginAction.class);
 
     @Override
     public String execute() {
@@ -47,7 +47,7 @@ public class LoginAction extends ActionSupport {
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        logger.info("JSON DATA : " + jsonResponse);
+        LOGGER.info("JSON DATA : " + jsonResponse);
         Users user = mapper.readValue(jsonResponse, Users.class);
         createNewUser(user);
     }
@@ -61,33 +61,6 @@ public class LoginAction extends ActionSupport {
             ctx = new InitialContext();
             UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService!com.flipmart.service.UserServiceLocal");
 
-//            String password = userDetails.get("user").get(FlipmartConstants.KEY_PASSWORD).textValue();
-//            password = PasswordHash.generatePasswordHash(password);
-//
-//            State state = new State();
-//            state.setStateName("Gujarat");
-//
-//            City city = new City();
-//            city.setState(state);
-//            city.setCityName("Nadiad");
-//
-//            Pincode pincode = new Pincode();
-//            pincode.setPincode(387001);
-//            pincode.setCity(city);
-//
-//            Users user = new Users();
-//            user.setFirstName(userDetails.get("user").get(FlipmartConstants.KEY_FIRST_NAME).textValue());
-//            user.setLastName(userDetails.get("user").get(FlipmartConstants.KEY_LAST_NAME).textValue()
-//            );
-//            user.setEmail(userDetails.get("user").get(FlipmartConstants.KEY_EMAIL).textValue());
-//            user.setStreetAddress(userDetails.get("user").get(FlipmartConstants.KEY_STREET_ADDRESS).
-//                    textValue());
-//            user.setContactNo(userDetails.get("user").get(FlipmartConstants.KEY_CONTACT_NUMBER).
-//                    textValue()
-//            );
-//            user.setPassword(password);
-//            user.setPincode(pincode);
-//            user.setActive(true);
             String password = userDetails.getPassword();
             password = PasswordHash.generatePasswordHash(password);
             userDetails.setPassword(password);
@@ -112,7 +85,7 @@ public class LoginAction extends ActionSupport {
             if (ctx != null) {
                 try {
                     ctx.close();
-                } catch (Throwable t) {
+                } catch (NamingException t) {
                 }
             }
         }
@@ -157,4 +130,5 @@ public class LoginAction extends ActionSupport {
         Users user1 = mapper.readValue(jsonResponse, Users.class);
         System.out.println(user1);
     }
+    
 }

@@ -7,7 +7,7 @@ public class FlipmartConstants {
 	public final static String USER = "postgres";
 	public final static String PASSWORD = "root";
 	public final static String PORT = "5432";*/
-	public final static String PERSISTENCE_UNIT_NAME = "flipmartDB";
+	
 	public final static String CHARACTER_ENCODING = "UTF-8";
 	
 	public final static String SUCCESS = "success";
@@ -24,5 +24,7 @@ public class FlipmartConstants {
 	public final static String KEY_PASSWORD = "password";
 	public final static String PBKDF2 = "PBKDF2WithHmacSHA1";
 	public final static String SHA1PRNG = "SHA1PRNG";
+        
+        public final static String JNDI_LOOKUP = "java:global/flipmart-webapp-ear/flipmart-webapp-ejb/";
 }
 

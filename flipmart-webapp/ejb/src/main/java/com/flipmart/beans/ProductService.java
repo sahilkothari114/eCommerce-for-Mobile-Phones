@@ -1,4 +1,3 @@
-
 package com.flipmart.beans;
 
 import com.flipmart.persistence.Product;
@@ -23,7 +22,7 @@ public class ProductService implements ProductServiceLocal{
     private final EntityManager entityManager;
     private static EntityTransaction transactionObj;
 
-    private static final Logger logger = Logger.getLogger(UserService.class);
+    private static final Logger LOGGER = Logger.getLogger(UserService.class);
 
     public ProductService() 
     {
@@ -38,16 +37,16 @@ public class ProductService implements ProductServiceLocal{
 
     @Override
     public boolean addProduct(Product item) {
-        logger.info("Begining transaction");
+        LOGGER.info("Begining transaction");
         try
         {
             if (!transactionObj.isActive()) {
                 transactionObj.begin();
             }
-            logger.info("Persisting Product");
+            LOGGER.info("Persisting Product");
             entityManager.persist(item);
 
-            logger.info("Persisting user success");
+            LOGGER.info("Persisting user success");
             transactionObj.commit();
         }
         catch(Exception e)

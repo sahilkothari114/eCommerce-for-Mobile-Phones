@@ -36,7 +36,8 @@
         <dependency>
             <groupId>com.web</groupId>
             <artifactId>flipmart-webapp-ejb</artifactId>
-            <type>jar</type>
+            <type>ejb</type>
+            <scope>provided</scope>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         
