@@ -33,7 +33,7 @@ public class LoginAction extends ActionSupport {
 
     private static HttpServletRequest request;
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(LoginAction.class);
+    private static final Logger LOGGER = Logger.getLogger(LoginAction.class);
 
     @Override
     public String execute() {
@@ -47,7 +47,7 @@ public class LoginAction extends ActionSupport {
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        logger.info("JSON DATA : " + jsonResponse);
+        LOGGER.info("JSON DATA : " + jsonResponse);
         Users user = mapper.readValue(jsonResponse, Users.class);
         createNewUser(user);
     }
@@ -85,7 +85,7 @@ public class LoginAction extends ActionSupport {
             if (ctx != null) {
                 try {
                     ctx.close();
-                } catch (Throwable t) {
+                } catch (NamingException t) {
                 }
             }
         }
@@ -121,5 +121,14 @@ public class LoginAction extends ActionSupport {
         }
     }
 
+    @Action("validate")
+    public void validateUser() throws IOException, JsonProcessingException {
+        request = ServletActionContext.getRequest();
+        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(" -> " + jsonResponse);
+        Users user1 = mapper.readValue(jsonResponse, Users.class);
+        System.out.println(user1);
+    }
     
 }

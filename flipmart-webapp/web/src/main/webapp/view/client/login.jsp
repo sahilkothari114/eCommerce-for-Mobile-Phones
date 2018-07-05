@@ -203,13 +203,13 @@
                             <p class="">Hello, Welcome to your account.</p>
                             
                             <form class="register-form outer-top-xs" role="form" name="loginForm">
-                               {{ctrl.login}}
+                               {{login}}
                                 <div class="form-group">
                                     <label class="info-title" for="exampleInputEmail1">Email
                                         Address <span>*</span>
                                     </label><input type="email" name="loginEmail"
                                                    class="form-control unicase-form-control text-input"
-                                                   id="login-email" data-ng-model="ctrl.login.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true" tabindex="1">
+                                                   id="login-email" data-ng-model="login.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-required="true" tabindex="1">
 
                                     <div ng-show="loginForm.loginEmail.$touched && loginForm.loginEmail.$invalid">
                                         <small>Enter a Valid Email</small>
@@ -220,13 +220,13 @@
                                         <span>*</span>
                                     </label> <input type="password" name="loginPassword"
                                                     class="form-control unicase-form-control text-input"
-                                                    id="loginPassword" data-ng-model="ctrl.login.password" tabindex="2" ng-required="true">
+                                                    id="loginPassword" data-ng-model="login.password" tabindex="2" ng-required="true">
                                     <div ng-show="loginForm.loginPassword.$touched && loginForm.loginPassword.$invalid">
                                         <small>Password Required</small>
                                     </div>
                                 </div>
                                 <button type="submit"
-                                        class="btn-upper btn btn-primary checkout-page-button" data-ng-click="loginUser()">Login</button>
+                                        class="btn-upper btn btn-primary checkout-page-button" data-ng-click="loginUser(login)">Login</button>
                             </form>
                         </div>
                         <!-- Sign-in -->
@@ -630,8 +630,12 @@
         <script src="assets/js/bootstrap-select.min.js"></script>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/scripts.js"></script>
+        
+         <script src="assets/app.js"></script>
         <script src="assets/controllers/user_controller.js"></script>
         <script src="assets/services/user_services.js"></script>
+        <script src="assets/services/sessionServices.js"></script>
+        
         <!-- For demo purposes – can be removed on production -->
 
         <script>
@@ -649,49 +653,7 @@
                       signupBtn.disabled=!isValid;
                     }
 
-//                                                    var app = angular.module('myApp', []);
-//                                                    app.controller('usersController', function ($scope, $http) {
-//                                                        $scope.createUser = function () {
-//
-//
-//
-//                                                            var user = {
-//                                                                firstName: $scope.signup.FirstName,
-//                                                                lastName: $scope.signup.LastName,
-//                                                                email: $scope.signup.email,
-//                                                                password: $scope.signup.password,
-//                                                                pincode: {
-//                                                                    pincode: $scope.signup.pin,
-//                                                                    city: {
-//                                                                        cityName: $scope.signup.city,
-//                                                                        state: {
-//                                                                            stateName: $scope.signup.state
-//                                                                        }
-//                                                                    }
-//
-//                                                                },
-//                                                                streetAddress: $scope.signup.street,
-//                                                                contactNo: $scope.signup.contact,
-//                                                                active: true
-//                                                            };
-//
-//                                                            $http.post('/flipmart-webapp-web/user', user).then(function (response) {
-//                                                                console.log(response);
-//                                                            });
-//                                                        };
-//
-//                                                        $scope.loginUser = function () {
-//                                                            var loginUser = {
-//                                                                email: $scope.login.email,
-//                                                                password: $scope.login.password
-//                                                            };
-//
-//                                                            $http.post('/flipmart-webapp-web/validate', loginUser).then(function (response) {
-//                                                                console.log(response);
-//                                                            });
-//                                                        };
-//                                                        
-//                                                    });
+
         </script>
     </body>
 </html>

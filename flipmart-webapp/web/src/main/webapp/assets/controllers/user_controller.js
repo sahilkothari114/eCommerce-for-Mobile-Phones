@@ -1,20 +1,51 @@
-var app = angular.module('myApp', []);
-app.controller('UserController',['$scope', '$http','UserService', function($scope, $http,UserService) {
+//var app = angular.module('myApp', []);
+angular.module('myApp').controller('UserController',['$scope', '$window','$http','UserService', function($scope, $window,$http,UserService) {
         
     var self = this;
-    
-        $scope.loginUser = function () {
-            var loginUser = {
-                email: $scope.ctrl.login.email,
-                password: $scope.ctrl.login.password
-            };
 
-            $http.post('/flipmart-webapp-web/validate', loginUser).then(function (response) {
-                console.log(response);
-            });
+    $scope.loginUser = function(loginData){
+        UserService.validateUser(loginData);
+    };
+   
+        $scope.loggedUser = function () {
+            if (UserService.islogged()) {
+                var logedUser = UserService.loggedUser();
+                //$scope.profile.NewEmail = logedUser;
+                console.log('user is loged ', logedUser);
+            } else
+                console.log('NO one is logged...');
         };
     
+    $scope.updateUser = function(){
+                                                                                                           
+                                                            
+            var userData = {
+                firstName: $scope.profile.FirstName,
+                lastName: $scope.profile.LastName,
+                email: $scope.profile.NewEmail,
+                password: $scope.profile.NewPassword,
+                pincode: {
+                    pincode: $scope.profile.NewPincode,
+                    city:
+                            {
+                                city: $scope.profile.NewCity,
+                                state: {state: $scope.profile.NewState}
+                            }
 
+                },
+                streetAddress: $scope.profile.NewAddress,
+                contactNo: $scope.profile.NewContact,
+
+            };
+
+
+            $http.post('/flipmart-webapp-web/signup.action/user', userData).then(function (response) {
+
+                console.log(response);
+            });
+
+        };
+   
     
     self.user={firstName:'',lastName:'',email:'',password:'',pincode: {
                 pincode: '',
@@ -46,7 +77,9 @@ app.controller('UserController',['$scope', '$http','UserService', function($scop
     }
         
 
-
+$window.onload = function () {
+    $scope.loggedUser();
+};
     
 
 }]);
