@@ -4,6 +4,7 @@ import com.flipmart.service.UserServiceLocal;
 import javax.ejb.Stateless;
 
 import com.flipmart.persistence.Users;
+import com.flipmart.utils.FlipmartConstants;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
@@ -20,10 +21,10 @@ public class UserService implements UserServiceLocal {
     private final EntityManager entityManager;
     private static EntityTransaction transactionObj;
 
-    private static final Logger logger = Logger.getLogger(UserService.class);
+    private static final Logger LOGGER = Logger.getLogger(UserService.class);
 
     public UserService() {
-        entityManager = Persistence.createEntityManagerFactory("flipmart")
+        entityManager = Persistence.createEntityManagerFactory(FlipmartConstants.PERSISTENCE_UNIT_NAME)
                 .createEntityManager();
         transactionObj = entityManager.getTransaction();
     }
@@ -36,15 +37,15 @@ public class UserService implements UserServiceLocal {
 
     @Override
     public void addUser(Users user) {
-        logger.info("Begining transaction");
+        LOGGER.info("Begining transaction");
 
         if (!transactionObj.isActive()) {
             transactionObj.begin();
         }
-        logger.info("Persisting user");
+        LOGGER.info("Persisting user");
         entityManager.persist(user);
 
-        logger.info("Persisting user success");
+        LOGGER.info("Persisting user success");
         transactionObj.commit();
     }
 
@@ -60,13 +61,13 @@ public class UserService implements UserServiceLocal {
             Users result = (Users) query.getSingleResult();
 
             if (result != null) {
-                logger.info("Valid user");
+                LOGGER.info("Valid user");
                 return true;
             }
-            logger.info("No such user found");
+            LOGGER.info("No such user found");
             return false;
         }
-        logger.info("user object is null");
+        LOGGER.info("user object is null");
         return false;
     }
 
@@ -76,6 +77,7 @@ public class UserService implements UserServiceLocal {
             transactionObj.begin();
         }
         if (userName != null) {
+            
             Query query = entityManager.createNamedQuery("findUsersByFirstName");
             query.setParameter("firstName", userName);
             Users user = (Users) query.getSingleResult();
@@ -84,9 +86,9 @@ public class UserService implements UserServiceLocal {
                 System.out.println("Data from backend "+user);
                 return user;
             }
-            logger.error("could not find details of the user");
+            LOGGER.error("could not find details of the user");
         }
-        logger.error("user name is null");
+        LOGGER.error("user name is null");
         return null;
     }
 
