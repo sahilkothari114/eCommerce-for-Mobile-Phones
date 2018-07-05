@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +15,7 @@ public class Manufacturer implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+        @SequenceGenerator(name="manufacturer_SEQ", allocationSize=1)
 	@Column(name = "manufacturer_id")
 	private long manufacturerId;
 

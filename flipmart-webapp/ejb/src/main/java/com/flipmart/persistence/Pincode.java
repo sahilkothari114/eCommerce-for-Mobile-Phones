@@ -19,7 +19,7 @@ public class Pincode implements Serializable{
 	@Column(name = "pincode")
 	private long pincode;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
 

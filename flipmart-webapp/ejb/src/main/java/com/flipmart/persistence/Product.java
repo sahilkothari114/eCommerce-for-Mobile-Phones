@@ -15,184 +15,205 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
-public class Product implements Serializable{
+public class Product implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@Column(name = "product_id")
-	private long productId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "product_SEQ", allocationSize = 1)
+    @Column(name = "product_id")
+    private long productId;
 
-	@Column(name = "model_no")
-	private String modelNo;
+    @Column(name = "model_no")
+    private String modelNo;
 
-	@Column(name = "product_name")
-	private String productName;
+    @Column(name = "product_name")
+    private String productName;
 
-	@Column(name = "price")
-	private double price;
+    @Column(name = "price")
+    private double price;
 
-	@Column(name = "OS")
-	private String os;
+    @Column(name = "OS")
+    private String os;
 
-	@Column(name = "RAM")
-	private int ram;
+    @Column(name = "RAM")
+    private int ram;
 
-	@Column(name = "camera")
-	private double camera;
+    @Column(name = "camera")
+    private double camera;
 
-	@Column(name = "processor")
-	private String processor;
+    @Column(name = "processor")
+    private String processor;
 
-	@Column(name = "description")
-	private String description;
+    @Column(name = "description")
+    private String description;
 
-	@Column(name = "active")
-	private boolean active;
+    @Column(name = "active")
+    private boolean active;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "manufaturer_id")
-	private Manufacturer manufacturer;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manufaturer_id")
+    private Manufacturer manufacturer;
 
-//	@ManyToMany(mappedBy = "products")
-//	private List<Users> user = new ArrayList<Users>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "product_id")
+    private List<ColorProduct> productColorList = new ArrayList<ColorProduct>();
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-        @JoinColumn(name = "product_id")
-	private List<ColorProduct> productColorList = new ArrayList<ColorProduct>();
+    @OneToMany(mappedBy = "product")
+    @JoinColumn(name = "product_id")
+    private List<ProductImage> imageList = new ArrayList<ProductImage>();
 
-	public List<ColorProduct> getProductColor() {
-		return productColorList;
-	}
+    public List<ColorProduct> getProductColorList() {
+        return productColorList;
+    }
 
-	public void setProductColor(List<ColorProduct> productColor) {
-		this.productColorList = productColor;
-	}
+    public void setProductColorList(List<ColorProduct> productColorList) {
+        this.productColorList = productColorList;
+    }
 
-	public long getProductId() {
-		return productId;
-	}
+    public List<ProductImage> getImageList() {
+        return imageList;
+    }
 
-	public void setProductId(long productId) {
-		this.productId = productId;
-	}
+    public void setImageList(List<ProductImage> imageList) {
+        this.imageList = imageList;
+    }
 
-	public String getModelNo() {
-		return modelNo;
-	}
+    public List<ColorProduct> getProductColor() {
+        return productColorList;
+    }
 
-	public void setModelNo(String modelNo) {
-		this.modelNo = modelNo;
-	}
+    public void setProductColor(List<ColorProduct> productColor) {
+        this.productColorList = productColor;
+    }
 
-	public String getProductName() {
-		return productName;
-	}
+    public long getProductId() {
+        return productId;
+    }
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public String getModelNo() {
+        return modelNo;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public void setModelNo(String modelNo) {
+        this.modelNo = modelNo;
+    }
 
-	public String getOs() {
-		return os;
-	}
+    public String getProductName() {
+        return productName;
+    }
 
-	public void setOs(String os) {
-		this.os = os;
-	}
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	public int getRam() {
-		return ram;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public void setRam(int ram) {
-		this.ram = ram;
-	}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-	public double getCamera() {
-		return camera;
-	}
+    public String getOs() {
+        return os;
+    }
 
-	public void setCamera(double camera) {
-		this.camera = camera;
-	}
+    public void setOs(String os) {
+        this.os = os;
+    }
 
-	public String getProcessor() {
-		return processor;
-	}
+    public int getRam() {
+        return ram;
+    }
 
-	public void setProcessor(String processor) {
-		this.processor = processor;
-	}
+    public void setRam(int ram) {
+        this.ram = ram;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public double getCamera() {
+        return camera;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setCamera(double camera) {
+        this.camera = camera;
+    }
 
-	public boolean isActive() {
-		return active;
-	}
+    public String getProcessor() {
+        return processor;
+    }
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+    public void setProcessor(String processor) {
+        this.processor = processor;
+    }
 
-	public Manufacturer getManufacturer() {
-		return manufacturer;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setManufacturer(Manufacturer manufacturer) {
-		this.manufacturer = manufacturer;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void addColor(Color color) {
-		ColorProduct colorProduct = new ColorProduct(this, color);
-		productColorList.add(colorProduct);
-		color.getProductColors().add(colorProduct);
-	}
+    public boolean isActive() {
+        return active;
+    }
 
-	public void removeColor(Color color) {
-		for (Iterator<ColorProduct> iterator = productColorList.iterator(); iterator.hasNext();) {
-			ColorProduct colorProducts = iterator.next();
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
-			if (colorProducts.getProduct().equals(this) && colorProducts.getColor().equals(color)) {
-				iterator.remove();
-				colorProducts.getColor().getProductColors().remove(colorProducts);
-				colorProducts.setProduct(null);
-				colorProducts.setColor(null);
-			}
-		}
-	}
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 
-		if (o == null || getClass() != o.getClass())
-			return false;
+    public void addColor(Color color) {
+        ColorProduct colorProduct = new ColorProduct(this, color);
+        productColorList.add(colorProduct);
+        color.getProductColors().add(colorProduct);
+    }
 
-		Product product = (Product) o;
-		return Objects.equals(modelNo, product.modelNo);
-	}
+    public void removeColor(Color color) {
+        for (Iterator<ColorProduct> iterator = productColorList.iterator(); iterator.hasNext();) {
+            ColorProduct colorProducts = iterator.next();
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(modelNo);
-	}
+            if (colorProducts.getProduct().equals(this) && colorProducts.getColor().equals(color)) {
+                iterator.remove();
+                colorProducts.getColor().getProductColors().remove(colorProducts);
+                colorProducts.setProduct(null);
+                colorProducts.setColor(null);
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Product product = (Product) o;
+        return Objects.equals(modelNo, product.modelNo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(modelNo);
+    }
 }

@@ -1,6 +1,7 @@
 package com.flipmart.actions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -43,13 +44,14 @@ public class LoginAction extends ActionSupport {
 
     @Action("user")
     public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        ObjectMapper mapper  = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         LOGGER.info("JSON DATA : " + jsonResponse);
         Users user = mapper.readValue(jsonResponse, Users.class);
         createNewUser(user);
+        //findPincode(310041);
     }
 
     public void createNewUser(Users userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -73,7 +75,7 @@ public class LoginAction extends ActionSupport {
             city.setCityName("jaipur");
 
             Pincode pincode = new Pincode();
-            pincode.setPincode(387001);
+            pincode.setPincode(310041);
             pincode.setCity(city);
 
             userDetails.setPincode(pincode);
@@ -92,22 +94,29 @@ public class LoginAction extends ActionSupport {
     }
 
     @Action("pincode")
-    public void findPincode() throws IOException {
+    public JsonNode findPincode() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
+        String jsonResponse = "{\"pincode\": \"310041\"}";
         request = ServletActionContext.getRequest();
-        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        Pincode pincode = mapper.readValue(jsonResponse, Pincode.class);
-        
+        //String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        JsonNode data = mapper.readTree(jsonResponse);
+        long pincode = data.get("pincode").asLong();
+        return findPincode(pincode);
+    }
+    
+    public JsonNode findPincode(long pincode) throws JsonProcessingException, IOException {
+        //LOGGER.info("Pincode : " + pincode);
+        ObjectMapper mapper = new ObjectMapper();
         Context ctx = null;
         try {
             ctx = new InitialContext();
             PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
 
-            Pincode pincodeObject = pincodeService.findByPincode(pincode.getPincode());
-            System.out.println("----------------------------------------");
-            System.out.println(pincodeObject.getCity().getCityName());
-            System.out.println(pincodeObject.getCity().getState().getStateName());
-            System.out.println("----------------------------------------");
+            Pincode pincodeObject = pincodeService.findByPincode(pincode);
+            String jsonInString = mapper.writeValueAsString(pincodeObject);
+            JsonNode responseData = mapper.readTree(jsonInString);
+            System.out.println(responseData);
+            return responseData;
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
             System.out.println("----" + e.getMessage());
@@ -119,6 +128,7 @@ public class LoginAction extends ActionSupport {
                 }
             }
         }
+        return null;
     }
 
     @Action("validate")
@@ -130,5 +140,5 @@ public class LoginAction extends ActionSupport {
         Users user1 = mapper.readValue(jsonResponse, Users.class);
         System.out.println(user1);
     }
-    
+
 }
