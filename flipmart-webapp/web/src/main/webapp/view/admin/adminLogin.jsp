@@ -5,16 +5,16 @@
 
 <html lang="en" ng-app="adminLoginApp">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-	<link rel="apple-touch-icon" sizes="76x76" href="../../assets/images/admin/apple-icon.png">
-	<link rel="icon" type="image/png" href="../../assets/images/admin/favicon.png">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/images/admin/apple-icon.png">
+    <link rel="icon" type="image/png" href="../../assets/images/admin/favicon.png">
 
-	<title>Login - Flipmart Admin</title>
+    <title>Login - Flipmart Admin</title>
 
-	<!--     Fonts and icons     -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <!-- CSS Files -->
     <link rel="stylesheet" href="../../assets/css/font-awesome.css" />
@@ -24,80 +24,80 @@
 </head>
 
 <body class="signup-page">
-	
-	<div id="headerclass"></div>
 
-    <div class="main main-raised">
-            <div class="section section-full-screen section-signup" style="background-image: url('../../assets/images/admin/city.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
-                <div style="position: relative; float: right;">
-                    <div class="alert alert-success" role="alert" ng-style="display: {{showValue}};">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Success!</strong> You have been signed in successfully!
-                    </div>
-                </div>
-                <div class="container" style="margin-top:50px;">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
-                            <div class="card card-signup" ng-controller="LoginCtrl">
-                                <form class="form">
-                                    <div class="header header-primary text-center">
-                                        <h4>Login</h4>
-                                    </div>
-                                    <div class="content">
-                                        <div class="input-group">
+<div id="headerclass"></div>
+
+<div class="main main-raised">
+    <div class="section section-full-screen section-signup" style="background-image: url('../../assets/images/admin/city.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
+        <div style="position: relative; float: right;">
+            <div class="alert alert-success" role="alert" ng-style="display: {{showValue}};">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> You have been signed in successfully!
+            </div>
+        </div>
+        <div class="container" style="margin-top:50px;">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="card card-signup" ng-controller="LoginCtrl">
+                        <form class="form">
+                            <div class="header header-primary text-center">
+                                <h4>Login</h4>
+                            </div>
+                            <div class="content">
+                                <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">email</i>
                                             </span>
-                                            <input type="email" ng-model="emailID" class="form-control" placeholder="Email Id" name="txtemail" required ng-model-instant/>
-                                            <!--{{emailID}}-->
-                                        </div>
+                                    <input type="email" ng-model="emailID" class="form-control" placeholder="Email Id" name="txtemail" required ng-model-instant/>
+                                    <!--{{emailID}}-->
+                                </div>
 
-                                        <div class="input-group">
+                                <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">lock_outline</i>
                                             </span>
-                                            <input type="password" ng-model="password" placeholder="Password" class="form-control" name="txtpassword" required/>
-                                            <!--{{password}}-->
-                                        </div>
-                                    </div>
-
-
-                                    <div class="footer text-center">
-                                        <input type="submit" class="btn btn-primary" name="btnlogin" value="Login" ng-click="Login()">
-                                    </div>
-
-                                </form>
+                                    <input type="password" ng-model="password" placeholder="Password" class="form-control" name="txtpassword" required/>
+                                    <!--{{password}}-->
+                                </div>
                             </div>
 
-                        </div>
+
+                            <div class="footer text-center">
+                                <input type="submit" class="btn btn-primary" name="btnlogin" value="Login" ng-click="Login()">
+                            </div>
+
+                        </form>
                     </div>
+
                 </div>
             </div>
+        </div>
     </div>
+</div>
 
 
 </body>
 
-    <!--   Core JS Files   -->
-    <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../../assets/js/bootstrap.min.js"></script>
+<!--   Core JS Files   -->
+<script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="../../assets/js/bootstrap.min.js"></script>
 
-    <script src="../../assets/js/angular.min.js"></script>
-    <script src="../../assets/controllers/adminLogin.controller.js"></script>
+<script src="../../assets/js/angular.min.js"></script>
+<script src="../../assets/controllers/adminLogin.controller.js"></script>
 
-    <script>
-        $(function(){
-            $("#headerclass").load("header.html");
-            $("#footerclass").load("footer.html");
-        });
-    </script>
-    <script src="../../assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../../assets/js/material.min.js"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="../../assets/js/nouislider.min.js" type="text/javascript"></script>
-    <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-    <script src="../../assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-    <script src="../../assets/js/material-kit.js" type="text/javascript"></script>
+<script>
+    $(function(){
+        $("#headerclass").load("header.html");
+        $("#footerclass").load("footer.html");
+    });
+</script>
+<script src="../../assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../assets/js/material.min.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="../../assets/js/nouislider.min.js" type="text/javascript"></script>
+<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+<script src="../../assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+<script src="../../assets/js/material-kit.js" type="text/javascript"></script>
 
 </html>

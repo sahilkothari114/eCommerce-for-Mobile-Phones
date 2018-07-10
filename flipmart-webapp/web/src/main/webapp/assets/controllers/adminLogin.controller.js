@@ -1,23 +1,21 @@
 
 angular.module("adminLoginApp",[]).controller("LoginCtrl", function ($scope, $http) {
 
-    var onLoginSuccess = function(data, status, headers, config) {
-        //Put code for routing to Dashboard here
-        console.log("Login Successful" + data.email);
+    var onLoginSuccess = function(response) {
+        //Put code for routing to Dashboard here using Struts
+        console.log("Login Successful" + response.data.email);
     }
 
-    var onLoginError = function(data, status, headers, config) {
+    var onLoginError = function(response) {
         //Error message
-        console.log("Login Failure" + status);
+        console.log("Login Failure" + response.status);
     }
 
     $scope.Login = function() {
         var data = {};
         data.loginDetails = {email:$scope.emailID, password: $scope.password};
         console.log(data);
-        var promise = $http.get("Put GET URL", data);
-        promise.success(onLoginSuccess);
-        promise.error(onLoginError);
+        $http.post("Put GET URL", data).then(onLoginSuccess, onLoginError);
     };
 
     window.setTimeout(function() {
