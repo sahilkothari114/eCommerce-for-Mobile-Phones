@@ -9,4 +9,5 @@ public interface UserServiceLocal {
 	public Users findByUserId(Long userId);
 	public void addUser(Users user);
         public Users findByUserName(String userName);
+        public Users findByEmail(String email);
 }

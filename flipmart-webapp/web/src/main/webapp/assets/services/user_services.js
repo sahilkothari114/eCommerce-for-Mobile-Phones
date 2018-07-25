@@ -55,6 +55,10 @@ angular.module('myApp').factory('UserService', ['$http', '$q','$location','sessi
             .then(
             sessionService.set('user',user.email),
            console.log('user loged ',user),
+           function (response) {
+               console.log(response);
+                deferred.resolve(response.data);
+            },
             function(errResponse){
                 console.error('Error while login User');
                 deferred.reject(errResponse);

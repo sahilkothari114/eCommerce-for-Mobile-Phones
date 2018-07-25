@@ -11,7 +11,6 @@ import org.apache.struts2.convention.annotation.Result;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.IOException;
-import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -26,7 +25,7 @@ public class UserProfileAction extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
     private static HttpServletRequest request;
-    private static final Logger logger = Logger.getLogger(UserProfileAction.class);
+    private static final Logger LOGGER = Logger.getLogger(UserProfileAction.class);
 
     @Override
     public String execute() {
@@ -48,7 +47,7 @@ public class UserProfileAction extends ActionSupport {
         JsonNode data = mapper.readTree(jsonResponse);
 
         String userName = data.get("userName").asText();
-        logger.info("user name: " + userName);
+        LOGGER.info("user name: " + userName);
 
         JsonNode response = fetchUserDetails(userName);
         return response;
@@ -66,21 +65,21 @@ public class UserProfileAction extends ActionSupport {
             try {
                 String json = mapper.writeValueAsString(us);
                 JsonNode data = mapper.readTree(json);
-                logger.info("response: " + data);
+                LOGGER.info("response: " + data);
                 return data;
             } catch (JsonProcessingException ex) {
-                logger.error(ex);
+                LOGGER.error(ex);
             } catch (IOException ex) {
-                logger.error(ex);
+                LOGGER.error(ex);
             }
         } catch (NamingException e) {
-            logger.error(e);
+            LOGGER.error(e);
         } finally {
             if (ctx != null) {
                 try {
                     ctx.close();
                 } catch (NamingException t) {
-                    logger.error(t);
+                    LOGGER.error(t);
                 }
             }
         }

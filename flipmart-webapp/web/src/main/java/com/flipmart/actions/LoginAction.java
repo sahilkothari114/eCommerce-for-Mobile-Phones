@@ -1,6 +1,7 @@
 package com.flipmart.actions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -22,9 +23,12 @@ import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.flipmart.util.PasswordHash;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import org.apache.log4j.Logger;
 
 @Action(value = "login", results = {
@@ -43,7 +47,7 @@ public class LoginAction extends ActionSupport {
 
     @Action("user")
     public void addUserDetails() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        ObjectMapper mapper  = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
 
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
@@ -55,7 +59,6 @@ public class LoginAction extends ActionSupport {
     public void createNewUser(Users userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         System.out.println("User Datils: " + userDetails);
-//        service.addUser(new Users());
         Context ctx = null;
         try {
             ctx = new InitialContext();
@@ -95,9 +98,10 @@ public class LoginAction extends ActionSupport {
     public void findPincode() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         request = ServletActionContext.getRequest();
+
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         Pincode pincode = mapper.readValue(jsonResponse, Pincode.class);
-        
+
         Context ctx = null;
         try {
             ctx = new InitialContext();
@@ -121,14 +125,38 @@ public class LoginAction extends ActionSupport {
         }
     }
 
-    @Action("validate")
-    public void validateUser() throws IOException, JsonProcessingException {
+    @Action(value = "validate", results = {
+        @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "products.jsp")})
+    public String validateUser() throws IOException, JsonProcessingException {
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println(" -> " + jsonResponse);
-        Users user1 = mapper.readValue(jsonResponse, Users.class);
-        System.out.println(user1);
+        LOGGER.info("JSON response -> " + jsonResponse);
+
+        Users user = mapper.readValue(jsonResponse, Users.class);
+
+        if (user != null) {
+            Context ctx = null;
+            try {
+                ctx = new InitialContext();
+                UserServiceLocal userService = (UserServiceLocal) ctx.lookup(FlipmartConstants.JNDI_LOOKUP + "UserService!com.flipmart.service.UserServiceLocal");
+
+                Users us = userService.findByEmail(user.getEmail());
+
+                String originalPassword = us.getPassword();
+                String password = user.getPassword();
+                boolean valid = PasswordHash.validatePassword(password, originalPassword);
+
+                if (!valid) {
+                    addActionError("Invalid username or password");
+                } 
+            } catch (NamingException | NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                //java.util.logging.Logger.getLogger(LoginAction.class.getName()).log(Level.SEVERE, null, ex);
+                LOGGER.error(ex);
+            }
+            addActionError("Invalid username or password");
+        }
+        return FlipmartConstants.SUCCESS;
     }
-    
 }
