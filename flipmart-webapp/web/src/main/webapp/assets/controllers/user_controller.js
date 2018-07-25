@@ -7,39 +7,42 @@ angular.module('myApp').controller('UserController',['$scope', '$window','$http'
         UserService.validateUser(loginData);
     };
    
-        $scope.loggedUser = function () {
+       loggedUser = function () {
             if (UserService.islogged()) {
                 var logedUser = UserService.loggedUser();
                 //$scope.profile.NewEmail = logedUser;
+                return logedUser;
                 console.log('user is loged ', logedUser);
-            } else
+            } else{
                 console.log('NO one is logged...');
+                return null;
+            }
         };
     
-    $scope.updateUser = function(){
+    $scope.updateUser = function(data){
                                                                                                            
-                                                            
-            var userData = {
-                firstName: $scope.profile.FirstName,
-                lastName: $scope.profile.LastName,
-                email: $scope.profile.NewEmail,
-                password: $scope.profile.NewPassword,
-                pincode: {
-                    pincode: $scope.profile.NewPincode,
-                    city:
-                            {
-                                city: $scope.profile.NewCity,
-                                state: {state: $scope.profile.NewState}
-                            }
+                          console.log('data updated ',data);                                  
+//            var userData = {
+//                firstName: $scope.profile.FirstName,
+//                lastName: $scope.profile.LastName,
+//                email: $scope.profile.NewEmail,
+//                password: $scope.profile.NewPassword,
+//                pincode: {
+//                    pincode: $scope.profile.NewPincode,
+//                    city:
+//                            {
+//                                city: $scope.profile.NewCity,
+//                                state: {state: $scope.profile.NewState}
+//                            }
+//
+//                },
+//                streetAddress: $scope.profile.NewAddress,
+//                contactNo: $scope.profile.NewContact,
+//
+//            };
 
-                },
-                streetAddress: $scope.profile.NewAddress,
-                contactNo: $scope.profile.NewContact,
 
-            };
-
-
-            $http.post('/flipmart-webapp-web/signup.action/user', userData).then(function (response) {
+            $http.post('/flipmart-webapp-web/signup.action/user', data).then(function (response) {
 
                 console.log(response);
             });
@@ -47,7 +50,56 @@ angular.module('myApp').controller('UserController',['$scope', '$window','$http'
         };
    
     
-    self.user={firstName:'',lastName:'',email:'',password:'',pincode: {
+//    self.user={firstName:'',lastName:'',email:'',password:'',pincode: {
+//                pincode: '',
+//                city: {
+//                    cityName: '',
+//                    state: {
+//                        stateName: ''
+//                    }
+//                }
+//
+//            },streetAddress:'',contactNo:'',active:true};
+//      
+//    self.submit = submit;  
+    
+    
+    $scope.textChanged=function (){
+        var temp=$scope.user.pincode.toString();
+        console.log('text chnged',($scope.user.pincode),'length ',((temp.length)-9));
+        if(((temp.length)-9)===6){
+            UserService.getCity(temp)
+            .then(
+            function(response){
+                console.error('get data ',response);
+            },
+            function(errResponse){
+                console.error('Error while creating User',errResponse);
+            }
+        );
+        }
+    };
+   
+     function submit() {
+       
+            console.log('Saving New User', self.user);
+            createUser(self.user);
+    }
+    
+     $scope.createUser=function (user){
+        UserService.createUser(user)
+            .then(
+            console.log('created ',user),
+            function(errResponse){
+                console.error('Error while creating User');
+            }
+        );
+    };
+        
+
+  $scope.loadModifyValues= function(){
+    var userId=loggedUser();
+    $scope.userUpadatedData={firstName:'',lastName:'',email:'',password:'',pincode: {
                 pincode: '',
                 city: {
                     cityName: '',
@@ -57,29 +109,24 @@ angular.module('myApp').controller('UserController',['$scope', '$window','$http'
                 }
 
             },streetAddress:'',contactNo:'',active:true};
-      
-    self.submit = submit;  
-    
-     function submit() {
-       
-            console.log('Saving New User', self.user);
-            createUser(self.user);
-    }
-    
-     function createUser(user){
-        UserService.createUser(user)
-            .then(
-            console.log('created ',user),
-            function(errResponse){
-                console.error('Error while creating User');
-            }
-        );
-    }
         
+        
+                      $scope.userUpadatedData.email = userId;
 
-$window.onload = function () {
-    $scope.loggedUser();
-};
+//         UserService.userDetails(userId)
+//            .then(
+//            function(response){
+//                $scope.userUpadatedData.email = userId;
+//                console.error('User ',response);
+//            },
+//            
+//            function(errResponse){
+//                console.error('Error while retrieving User',errResponse);
+//                
+//            }
+//        );
+    
+} ;
     
 
 }]);

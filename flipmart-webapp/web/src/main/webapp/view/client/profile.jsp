@@ -178,8 +178,8 @@
 							<div class="shopping-cart">
 								<div class="col-md-12 col-sm-12 estimate-ship-tax">
                                                                     
-								<form class="profile-form outer-top-xs" role="form" name="ProfileForm">
-								
+								<form class="profile-form outer-top-xs" role="form" name="ProfileForm" ng-init="loadModifyValues()">
+								{{userUpadatedData}}
 									<table class="table">		
 										<tbody>
 											<tr>
@@ -187,7 +187,7 @@
 													<div class="form-group">
 														<label class="info-title control-label">First Name <span>*</span></label>
 														<input type="text" class="form-control unicase-form-control text-input"
-														name="firstName" data-ng-model="profile.FirstName">
+														name="firstName" data-ng-model="userUpadatedData.firstName">
 														  <div ng-show="ProfileForm.firstName.$touched && ProfileForm.firstName.$invalid">
 															<small>Enter a Valid First Name</small>
 														</div>
@@ -198,7 +198,7 @@
 													<div class="form-group">
 														<label class="info-title control-label">Last Name <span>*</span></label>
 														<input type="text" class="form-control unicase-form-control text-input" 
-														name="lastName" data-ng-model="profile.LastName">
+														name="lastName" data-ng-model="userUpadatedData.lastName">
 														  <div ng-show="ProfileForm.lastName.$touched && ProfileForm.lastName.$invalid">
 															<small>Enter a Valid Last Name</small>
 														</div>
@@ -213,7 +213,7 @@
 														<label class="info-title control-label">New Password </label>
 														<input type="password" name="NewPassword"
 															class="form-control unicase-form-control text-input"
-															id="New_Password" data-ng-model="profile.NewPassword" ng-minlength="5" ng-maxlength="15">
+															id="New_Password" data-ng-model="userUpadatedData.password" ng-minlength="5" ng-maxlength="15">
 															
 														<div ng-show="ProfileForm.NewPassword.$touched && ProfileForm.NewPassword.$invalid">
 															<small>Enter a Valid type of Password</small>
@@ -227,11 +227,11 @@
 														<label class="info-title control-label">confirm password </label>
 														<input id="New_Confirm_Password" type="password" name="NewConfirmPassword"
 															class="form-control unicase-form-control text-input"
-																id="New_Confirm_Password" data-ng-model="profile.NewConfirmPassword" ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
-																ng-change="cpassword_error_show = cpassword_error_show + 1" ng-disabled="ProfileForm.NewPassword.$pristine||(profile.NewPassword.length==0)">
+																id="New_Confirm_Password" data-ng-model="userUpadatedData.NewConfirmPassword" ng-init="cpassword_error_show = 0" ng-focus="cpassword_error_show = 1"
+																ng-change="cpassword_error_show = cpassword_error_show + 1" ng-disabled="ProfileForm.NewPassword.$pristine||(userUpadatedData.NewPassword.length===0)">
 																
-														<small ng-show="profile.NewPassword.length > 0 &&profile.NewPassword !== profile.NewConfirmPassword">Password Mismatch</small>
-														<small style="color:green;" ng-show="profile.NewPassword.length > 0 && profile.NewPassword === profile.NewConfirmPassword">Password match</small>
+														<small ng-show="userUpadatedData.password.length > 0 &&userUpadatedData.password !== userUpadatedData.NewConfirmPassword">Password Mismatch</small>
+														<small style="color:green;" ng-show="userUpadatedData.password.length > 0 && userUpadatedData.password=== userUpadatedData.NewConfirmPassword">Password match</small>
 													</div>
 												</td>
 											</tr>
@@ -239,7 +239,7 @@
 												<td>
 													<div class="form-group">
 														<label class="info-title control-label">Contact No <span>*</span> </label>
-														<input type="text" name="Contact" pattern="[0-9]{10}" class="form-control unicase-form-control text-input"  data-ng-model="profile.NewContact" ng-minlength="10" ng-maxlength="10">
+														<input type="text" name="Contact" pattern="[0-9]{10}" class="form-control unicase-form-control text-input"  data-ng-model="userUpadatedData.contactNo" ng-minlength="10" ng-maxlength="10">
 														<div ng-show="ProfileForm.Contact.$touched && ProfileForm.Contact.$invalid">
 															<small>Enter a Valid Contact Number</small>
 														</div>
@@ -253,7 +253,7 @@
 														
 														<input type="email" name="NewEmail"
 															class="form-control unicase-form-control text-input"
-															id="New_email" data-ng-model="profile.NewEmail" ng-value="$scope.userlogedIn"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+															id="New_email" data-ng-model="userUpadatedData.email"  ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
 														<div ng-show="ProfileForm.NewEmail.$touched && ProfileForm.NewEmail.$invalid">
 															<small>Enter a Valid Email</small>
 														</div>
@@ -266,7 +266,7 @@
 														<label class="info-title control-label">Postal Code<span>*</span></label>
 														
 													<input type="text" pattern="[0-9]{6}" name="NewPincode" class="form-control unicase-form-control text-input"
-													id="New_pincode" data-ng-model="profile.NewPincode" ng-minlength="6" ng-maxlength="6">
+													id="New_pincode" data-ng-model="ctrl.userUpadatedData.pincode" ng-minlength="6" ng-maxlength="6">
 													<div ng-show="ProfileForm.NewPincode.$touched && ProfileForm.NewPincode.$invalid">
 														<small>Enter a Valid Pincode Number</small>
 													</div>
@@ -277,7 +277,7 @@
 													<div class="form-group">
 														<label class="info-title control-label">City <span>*</span></label>
                                                                                                                 <input type="text" name="NewCity" class="form-control unicase-form-control text-input"
-													id="New_City" data-ng-model="profile.NewCity">
+													id="New_City" data-ng-model="userUpadatedData.cityName">
 <!--														<select class="form-control unicase-form-control selectpicker" data-ng-model="profile.NewCity" ng-options="city for city in City">
 															<option>--Select options--</option>
 															<option value="Mumbai">Mumbai</option>
@@ -294,7 +294,7 @@
 													<div class="form-group">
 														<label class="info-title control-label">State/Province <span>*</span></label>
                                                                                                                 <input type="text" name="NewState" class="form-control unicase-form-control text-input"
-													id="New_State" data-ng-model="profile.NewState">
+													id="New_State" data-ng-model="userUpadatedData.stateName">
 <!--														<select class="form-control unicase-form-control selectpicker" data-ng-model="profile.NewState">
 															<option>--Select options--</option>
 															<option value="TamilNadu">TamilNadu</option>
@@ -308,7 +308,7 @@
 													<td>
 													<div class="form-group">
 														<label class="info-title control-label">Address <span>*</span> </label>
-														<textarea type="text" name="NewAddress" data-ng-model="profile.NewAddress" class="form-control unicase-form-control text-input" placeholder=""></textarea>
+														<textarea type="text" name="NewAddress" data-ng-model="userUpadatedData.NewAddress" class="form-control unicase-form-control text-input" placeholder=""></textarea>
 									<div ng-show="ProfileForm.NewAddress.$touched && ProfileForm.NewAddress.$invalid">
 										<small>Address Can not Be Blank</small>
 									</div>
@@ -328,7 +328,7 @@
 											<tr>
 												<td>
 													<div class="cart-checkout-btn col-sm-7">
-														<button id="checkout_btn" type="submit" class="btn btn-primary checkout-btn" ng-disabled="ProfileForm.$invalid" data-ng-click="updateUser()">UPDATE</button>
+														<button id="checkout_btn" type="submit" class="btn btn-primary checkout-btn" ng-disabled="ProfileForm.$invalid" data-ng-click="updateUser(userUpadatedData)">UPDATE</button>
 
 													</div>
 												</td>
