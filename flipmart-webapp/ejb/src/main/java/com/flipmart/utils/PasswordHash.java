@@ -1,4 +1,4 @@
-package com.flipmart.util;
+package com.flipmart.utils;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +17,7 @@ public class PasswordHash {
 		byte[] salt = getSalt();
 
 		PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 64 * 8);
-		SecretKeyFactory skf = SecretKeyFactory.getInstance(FlipmartConstants.PBKDF2);
+		SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 		byte[] hash = skf.generateSecret(spec).getEncoded();
 		return iterations + ":" + toHex(salt) + ":" + toHex(hash);
 	}
@@ -36,7 +36,7 @@ public class PasswordHash {
 
 	private static byte[] getSalt() throws NoSuchAlgorithmException {
 		// TODO Auto-generated method stub
-		SecureRandom sr = SecureRandom.getInstance(FlipmartConstants.SHA1PRNG);
+		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
 		byte[] salt = new byte[16];
 		sr.nextBytes(salt);
 		return salt;
@@ -50,7 +50,7 @@ public class PasswordHash {
 		byte[] hash = fromHex(parts[2]);
 
 		PBEKeySpec spec = new PBEKeySpec(originalPassword.toCharArray(), salt, iterations, hash.length * 8);
-		SecretKeyFactory skf = SecretKeyFactory.getInstance(FlipmartConstants.PBKDF2);
+		SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 		byte[] testHash = skf.generateSecret(spec).getEncoded();
 
 		int diff = hash.length ^ testHash.length;

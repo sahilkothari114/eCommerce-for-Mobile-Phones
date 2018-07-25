@@ -27,14 +27,4 @@
         <welcome-file>default.htm</welcome-file>
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
-    <ejb-local-ref>
-        <ejb-ref-name>UserService</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>com.flipmart.service.UserServiceLocal</local>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>UserService1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>com.flipmart.service.UserServiceLocal</local>
-    </ejb-local-ref>
 </web-app>

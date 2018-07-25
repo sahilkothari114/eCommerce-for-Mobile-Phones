@@ -30,8 +30,8 @@ public class UserProfileAction extends ActionSupport {
 
     @Override
     public String execute() {
-        /*System.out.println("Called");
-        try {
+        System.out.println("Profile Called");
+        /*try {
             fetchUserDetails();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(UserProfileAction.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,27 +41,29 @@ public class UserProfileAction extends ActionSupport {
 
     @Action("userdetails")
     public JsonNode fetchUserDetails() throws IOException {
+        logger.info("user details called");
+        
         ObjectMapper mapper = new ObjectMapper();
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         //String jsonResponse = "{\"userName\": \"Shagufta\"}";
         JsonNode data = mapper.readTree(jsonResponse);
 
-        String userName = data.get("userName").asText();
-        logger.info("user name: " + userName);
+        String userId = data.get("userId").asText();
+        logger.info("user id: " + userId);
 
-        JsonNode response = fetchUserDetails(userName);
+        JsonNode response = fetchUserDetails(userId);
         return response;
     }
 
-    private JsonNode fetchUserDetails(String userName) {
+    private JsonNode fetchUserDetails(String userId) {
         Context ctx = null;
         ObjectMapper mapper = new ObjectMapper();
         try {
             ctx = new InitialContext();
             UserServiceLocal user = (UserServiceLocal) ctx.lookup(FlipmartConstants.JNDI_LOOKUP + "UserService!com.flipmart.service.UserServiceLocal");
 
-            Users us = user.findByUserName(userName);
+            Users us = user.findByUserId(Long.valueOf(userId));
 
             try {
                 String json = mapper.writeValueAsString(us);

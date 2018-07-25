@@ -21,11 +21,11 @@ import com.flipmart.persistence.Users;
 import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
-import com.flipmart.util.PasswordHash;
 import com.opensymphony.xwork2.ActionSupport;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 @Action(value = "login", results = {
@@ -33,12 +33,13 @@ import org.apache.log4j.Logger;
 public class LoginAction extends ActionSupport {
 
     private static HttpServletRequest request;
+    private static HttpServletResponse response;
     private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = Logger.getLogger(LoginAction.class);
 
     @Override
     public String execute() {
-
+        String sample = "Shagufta";
         return SUCCESS;
     }
 
@@ -47,6 +48,7 @@ public class LoginAction extends ActionSupport {
         ObjectMapper mapper = new ObjectMapper();
 
         request = ServletActionContext.getRequest();
+
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
         LOGGER.info("JSON DATA : " + jsonResponse);
         Users user = mapper.readValue(jsonResponse, Users.class);
@@ -57,15 +59,15 @@ public class LoginAction extends ActionSupport {
     public void createNewUser(Users userDetails) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         System.out.println("User Datils: " + userDetails);
-//        service.addUser(new Users());
+
         Context ctx = null;
         try {
             ctx = new InitialContext();
             UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService!com.flipmart.service.UserServiceLocal");
 
-            String password = userDetails.getPassword();
-            password = PasswordHash.generatePasswordHash(password);
-            userDetails.setPassword(password);
+            //String password = userDetails.getPassword();
+            //password = PasswordHash.generatePasswordHash(password);
+            userDetails.setPassword(userDetails.getPassword());
 
             State state = new State();
             state.setStateName("Rajasthan");
@@ -103,7 +105,7 @@ public class LoginAction extends ActionSupport {
         long pincode = data.get("pincode").asLong();
         return findPincode(pincode);
     }
-    
+
     public JsonNode findPincode(long pincode) throws JsonProcessingException, IOException {
         //LOGGER.info("Pincode : " + pincode);
         ObjectMapper mapper = new ObjectMapper();
@@ -131,14 +133,45 @@ public class LoginAction extends ActionSupport {
         return null;
     }
 
-    @Action("validate")
+    @Action(value = "validate")
     public void validateUser() throws IOException, JsonProcessingException {
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(" -> " + jsonResponse);
-        Users user1 = mapper.readValue(jsonResponse, Users.class);
-        System.out.println(user1);
+
+        Users user = mapper.readValue(jsonResponse, Users.class);
+
+        Context ctx = null;
+        try {
+            ctx = new InitialContext();
+            UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService!com.flipmart.service.UserServiceLocal");
+            Users validUser = us.findUserByEmailAndPassword(user);
+            LOGGER.info("Valid user from Database: " + validUser);
+
+            response = ServletActionContext.getResponse();
+            response.setContentType("application/json");
+
+            if (validUser != null) {
+                String responseJSON = mapper.writeValueAsString(validUser);
+                response.getWriter().write(responseJSON);
+            } else {
+                String responseJSON = "{\"valid\":false}";
+                response.getWriter().write(responseJSON);
+            }
+
+        } catch (NamingException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (ctx != null) {
+                try {
+                    ctx.close();
+                } catch (NamingException t) {
+                }
+            }
+        }
+
     }
 
 }

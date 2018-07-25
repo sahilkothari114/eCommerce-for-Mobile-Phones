@@ -4,6 +4,10 @@ import com.flipmart.service.UserServiceLocal;
 import javax.ejb.Stateless;
 
 import com.flipmart.persistence.Users;
+import com.flipmart.utils.PasswordHash;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
@@ -30,44 +34,79 @@ public class UserService implements UserServiceLocal {
 
     @Override
     public Users findByUserId(Long userId) {
-        System.out.println("Find user by id");
-        return null;
+        LOGGER.info("Find user by id");
+        Users user = entityManager.find(Users.class, userId);
+
+        return user;
     }
 
     @Override
     public void addUser(Users user) {
-        LOGGER.info("Begining transaction");
+        try {
+            LOGGER.info("Begining transaction");
 
-        if (!transactionObj.isActive()) {
-            transactionObj.begin();
+            if (!transactionObj.isActive()) {
+                transactionObj.begin();
+            }
+            String password = user.getPassword();
+            password = PasswordHash.generatePasswordHash(password);
+
+            user.setPassword(password);
+
+            LOGGER.info("Persisting user");
+            entityManager.persist(user);
+
+            
+            transactionObj.commit();
+            LOGGER.info("Persisting user success");
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            LOGGER.error(ex);
         }
-        LOGGER.info("Persisting user");
-        entityManager.persist(user);
-
-        LOGGER.info("Persisting user success");
-        transactionObj.commit();
     }
 
     @Override
-    public Boolean findUserByNameAndPassword(Users user) {
+    public Users findUserByEmailAndPassword(Users user) {
         if (!transactionObj.isActive()) {
             transactionObj.begin();
         }
         if (user != null) {
-            String userName = user.getFirstName();
+            String email = user.getEmail();
             String password = user.getPassword();
-            Query query = entityManager.createQuery("SELECT u.user_id FROM USERS u WHERE first_name = " + userName + " AND password = " + password + " ;");
+
+            Query query = entityManager.createNamedQuery("findUserByEmail");
+            query.setParameter("email", email);
+
             Users result = (Users) query.getSingleResult();
+            LOGGER.info("Result from database: "+result);
 
             if (result != null) {
-                LOGGER.info("Valid user");
-                return true;
+                LOGGER.info ("Verifing User");
+                boolean valid = verifyUser(result, password);
+                if (valid) {
+                    return result;
+                }
             }
             LOGGER.info("No such user found");
-            return false;
+            return null;
         }
         LOGGER.info("user object is null");
-        return false;
+        return null;
+    }
+
+    private Boolean verifyUser(Users user, String password) {
+        boolean valid = false;
+        try {
+            LOGGER.info ("calling password hash");
+            
+            String verifyPassword = user.getPassword();
+            valid = PasswordHash.validatePassword(password, verifyPassword);
+            
+            LOGGER.info ("User valid? "+valid);
+            return valid;
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            LOGGER.error(ex);
+        }
+        return valid;
     }
 
     @Override
@@ -81,7 +120,7 @@ public class UserService implements UserServiceLocal {
             Users user = (Users) query.getSingleResult();
 
             if (user != null) {
-                System.out.println("Data from backend "+user);
+                System.out.println("Data from backend " + user);
                 return user;
             }
             LOGGER.error("could not find details of the user");
