@@ -8,11 +8,13 @@ angular.module('myApp').controller('UserController',['$scope', '$window','$http'
     };
    
        loggedUser = function () {
-            if (UserService.islogged()) {
+           
+           if (UserService.islogged()) {
                 var logedUser = UserService.loggedUser();
-                //$scope.profile.NewEmail = logedUser;
-                return logedUser;
-                console.log('user is loged ', logedUser);
+               
+               console.log('user is loged ', logedUser); 
+               return logedUser;
+                
             } else{
                 console.log('NO one is logged...');
                 return null;
@@ -50,25 +52,20 @@ angular.module('myApp').controller('UserController',['$scope', '$window','$http'
         };
    
     
-//    self.user={firstName:'',lastName:'',email:'',password:'',pincode: {
-//                pincode: '',
-//                city: {
-//                    cityName: '',
-//                    state: {
-//                        stateName: ''
-//                    }
-//                }
-//
-//            },streetAddress:'',contactNo:'',active:true};
-//      
-//    self.submit = submit;  
-    
+
     
     $scope.textChanged=function (){
+        var pinTemp={
+            pincode:""
+        };
+        
         var temp=$scope.user.pincode.toString();
+        
         console.log('text chnged',($scope.user.pincode),'length ',((temp.length)-9));
         if(((temp.length)-9)===6){
-            UserService.getCity(temp)
+            pinTemp.pincode=$scope.user.pincode;
+            console.log("pinTemo ",pinTemp);
+            UserService.getCity(pinTemp)
             .then(
             function(response){
                 console.error('get data ',response);
@@ -98,7 +95,9 @@ angular.module('myApp').controller('UserController',['$scope', '$window','$http'
         
 
   $scope.loadModifyValues= function(){
+                   
     var userId=loggedUser();
+    
     $scope.userUpadatedData={firstName:'',lastName:'',email:'',password:'',pincode: {
                 pincode: '',
                 city: {
