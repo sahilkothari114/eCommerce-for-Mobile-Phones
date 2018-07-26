@@ -609,10 +609,10 @@
         <!-- ============================================================= FOOTER : END============================================================= -->
 
 
-        <!-- For demo purposes – can be removed on production -->
+        <!-- For demo purposes â€“ can be removed on production -->
 
 
-        <!-- For demo purposes – can be removed on production : End -->
+        <!-- For demo purposes â€“ can be removed on production : End -->
 
         <!-- JavaScripts placed at the end of the document so the pages load faster -->
         <script src="assets/js/jquery-1.11.1.min.js"></script>
@@ -636,7 +636,7 @@
         <script src="assets/services/user_services.js"></script>
         <script src="assets/services/sessionServices.js"></script>
         
-        <!-- For demo purposes – can be removed on production -->
+        <!-- For demo purposes â€“ can be removed on production -->
 
         <script>
                            var password = document.getElementById("form-password");

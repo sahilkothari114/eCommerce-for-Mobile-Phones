@@ -65,6 +65,8 @@ public class LoginAction extends ActionSupport {
             ctx = new InitialContext();
             UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService!com.flipmart.service.UserServiceLocal");
 
+            //String password = userDetails.getPassword();
+            //password = PasswordHash.generatePasswordHash(password);
             userDetails.setPassword(userDetails.getPassword());
 
             State state = new State();
@@ -93,19 +95,25 @@ public class LoginAction extends ActionSupport {
         }
     }
 
-    @Action("pincode")
-    public JsonNode findPincode() throws IOException {
+        @Action("pincode")
+    public void findPincode() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        String jsonResponse = "{\"pincode\": \"310041\"}";
+            System.out.println("aayaa");
         request = ServletActionContext.getRequest();
-        //String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
+        System.out.println("jsonResponse : " + jsonResponse);
         JsonNode data = mapper.readTree(jsonResponse);
-        long pincode = data.get("pincode").asLong();
-        return findPincode(pincode);
+        long pincode = data.get("pincode").get("pincode").asLong();
+        System.out.println("pincode fron json= "+pincode);
+        response  = ServletActionContext.getResponse();
+        response.setContentType("application/json");
+        LOGGER.info("response:"+response);
+        response.getWriter().write(findPincode(pincode).toString());
     }
-
+    
     public JsonNode findPincode(long pincode) throws JsonProcessingException, IOException {
         //LOGGER.info("Pincode : " + pincode);
+        System.out.println("pincode from json = "+pincode);
         ObjectMapper mapper = new ObjectMapper();
         Context ctx = null;
         try {
@@ -115,11 +123,13 @@ public class LoginAction extends ActionSupport {
             Pincode pincodeObject = pincodeService.findByPincode(pincode);
             String jsonInString = mapper.writeValueAsString(pincodeObject);
             JsonNode responseData = mapper.readTree(jsonInString);
-            LOGGER.info(responseData);
+            //System.out.println(responseData.toString());
+            // {"pincode":310041,"city":{"cityId":1,"cityName":"udaipur","state":{"stateId":1,"stateName":"rajasthan"}}}
+            //System.out.println("fetched pincode: "+ responseData.get("city").get("cityName").asText());
             return responseData;
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
-            LOGGER.error("----" + e.getMessage());
+            System.out.println("----" + e.getMessage());
         } finally {
             if (ctx != null) {
                 try {
@@ -131,6 +141,7 @@ public class LoginAction extends ActionSupport {
         return null;
     }
 
+
     @Action(value = "validate")
     public void validateUser() throws IOException, JsonProcessingException {
         request = ServletActionContext.getRequest();
@@ -140,7 +151,7 @@ public class LoginAction extends ActionSupport {
         System.out.println(" -> " + jsonResponse);
 
         Users user = mapper.readValue(jsonResponse, Users.class);
-        
+
         Context ctx = null;
         try {
             ctx = new InitialContext();
@@ -152,7 +163,6 @@ public class LoginAction extends ActionSupport {
             response.setContentType("application/json");
 
             if (validUser != null) {
-                
                 String responseJSON = mapper.writeValueAsString(validUser);
                 response.getWriter().write(responseJSON);
             } else {
