@@ -37,7 +37,7 @@ public class ProductAction extends ActionSupport {
 	}
         
         @Action(value = "allProducts")
-        public String getAllProducts() throws IOException
+        public void getAllProducts() throws IOException
         {
             ObjectMapper mapper = new ObjectMapper();
             
@@ -50,7 +50,9 @@ public class ProductAction extends ActionSupport {
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 mapper.writeValue(out, list);
                 final byte[] data = out.toByteArray();
-                return (new String(data));           // sending out the list of all products     
+                response = ServletActionContext.getResponse();
+                response.setContentType("application/json");
+                response.getWriter().write(new String(data));           
             } 
             catch (IOException | NamingException e) {                
                 System.out.println(e.getMessage());                
@@ -64,7 +66,6 @@ public class ProductAction extends ActionSupport {
                     }
                 }
             } 
-            return "";
         }
         @Action("addProduct")
         public void addProduct()
