@@ -71,7 +71,7 @@ public class UserService implements UserServiceLocal {
         }
         if (user != null) {
             String email = user.getEmail();
-            String password = user.getPassword();
+            String userPassword = user.getPassword();
 
             Query query = entityManager.createNamedQuery("findUserByEmail");
             query.setParameter("email", email);
@@ -80,10 +80,23 @@ public class UserService implements UserServiceLocal {
             LOGGER.info("Result from database: "+result);
 
             if (result != null) {
-                LOGGER.info ("Verifing User");
-                boolean valid = verifyUser(result, password);
+                LOGGER.info ("Verifing User his password: "+result.getPassword());
+                boolean valid = verifyUser(result, userPassword);
                 if (valid) {
-                    return result;
+                    Users responseUser = new Users();
+                    
+                    responseUser.setActive(result.isActive());
+                    responseUser.setColorProductCart(result.getColorProductCart());
+                    responseUser.setContactNo(result.getContactNo());
+                    responseUser.setEmail(result.getEmail());
+                    responseUser.setFirstName(result.getFirstName());
+                    responseUser.setLastName(result.getLastName());
+                    responseUser.setStreetAddress(result.getStreetAddress());
+                    responseUser.setOrderList(result.getOrderList());
+                    responseUser.setPincode(result.getPincode());
+                    responseUser.setUserId(result.getUserId());
+                    
+                    return responseUser;
                 }
             }
             LOGGER.info("No such user found");
