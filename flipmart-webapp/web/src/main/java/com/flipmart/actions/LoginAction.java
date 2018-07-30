@@ -107,15 +107,19 @@ public class LoginAction extends ActionSupport {
 
         LOGGER.info("jsonResponse : " + jsonResponse);
         JsonNode data = mapper.readTree(jsonResponse);
-
-        long pincode = data.get("pincode").get("pincode").asLong();
-        System.out.println("pincode fron json= " + pincode);
+        long pincode = 0;
+            if(data.get("pincode").get("pincode")!=null)
+                pincode= data.get("pincode").get("pincode").asLong();
+        
+             
+        //System.out.println("pincode fron json= " + pincode);
         response = ServletActionContext.getResponse();
         response.setContentType("application/json");
-        LOGGER.info("response:" + response);
+//        LOGGER.info("response:" + response);
         response.getWriter().write(findPincode(pincode).toString());
     }
 
+    
     public JsonNode findPincode(long pincode) throws JsonProcessingException, IOException {
         //LOGGER.info("Pincode : " + pincode);
         System.out.println("pincode from json = " + pincode);
@@ -136,10 +140,10 @@ public class LoginAction extends ActionSupport {
 
                 LOGGER.info("Response: " + objectNode.toString());
 
-                response.getWriter().write(objectNode.toString());
+//                response.getWriter().write(objectNode.toString());
             } else {
                 String responseJSON = "{\"valid\":false}";
-                response.getWriter().write(responseJSON);
+                responseData = mapper.readTree(responseJSON);
             }
 
             // {"pincode":310041,"city":{"cityId":1,"cityName":"udaipur","state":{"stateId":1,"stateName":"rajasthan"}}}

@@ -30,8 +30,15 @@ public class PincodeService implements PincodeServiceLocal{
     @Override
     public Pincode findByPincode(Long pincode) {
         System.out.println("pin - "+pincode);
-        
-        Pincode Resultpincode = entityManager.find(Pincode.class,pincode);
+        Pincode Resultpincode = null;
+        try 
+        {
+            Resultpincode = entityManager.find(Pincode.class,pincode);
+        } 
+        catch (Exception e)
+        {
+           return null;
+        }
        
         return Resultpincode;  
     }
