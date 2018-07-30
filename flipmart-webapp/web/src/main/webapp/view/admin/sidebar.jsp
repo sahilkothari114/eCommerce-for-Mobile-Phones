@@ -19,7 +19,7 @@
                     </li>
                     
 					<li>
-                        <a href="user.jsp">
+                        <a href="adminProfile.jsp">
                             <i class="material-icons">person</i>
                             <p>Admin Profile</p>
                         </a>
