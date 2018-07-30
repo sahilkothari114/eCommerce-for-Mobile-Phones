@@ -20,18 +20,6 @@ import javax.persistence.Table;
 @Table(name = "color_product")
 public class ColorProduct implements Serializable{
 
-	/*
-	 * @Id
-	 * 
-	 * @GeneratedValue(strategy = GenerationType.SEQUENCE)
-	 * 
-	 * @Column(name = "color_product_id") private long id;
-	 * 
-	 * public long getId() { return id; }
-	 * 
-	 * public void setId(long id) { this.id = id; }
-	 */
-
 	@EmbeddedId
 	private ColorProductId colorProductId;
 
@@ -139,5 +127,10 @@ public class ColorProduct implements Serializable{
 	public int hashCode() {
 		return Objects.hash(color, product);
 	}
+
+    @Override
+    public String toString() {
+        return "ColorProduct{" + "colorProductId=" + colorProductId + ", color=" + color + ", product=" + product + ", stock=" + stock + ", active=" + active + ", user=" + user + ", OrderList=" + OrderList + '}';
+    }
 
 }

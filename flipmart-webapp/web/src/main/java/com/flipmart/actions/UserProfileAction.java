@@ -30,19 +30,13 @@ public class UserProfileAction extends ActionSupport {
 
     @Override
     public String execute() {
-        System.out.println("Profile Called");
-        /*try {
-            fetchUserDetails();
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(UserProfileAction.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
         return SUCCESS;
     }
 
     @Action("userdetails")
     public JsonNode fetchUserDetails() throws IOException {
         logger.info("user details called");
-        
+
         ObjectMapper mapper = new ObjectMapper();
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
@@ -97,5 +91,4 @@ public class UserProfileAction extends ActionSupport {
 
         JsonNode data = mapper.readTree(jsonResponse);
     }
-
 }

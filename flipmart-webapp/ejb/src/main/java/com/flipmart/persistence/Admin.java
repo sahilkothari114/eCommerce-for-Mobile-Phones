@@ -155,4 +155,9 @@ public class Admin implements Serializable {
 		return adminId;
 	}
 
+    @Override
+    public String toString() {
+        return "Admin{" + "adminId=" + adminId + ", firstName=" + firstName + ", lastname=" + lastname + ", email=" + email + ", password=" + password + ", pincode=" + pincode + ", streetAddress=" + streetAddress + ", contactNo=" + contactNo + ", displayPicture=" + displayPicture + ", active=" + active + '}';
+    }
+
 }
