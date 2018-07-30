@@ -14,6 +14,8 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.flipmart.persistence.City;
 import com.flipmart.persistence.Pincode;
 import com.flipmart.persistence.State;
@@ -22,6 +24,7 @@ import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
+import java.math.BigDecimal;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -95,25 +98,27 @@ public class LoginAction extends ActionSupport {
         }
     }
 
-        @Action("pincode")
+    @Action("pincode")
     public void findPincode() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-            System.out.println("aayaa");
+
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        System.out.println("jsonResponse : " + jsonResponse);
+
+        LOGGER.info("jsonResponse : " + jsonResponse);
         JsonNode data = mapper.readTree(jsonResponse);
+
         long pincode = data.get("pincode").get("pincode").asLong();
-        System.out.println("pincode fron json= "+pincode);
-        response  = ServletActionContext.getResponse();
+        System.out.println("pincode fron json= " + pincode);
+        response = ServletActionContext.getResponse();
         response.setContentType("application/json");
-        LOGGER.info("response:"+response);
+        LOGGER.info("response:" + response);
         response.getWriter().write(findPincode(pincode).toString());
     }
-    
+
     public JsonNode findPincode(long pincode) throws JsonProcessingException, IOException {
         //LOGGER.info("Pincode : " + pincode);
-        System.out.println("pincode from json = "+pincode);
+        System.out.println("pincode from json = " + pincode);
         ObjectMapper mapper = new ObjectMapper();
         Context ctx = null;
         try {
@@ -129,7 +134,7 @@ public class LoginAction extends ActionSupport {
             return responseData;
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
-            System.out.println("----" + e.getMessage());
+            LOGGER.info("----" + e.getMessage());
         } finally {
             if (ctx != null) {
                 try {
@@ -141,14 +146,13 @@ public class LoginAction extends ActionSupport {
         return null;
     }
 
-
     @Action(value = "validate")
     public void validateUser() throws IOException, JsonProcessingException {
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
 
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println(" -> " + jsonResponse);
+        LOGGER.info(" -> " + jsonResponse);
 
         Users user = mapper.readValue(jsonResponse, Users.class);
 
@@ -164,7 +168,14 @@ public class LoginAction extends ActionSupport {
 
             if (validUser != null) {
                 String responseJSON = mapper.writeValueAsString(validUser);
-                response.getWriter().write(responseJSON);
+                
+                JsonNode jsonNode = mapper.readTree(responseJSON);
+                ObjectNode objectNode = (ObjectNode) jsonNode;
+                objectNode.put("valid", true);
+                
+                LOGGER.info("Respinse: "+objectNode.toString());
+
+                response.getWriter().write(objectNode.toString());
             } else {
                 String responseJSON = "{\"valid\":false}";
                 response.getWriter().write(responseJSON);

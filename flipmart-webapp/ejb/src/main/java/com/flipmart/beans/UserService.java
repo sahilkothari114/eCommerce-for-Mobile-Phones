@@ -56,7 +56,6 @@ public class UserService implements UserServiceLocal {
             LOGGER.info("Persisting user");
             entityManager.persist(user);
 
-            
             transactionObj.commit();
             LOGGER.info("Persisting user success");
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
@@ -77,25 +76,14 @@ public class UserService implements UserServiceLocal {
             query.setParameter("email", email);
 
             Users result = (Users) query.getSingleResult();
-            LOGGER.info("Result from database: "+result);
+            LOGGER.info("Result from database: " + result);
 
             if (result != null) {
-                LOGGER.info ("Verifing User his password: "+result.getPassword());
+                LOGGER.info("Verifing User his password: " + result.getPassword());
                 boolean valid = verifyUser(result, userPassword);
                 if (valid) {
-                    Users responseUser = new Users();
-                    
-                    responseUser.setActive(result.isActive());
-                    responseUser.setColorProductCart(result.getColorProductCart());
-                    responseUser.setContactNo(result.getContactNo());
-                    responseUser.setEmail(result.getEmail());
-                    responseUser.setFirstName(result.getFirstName());
-                    responseUser.setLastName(result.getLastName());
-                    responseUser.setStreetAddress(result.getStreetAddress());
-                    responseUser.setOrderList(result.getOrderList());
-                    responseUser.setPincode(result.getPincode());
-                    responseUser.setUserId(result.getUserId());
-                    
+                    Users responseUser = prepareResponseUser(result);
+
                     return responseUser;
                 }
             }
@@ -109,12 +97,12 @@ public class UserService implements UserServiceLocal {
     private Boolean verifyUser(Users user, String password) {
         boolean valid = false;
         try {
-            LOGGER.info ("calling password hash");
-            
+            LOGGER.info("calling password hash");
+
             String verifyPassword = user.getPassword();
             valid = PasswordHash.validatePassword(password, verifyPassword);
-            
-            LOGGER.info ("User valid? "+valid);
+
+            LOGGER.info("User valid? " + valid);
             return valid;
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             LOGGER.error(ex);
@@ -140,6 +128,23 @@ public class UserService implements UserServiceLocal {
         }
         LOGGER.error("user name is null");
         return null;
+    }
+
+    private Users prepareResponseUser(Users result) {
+        Users responseUser = new Users();
+        
+        responseUser.setActive(result.isActive());
+        responseUser.setColorProductCart(result.getColorProductCart());
+        responseUser.setContactNo(result.getContactNo());
+        responseUser.setEmail(result.getEmail());
+        responseUser.setFirstName(result.getFirstName());
+        responseUser.setLastName(result.getLastName());
+        responseUser.setStreetAddress(result.getStreetAddress());
+        responseUser.setOrderList(result.getOrderList());
+        responseUser.setPincode(result.getPincode());
+        responseUser.setUserId(result.getUserId());
+
+        return responseUser;
     }
 
 }
