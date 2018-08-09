@@ -53,4 +53,9 @@ public class City implements Serializable{
 		this.state = state;
 	}
 
+    @Override
+    public String toString() {
+        return "City{" + "cityId=" + cityId + ", cityName=" + cityName + ", state=" + state + '}';
+    }
+
 }

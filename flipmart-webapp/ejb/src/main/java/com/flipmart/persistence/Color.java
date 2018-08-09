@@ -77,4 +77,9 @@ public class Color implements Serializable{
 		return Objects.hash(colorName);
 	}
 
+    @Override
+    public String toString() {
+        return "Color{" + "colorId=" + colorId + ", colorName=" + colorName + ", colorProductList=" + colorProductList + '}';
+    }
+
 }

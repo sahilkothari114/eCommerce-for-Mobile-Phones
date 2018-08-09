@@ -105,15 +105,20 @@ public class LoginAction extends ActionSupport {
 
         LOGGER.info("jsonResponse : " + jsonResponse);
         JsonNode data = mapper.readTree(jsonResponse);
-
-        long pincode = data.get("pincode").get("pincode").asLong();
-        System.out.println("pincode fron json= " + pincode);
+        long pincode = 0;
+            if(data.get("pincode").get("pincode")!=null)
+                pincode= data.get("pincode").get("pincode").asLong();
+        
+             
+        //System.out.println("pincode fron json= " + pincode);
         response = ServletActionContext.getResponse();
         response.setContentType(FlipmartConstants.CONTENT_TYPE);
         LOGGER.info("response:" + response);
+
         response.getWriter().write(findPincode(pincode).toString());
     }
 
+    
     public JsonNode findPincode(long pincode) throws JsonProcessingException, IOException {
         //LOGGER.info("Pincode : " + pincode);
         System.out.println("pincode from json = " + pincode);
@@ -124,11 +129,23 @@ public class LoginAction extends ActionSupport {
             PincodeServiceLocal pincodeService = (PincodeServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/PincodeService!com.flipmart.service.PincodeServiceLocal");
 
             Pincode pincodeObject = pincodeService.findByPincode(pincode);
-            String jsonInString = mapper.writeValueAsString(pincodeObject);
-            JsonNode responseData = mapper.readTree(jsonInString);
-            //System.out.println(responseData.toString());
+            JsonNode responseData = null;
+            if (pincodeObject != null) {
+                String jsonInString = mapper.writeValueAsString(pincodeObject);
+                responseData = mapper.readTree(jsonInString);
+
+                ObjectNode objectNode = (ObjectNode) responseData;
+                objectNode.put("valid", true);
+
+                LOGGER.info("Response: " + objectNode.toString());
+
+//                response.getWriter().write(objectNode.toString());
+            } else {
+                String responseJSON = "{\"valid\":false}";
+                responseData = mapper.readTree(responseJSON);
+            }
+
             // {"pincode":310041,"city":{"cityId":1,"cityName":"udaipur","state":{"stateId":1,"stateName":"rajasthan"}}}
-            //System.out.println("fetched pincode: "+ responseData.get("city").get("cityName").asText());
             return responseData;
         } catch (NamingException e) {
             // logger.log(Level.SEVERE,"Unable to retrieve the UserService.",e);
@@ -166,12 +183,12 @@ public class LoginAction extends ActionSupport {
 
             if (validUser != null) {
                 String responseJSON = mapper.writeValueAsString(validUser);
-                
+
                 JsonNode jsonNode = mapper.readTree(responseJSON);
                 ObjectNode objectNode = (ObjectNode) jsonNode;
                 objectNode.put("valid", true);
-                
-                LOGGER.info("Respinse: "+objectNode.toString());
+
+                LOGGER.info("Respinse: " + objectNode.toString());
 
                 response.getWriter().write(objectNode.toString());
             } else {

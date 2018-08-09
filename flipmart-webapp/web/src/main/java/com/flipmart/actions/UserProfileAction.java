@@ -1,6 +1,5 @@
 package com.flipmart.actions;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flipmart.persistence.Users;
@@ -11,7 +10,6 @@ import org.apache.struts2.convention.annotation.Result;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.IOException;
-import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -45,6 +43,12 @@ public class UserProfileAction extends ActionSupport {
 
     /*public void fetchUserDetails() throws IOException {
         LOGGER.info("user details called");
+        return SUCCESS;
+    }
+
+    @Action("userdetails")
+    public JsonNode fetchUserDetails() throws IOException {
+        logger.info("user details called");
 
         ObjectMapper mapper = new ObjectMapper();
         request = ServletActionContext.getRequest();
@@ -133,6 +137,5 @@ public class UserProfileAction extends ActionSupport {
         } else {
             LOGGER.error("User details are null "+updateDetails);
         }
-
     }
 }

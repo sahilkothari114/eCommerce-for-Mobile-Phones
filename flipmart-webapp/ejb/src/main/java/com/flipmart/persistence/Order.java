@@ -129,6 +129,8 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "com.flipmart.persistence.Order[ id=" + orderId + " ]";
-    }    
+        return "Order{" + "orderId=" + orderId + ", user=" + user + ", orderDate=" + orderDate + ", status=" + status + ", totalAmountt=" + totalAmountt + ", colorProductOrder=" + colorProductOrder + ", active=" + active + '}';
+    }
+
+   
 }

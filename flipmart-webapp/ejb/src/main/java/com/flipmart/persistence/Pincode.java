@@ -38,4 +38,10 @@ public class Pincode implements Serializable{
 	public void setCity(City city) {
 		this.city = city;
 	}
+
+    @Override
+    public String toString() {
+        return "Pincode{" + "pincode=" + pincode + ", city=" + city + '}';
+    }
+        
 }

@@ -49,4 +49,9 @@ public class Manufacturer implements Serializable{
 		this.manufacturerId = manufacturerId;
 	}
 
+    @Override
+    public String toString() {
+        return "Manufacturer{" + "manufacturerId=" + manufacturerId + ", name=" + name + ", active=" + active + '}';
+    }
+
 }

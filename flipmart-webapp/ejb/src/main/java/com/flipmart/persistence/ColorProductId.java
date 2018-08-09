@@ -61,4 +61,10 @@ public class ColorProductId implements Serializable {
 	public int hashCode() {
 		return Objects.hash(colorId, productId);
 	}
+
+    @Override
+    public String toString() {
+        return "ColorProductId{" + "colorId=" + colorId + ", productId=" + productId + '}';
+    }
+        
 }

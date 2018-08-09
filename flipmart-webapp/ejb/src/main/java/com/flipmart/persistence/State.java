@@ -38,4 +38,9 @@ public class State implements Serializable{
 		this.stateName = stateName;
 	}
 
+    @Override
+    public String toString() {
+        return "State{" + "stateId=" + stateId + ", stateName=" + stateName + '}';
+    }
+
 }
