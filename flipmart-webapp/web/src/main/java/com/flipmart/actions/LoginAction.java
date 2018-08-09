@@ -14,7 +14,6 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.flipmart.persistence.City;
 import com.flipmart.persistence.Pincode;
@@ -24,7 +23,6 @@ import com.flipmart.service.PincodeServiceLocal;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
-import java.math.BigDecimal;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -42,7 +40,7 @@ public class LoginAction extends ActionSupport {
 
     @Override
     public String execute() {
-        String sample = "Shagufta";
+       // String sample = "Shagufta";
         return SUCCESS;
     }
 
@@ -111,7 +109,7 @@ public class LoginAction extends ActionSupport {
         long pincode = data.get("pincode").get("pincode").asLong();
         System.out.println("pincode fron json= " + pincode);
         response = ServletActionContext.getResponse();
-        response.setContentType("application/json");
+        response.setContentType(FlipmartConstants.CONTENT_TYPE);
         LOGGER.info("response:" + response);
         response.getWriter().write(findPincode(pincode).toString());
     }

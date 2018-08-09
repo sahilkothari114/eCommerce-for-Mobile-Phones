@@ -7,7 +7,6 @@ import com.flipmart.persistence.Users;
 import com.flipmart.utils.PasswordHash;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
@@ -132,7 +131,7 @@ public class UserService implements UserServiceLocal {
 
     private Users prepareResponseUser(Users result) {
         Users responseUser = new Users();
-        
+
         responseUser.setActive(result.isActive());
         responseUser.setColorProductCart(result.getColorProductCart());
         responseUser.setContactNo(result.getContactNo());
@@ -145,6 +144,16 @@ public class UserService implements UserServiceLocal {
         responseUser.setUserId(result.getUserId());
 
         return responseUser;
+    }
+
+    @Override
+    public void updateUser(Users user) {
+        if (!transactionObj.isActive()) {
+            transactionObj.begin();
+        }
+        
+        entityManager.merge(user);
+        transactionObj.commit();
     }
 
 }

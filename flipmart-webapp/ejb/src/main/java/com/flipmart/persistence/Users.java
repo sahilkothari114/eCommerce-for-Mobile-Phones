@@ -25,8 +25,7 @@ import javax.persistence.Table;
             @NamedQuery(
                     name = "findUsersByFirstName",
                     query = "from Users u where u.firstName = :firstName"
-            )
-            ,
+            ),
             @NamedQuery(
                     name = "findUserByEmail",
                     query = "from Users u where u.email= :email"

@@ -16,6 +16,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -24,36 +25,42 @@ import org.apache.struts2.ServletActionContext;
     @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "profile.jsp")})
 public class UserProfileAction extends ActionSupport {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 12563256L;
     private static HttpServletRequest request;
-    private static final Logger logger = Logger.getLogger(UserProfileAction.class);
+    private static HttpServletResponse response;
+    private static final Logger LOGGER = Logger.getLogger(UserProfileAction.class);
 
     @Override
     public String execute() {
-        System.out.println("Profile Called");
+        LOGGER.info("Profile Called");
+ 
         /*try {
             fetchUserDetails();
+        updateUserDetails();
         } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(UserProfileAction.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error(ex);
         }*/
         return SUCCESS;
     }
 
-    @Action("userdetails")
-    public JsonNode fetchUserDetails() throws IOException {
-        logger.info("user details called");
-        
+    /*public void fetchUserDetails() throws IOException {
+        LOGGER.info("user details called");
+
         ObjectMapper mapper = new ObjectMapper();
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
-        //String jsonResponse = "{\"userName\": \"Shagufta\"}";
+
         JsonNode data = mapper.readTree(jsonResponse);
 
         String userId = data.get("userId").asText();
-        logger.info("user id: " + userId);
+        LOGGER.info("user id: " + userId);
 
-        JsonNode response = fetchUserDetails(userId);
-        return response;
+        response = ServletActionContext.getResponse();
+        response.setContentType(FlipmartConstants.CONTENT_TYPE);
+        JsonNode responseJSON = fetchUserDetails(userId);
+
+        LOGGER.info("response:" + responseJSON);
+        response.getWriter().write(responseJSON.toString());
     }
 
     private JsonNode fetchUserDetails(String userId) {
@@ -68,26 +75,26 @@ public class UserProfileAction extends ActionSupport {
             try {
                 String json = mapper.writeValueAsString(us);
                 JsonNode data = mapper.readTree(json);
-                logger.info("response: " + data);
+                LOGGER.info("response: " + data);
                 return data;
             } catch (JsonProcessingException ex) {
-                logger.error(ex);
+                LOGGER.error(ex);
             } catch (IOException ex) {
-                logger.error(ex);
+                LOGGER.error(ex);
             }
         } catch (NamingException e) {
-            logger.error(e);
+            LOGGER.error(e);
         } finally {
             if (ctx != null) {
                 try {
                     ctx.close();
                 } catch (NamingException t) {
-                    logger.error(t);
+                    LOGGER.error(t);
                 }
             }
         }
         return null;
-    }
+    }*/
 
     @Action("updateuser")
     public void updateUserDetails() throws IOException {
@@ -95,7 +102,37 @@ public class UserProfileAction extends ActionSupport {
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
 
-        JsonNode data = mapper.readTree(jsonResponse);
-    }
+        Users updateDetails = mapper.readValue(jsonResponse, Users.class);
+       /* Users updateDetails = new Users();
+        updateDetails.setUserId(102);
+        updateDetails.setContactNo("98989898989");
+        updateDetails.setEmail("abc@gmail.com");
+        updateDetails.setFirstName("Shagufta");
+        updateDetails.setLastName("Shaikh");
+        updateDetails.setPassword("test");
+        updateDetails.setActive(true);*/
+        
+        if (updateDetails != null) {
+            Context ctx = null;
+            try {
+                ctx = new InitialContext();
+                UserServiceLocal us = (UserServiceLocal) ctx.lookup("java:global/flipmart-webapp-ear/flipmart-webapp-ejb/UserService!com.flipmart.service.UserServiceLocal");
+                
+                us.updateUser(updateDetails);
+                
+            } catch (NamingException e) {
+                System.out.println(e.getMessage());
+            } finally {
+                if (ctx != null) {
+                    try {
+                        ctx.close();
+                    } catch (NamingException t) {
+                    }
+                }
+            }
+        } else {
+            LOGGER.error("User details are null "+updateDetails);
+        }
 
+    }
 }

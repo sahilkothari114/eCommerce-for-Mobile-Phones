@@ -25,6 +25,8 @@ public class FlipmartConstants {
 	public final static String PBKDF2 = "PBKDF2WithHmacSHA1";
 	public final static String SHA1PRNG = "SHA1PRNG";
         
+        public final static String CONTENT_TYPE = "application/json";
+        
         public final static String JNDI_LOOKUP = "java:global/flipmart-webapp-ear/flipmart-webapp-ejb/";
 }
 
