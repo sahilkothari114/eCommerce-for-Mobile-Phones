@@ -59,12 +59,17 @@ public class UserProfileAction extends ActionSupport {
 
         JsonNode data = mapper.readTree(jsonResponse);
 
+<<<<<<< HEAD
         String userId = data.get("userId").asText();
         LOGGER.info("user id: " + userId);
 
         response = ServletActionContext.getResponse();
         response.setContentType(FlipmartConstants.CONTENT_TYPE);
         JsonNode responseJSON = fetchUserDetails(userId);
+=======
+        String userName = data.get("userName").asText();
+        LOGGER.info("user name: " + userName);
+>>>>>>> master
 
         LOGGER.info("response:" + responseJSON);
         response.getWriter().write(responseJSON.toString());

@@ -15,4 +15,5 @@ public interface UserServiceLocal {
 	public void addUser(Users user);
         public Users findByUserName(String userName);
         public void updateUser(Users user);
+        public Users findByEmail(String email);
 }

@@ -17,10 +17,13 @@ import com.flipmart.persistence.Users;
 import com.flipmart.service.UserServiceLocal;
 import com.flipmart.util.FlipmartConstants;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletResponse;
+
+import javax.servlet.http.HttpServletResponseWrapper;
 import org.apache.log4j.Logger;
 
 @Action(value = "login", results = {
@@ -34,12 +37,13 @@ public class LoginAction extends ActionSupport {
 
     @Override
     public String execute() {
-       // String sample = "Shagufta";
+        // String sample = "Shagufta";
         return SUCCESS;
     }
 
     @Action(value = "validate")
     public void validateUser() throws IOException, JsonProcessingException {
+
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
 
@@ -72,16 +76,11 @@ public class LoginAction extends ActionSupport {
                 String responseJSON = "{\"valid\":false}";
                 response.getWriter().write(responseJSON);
             }
-
-        } catch (NamingException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (ctx != null) {
-                try {
-                    ctx.close();
-                } catch (NamingException t) {
-                }
-            }
+        } catch (NamingException ex) {
+            //java.util.logging.Logger.getLogger(LoginAction.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error(ex);
         }
+
     }
+
 }

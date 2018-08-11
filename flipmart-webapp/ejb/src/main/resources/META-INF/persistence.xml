@@ -27,9 +27,12 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="format_sql" value="true"/>
             <property name="hibernate.show_sql" value="true" />
-            <!--Uncomment these lines to create the schema and database-->
-<!--            <property name="javax.persistence.schema-generation.database.action"  value="drop-and-create" />
-            <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+
+            <!--<property name="eclipselink.weaving" value="true"/>
+            <property name="eclipselink.weaving.lazy" value="true"/>
+
+           <property name="javax.persistence.schema-generation.database.action"  value="drop-and-create" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />-->
 
         </properties>
     </persistence-unit>

@@ -1,13 +1,13 @@
 package com.flipmart.beans;
 
 import com.flipmart.service.UserServiceLocal;
-import javax.ejb.Stateless;
 
 import com.flipmart.persistence.Users;
 import com.flipmart.utils.PasswordHash;
 import com.flipmart.utils.UserValidation;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  *
  * @author Shagufta
  */
-@Stateless
+@Stateful
 public class UserService implements UserServiceLocal {
 
     private final EntityManager entityManager;
@@ -139,6 +139,26 @@ public class UserService implements UserServiceLocal {
 
         entityManager.merge(user);
         transactionObj.commit();
+    }
+
+    @Override
+    public Users findByEmail(String email) {
+        if (!transactionObj.isActive()) {
+            transactionObj.begin();
+        }
+        if (email != null) {
+            Query query = entityManager.createNamedQuery("findUsersByEmail");
+            query.setParameter("email", email);
+            Users user = (Users) query.getSingleResult();
+
+            if (user != null) {
+                System.out.println("Data from backend " + user);
+                return user;
+            }
+            LOGGER.error("could not find details of the user");
+        }
+        LOGGER.error("email is null");
+        return null;
     }
 
 }
