@@ -118,9 +118,6 @@
 <!-- Angular Scripts -->
 <script src="../../assets/js/angular.min.js"></script>
 <script src="../../assets/controllers/dashboard.controller.js" type="text/javascript"></script>
-
-<!--  Dynamic Elements plugin -->
-<script src="../../assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
 <script src="../../assets/js/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
