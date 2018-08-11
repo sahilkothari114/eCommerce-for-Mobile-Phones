@@ -9,9 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "findAdminByEmail",
+                    query = "from Admin a where a.email= :email"
+            )
+        }
+)
 @Entity
 @Table(name = "admin")
 public class Admin implements Serializable {
@@ -66,10 +76,6 @@ public class Admin implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public String getlastname() {
-		return lastname;
-	}
-
 	public void setlastname(String lastname) {
 		this.lastname = lastname;
 	}
@@ -91,11 +97,11 @@ public class Admin implements Serializable {
 	}
 
 
-	public String getLastname() {
+	public String getLastName() {
 		return lastname;
 	}
 
-	public void setLastname(String lastname) {
+	public void setLastName(String lastname) {
 		this.lastname = lastname;
 	}
 
@@ -133,14 +139,6 @@ public class Admin implements Serializable {
 
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
-	}
-
-	public String getcontactNo() {
-		return contactNo;
-	}
-
-	public void setcontactNo(String contactNo) {
-		this.contactNo = contactNo;
 	}
 
 	public String getDisplayPicture() {

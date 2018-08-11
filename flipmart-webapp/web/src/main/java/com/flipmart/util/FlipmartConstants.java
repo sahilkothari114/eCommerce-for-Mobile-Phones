@@ -12,6 +12,7 @@ public class FlipmartConstants {
 	
 	public final static String SUCCESS = "success";
 	public final static String CLIENT_URI = "/view/client/";
+        public final static String ADMIN_URI = "/view/admin/";
 	
 	public final static String KEY_EMAIL = "email";
 	public final static String KEY_FIRST_NAME = "firstName";

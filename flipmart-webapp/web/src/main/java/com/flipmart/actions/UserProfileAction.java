@@ -1,6 +1,5 @@
 package com.flipmart.actions;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flipmart.persistence.Users;
 import com.flipmart.service.UserServiceLocal;
@@ -19,6 +18,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
+/**
+ *
+ * @author Shagufta
+ */
 @Action(value = "userprofile", results = {
     @Result(name = FlipmartConstants.SUCCESS, location = FlipmartConstants.CLIENT_URI + "profile.jsp")})
 public class UserProfileAction extends ActionSupport {

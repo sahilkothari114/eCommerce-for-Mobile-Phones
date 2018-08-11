@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 
 import com.flipmart.persistence.Users;
 import com.flipmart.utils.PasswordHash;
+import com.flipmart.utils.UserValidation;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import javax.persistence.EntityManager;
@@ -79,7 +80,7 @@ public class UserService implements UserServiceLocal {
 
             if (result != null) {
                 LOGGER.info("Verifing User his password: " + result.getPassword());
-                boolean valid = verifyUser(result, userPassword);
+                boolean valid = UserValidation.verifyUser(result, userPassword);
                 if (valid) {
                     Users responseUser = prepareResponseUser(result);
 
@@ -91,22 +92,6 @@ public class UserService implements UserServiceLocal {
         }
         LOGGER.info("user object is null");
         return null;
-    }
-
-    private Boolean verifyUser(Users user, String password) {
-        boolean valid = false;
-        try {
-            LOGGER.info("calling password hash");
-
-            String verifyPassword = user.getPassword();
-            valid = PasswordHash.validatePassword(password, verifyPassword);
-
-            LOGGER.info("User valid? " + valid);
-            return valid;
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            LOGGER.error(ex);
-        }
-        return valid;
     }
 
     @Override
@@ -151,7 +136,7 @@ public class UserService implements UserServiceLocal {
         if (!transactionObj.isActive()) {
             transactionObj.begin();
         }
-        
+
         entityManager.merge(user);
         transactionObj.commit();
     }
