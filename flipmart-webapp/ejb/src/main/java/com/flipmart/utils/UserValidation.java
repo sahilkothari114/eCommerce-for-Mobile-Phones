@@ -21,7 +21,7 @@ public class UserValidation {
 
     public static Boolean verifyUser(Object object, String password) {
 
-        String className = object.getClass().getName();
+        String className = object.getClass().getSimpleName();
 
         boolean valid = false;
         try {

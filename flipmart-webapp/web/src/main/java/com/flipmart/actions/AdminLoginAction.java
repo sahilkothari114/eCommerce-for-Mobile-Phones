@@ -38,17 +38,18 @@ public class AdminLoginAction extends ActionSupport {
     @Override
     public String execute() {
         LOGGER.info("Admin Login service called");
-        try {
+       /* try {
             // String sample = "Shagufta";
             validateAdmin();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(AdminLoginAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         return SUCCESS;
     }
 
     @Action("validateAdmin")
     public void validateAdmin() throws IOException {
+        LOGGER.info("Validate Called!!!!!");
         ObjectMapper mapper = new ObjectMapper();
         request = ServletActionContext.getRequest();
         String jsonResponse = IOUtils.toString(request.getInputStream(), FlipmartConstants.CHARACTER_ENCODING);
