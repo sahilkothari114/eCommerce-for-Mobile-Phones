@@ -1,9 +1,4 @@
-<div class="sidebar" data-color="purple" data-image="ssets/images/admin/sidebar-1.jpg">
-    <!--
-Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-Tip 2: you can also add an image using data-image tag
-    -->
+<div class="sidebar" data-color="purple" data-image="assets/images/admin/sidebar-1.jpg">
     <div class="logo">
         <a href="#" class="simple-text">
             Admin Name
@@ -12,28 +7,28 @@ Tip 2: you can also add an image using data-image tag
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li>
-                <a href="/flipmart-webapp-web/view/admin/dashboard.jsp">
+                <a href="/flipmart-webapp-web/adminDashboard">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
 
             <li>
-                <a href="/flipmart-webapp-web/view/admin/adminProfile.jsp">
+                <a href="/flipmart-webapp-web/adminProfile">
                     <i class="material-icons">person</i>
                     <p>Admin Profile</p>
                 </a>
             </li>
 
             <li>
-                <a href="/flipmart-webapp-web/view/admin/addManufacturer.jsp">
+                <a href="/flipmart-webapp-web/addManufacturer">
                     <i class="material-icons">person</i>
                     <p>Add Manufacturer</p>
                 </a>
             </li>
 
             <li>
-                <a href="/flipmart-webapp-web/view/admin/addCity.jsp">
+                <a href="/flipmart-webapp-web/addCity">
                     <i class="material-icons">person</i>
                     <p>Add City</p>
                 </a>
@@ -47,9 +42,9 @@ Tip 2: you can also add an image using data-image tag
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="/flipmart-webapp-web/view/admin/PendingOrders.jsp">Pending Orders</a></li>
-                    <li><a href="/flipmart-webapp-web/view/admin/DispatchOrders.jsp">Dispatch Orders</a></li>
-                    <li><a href="/flipmart-webapp-web/view/admin/DeliveredProducts.jsp">Delivered Orders</a></li>
+                    <li><a href="/flipmart-webapp-web/pendingOrders">Pending Orders</a></li>
+                    <li><a href="/flipmart-webapp-web/dispatchOrders">Dispatch Orders</a></li>
+                    <li><a href="/flipmart-webapp-web/deliveredProducts">Delivered Orders</a></li>
                 </ul>
             </li>
             <li class="dropdown">								
@@ -59,8 +54,8 @@ Tip 2: you can also add an image using data-image tag
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="/flipmart-webapp-web/view/admin/productsOverview.jsp">Products Overview</a></li>
-                    <li><a href="/flipmart-webapp-web/view/admin/addProduct.jsp">Add Product</a></li>
+                    <li><a href="/flipmart-webapp-web/productOverview">Products Overview</a></li>
+                    <li><a href="/flipmart-webapp-web/adminAddProduct">Add Product</a></li>
                 </ul>
             </li>
         </ul>

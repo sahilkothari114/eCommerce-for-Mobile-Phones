@@ -68,12 +68,11 @@
 
 
         </style>
-        <script src="../../assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
         <script>
             $(function () {
-                $("#sidebarclass").load("sidebar.jsp");
-                $("#headerclass").load("header.jsp");
-                $("#footerclass").load("footer.jsp");
+                $("#sidebarclass").load("/flipmart-webapp-web/sidebar");
+                $("#headerclass").load("/flipmart-webapp-web/adminHeader");
             });
         </script>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">

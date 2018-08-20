@@ -106,8 +106,8 @@
 <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script>
     $(function(){
-        $("#sidebarclass").load("/flipmart-webapp-web/view/admin/sidebar.jsp");
-        $("#headerclass").load("/flipmart-webapp-web/view/admin/header.jsp");
+        $("#sidebarclass").load("/flipmart-webapp-web/sidebar");
+        $("#headerclass").load("/flipmart-webapp-web/adminHeader");
 
     });
 </script>

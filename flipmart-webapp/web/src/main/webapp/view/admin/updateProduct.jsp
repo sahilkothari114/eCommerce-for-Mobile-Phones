@@ -71,8 +71,8 @@
         <script src="assets/js/jquery.min.js"></script>
         <script>
             $(function () {
-                $("#sidebarclass").load("/flipmart-webapp-web/view/admin/sidebar.jsp");
-                $("#headerclass").load("/flipmart-webapp-web/view/admin/header.jsp");
+                $("#sidebarclass").load("/flipmart-webapp-web/sidebar");
+                $("#headerclass").load("/flipmart-webapp-web/adminHeader");
             });
         </script>
 

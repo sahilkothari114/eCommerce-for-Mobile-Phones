@@ -9,7 +9,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="adminProfile.jsp">Edit Profile</a>
+                            <a href="/flipmart-webapp-web/adminProfile">Edit Profile</a>
                             <a href="logout.html">Logout</a>
                         </li>
 
