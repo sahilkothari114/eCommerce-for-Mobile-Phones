@@ -25,6 +25,8 @@ public class ManufacturerAction extends ActionSupport{
     @Override
     public String execute() {
         LOGGER.info("Manufacturer service called");
+        
+        
         return SUCCESS;
     }
 }

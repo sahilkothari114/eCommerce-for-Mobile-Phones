@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="dashboardApp">
+<html lang="en" ng-controller="dashboardController">
 
 <head>
     <meta charset="utf-8" />
@@ -117,11 +117,8 @@
 <!-- Angular Scripts -->
 <script src="assets/js/angular.min.js"></script>
 <script src="assets/controllers/dashboard.controller.js" type="text/javascript"></script>
-<!--  PerfectScrollbar Library -->
 <script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
-<!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
-<!-- Material Dashboard javascript methods -->
 <script src="assets/js/material-dashboard.js?v=1.2.0"></script>
-
+<script src="assets/js/angular-route.min.js" type="text/javascript"></script>
 </html>

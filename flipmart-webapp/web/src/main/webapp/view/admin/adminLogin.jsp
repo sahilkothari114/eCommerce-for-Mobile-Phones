@@ -1,6 +1,6 @@
 <!doctype html>
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>-->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html lang="en" ng-app="adminLoginApp" ng-controller="adminCtrl">
     <head>
@@ -28,12 +28,7 @@
 
         <div class="main main-raised">
             <div class="section section-full-screen section-signup" style="background-image: url('assets/images/admin/phones.png'); background-size: cover; background-position: top center; min-height: 700px;">
-                <div style="position: relative; float: right;">
-                    <div class="alert alert-success" role="alert" ng-style="display: {{showValue}};">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Success!</strong> You have been signed in successfully!
-                    </div>
-                </div>
+               
                 <div class="container" style="margin-top:50px;">
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
@@ -99,5 +94,6 @@
     <script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="assets/js/material-kit.js" type="text/javascript"></script>
+    <script src="assets/js/angular-route.min.js" type="text/javascript"></script>
 
 </html>
