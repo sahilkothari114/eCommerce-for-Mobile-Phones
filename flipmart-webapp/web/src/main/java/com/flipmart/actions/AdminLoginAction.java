@@ -17,7 +17,6 @@ import org.apache.struts2.convention.annotation.Result;
 
 import com.flipmart.persistence.Admin;
 import com.flipmart.service.AdminServiceLocal;
-import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

@@ -15,7 +15,7 @@ app.config(['$routeProvider', '$locationProvider',
     }
 ]);
 
-app.controller("adminCtrl", function ($scope, $http, $location ,$window) {
+app.controller("adminCtrl", function ($scope, $http ,$window) {
 
     var onLoginSuccess = function (response) {
         //Put code for routing to Dashboard here using Struts

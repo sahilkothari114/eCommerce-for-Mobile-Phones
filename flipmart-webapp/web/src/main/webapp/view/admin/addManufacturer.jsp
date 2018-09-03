@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en">
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<html lang="en" ng-controller="manufacturerController">
 
     <head>
         <meta charset="utf-8" />
@@ -128,17 +130,14 @@
 
                                             <th></th>
                                             </thead>
-                                            <tbody>
+                                            <tbody ng-repeat="">
                                                 <tr>                                                
                                                     <td>Micromax</td>
-
-
                                                     <td>
-
                                                         <a href="#"><button type="button" name="btndel" value="del" class="btn btn-success" style="border-radius:10px; margin-top: 1px;">Delete</button></a></td>                                               
                                                     </td>                                                                                            
                                                 </tr>
-                                                <tr>                                                
+                                                <!--<tr>                                                
                                                     <td>Honor</td>
 
 
@@ -172,7 +171,7 @@
 
                                                         <a href="#"><button type="button" name="btndel" value="del" class="btn btn-success" style="border-radius:10px; margin-top: 1px;">Delete</button></a></td>                                               
                                                     </td>                                               
-                                                </tr>                                            
+                                                </tr>-->                                            
                                             </tbody>
                                         </table>
                                     </div>
